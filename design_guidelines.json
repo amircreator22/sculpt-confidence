@@ -1,0 +1,81 @@
+{
+  "brand_name": "Confidence Sculpt",
+  "theme_strategy": "Light mode primary. The aesthetic is 'Premium Editorial'. Background is warm off-white (#F7F3F0) providing a soft canvas for high-contrast charcoal typography (#2D2D2D) and blush pink (#E8B4B8) accents.",
+  "colors": {
+    "primary": "#E8B4B8",
+    "secondary": "#2D2D2D",
+    "accent": "#F7F3F0",
+    "background": "#F7F3F0",
+    "surface": "#FFFFFF",
+    "text": "#2D2D2D",
+    "text_muted": "#2D2D2D99",
+    "border": "rgba(45,45,45,0.15)"
+  },
+  "typography": {
+    "heading_font": "Clash Display",
+    "body_font": "Manrope",
+    "font_imports": "@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap');\\n@import url('https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600&display=swap');",
+    "rules": {
+      "h1": "font-['Clash_Display'] text-5xl md:text-[8vw] leading-[0.9] tracking-tighter uppercase text-[#2D2D2D]",
+      "h2": "font-['Clash_Display'] text-4xl md:text-6xl tracking-tight text-[#2D2D2D]",
+      "h3": "font-['Clash_Display'] text-2xl md:text-3xl text-[#2D2D2D]",
+      "body": "font-['Manrope'] text-base md:text-lg leading-relaxed text-[#2D2D2D]",
+      "overline": "uppercase tracking-[0.2em] text-xs font-semibold text-[#2D2D2D]"
+    }
+  },
+  "visual_enhancers": {
+    "borders": "Use sharp, 1px solid borders using the Charcoal color at 15% opacity (border-[#2D2D2D]/15).",
+    "shadows": "Avoid heavy drop shadows. Use subtle, diffuse shadows only for floating elements like the sticky ATC or cart drawer: shadow-[0_20px_40px_rgba(45,45,45,0.08)].",
+    "surfaces": "Use pure white (#FFFFFF) for product cards and high-focus elements against the warm off-white (#F7F3F0) background.",
+    "buttons": "Pill-shaped (rounded-full). Default state: bg-[#2D2D2D] text-[#F7F3F0]. Hover state: bg-[#E8B4B8] text-[#2D2D2D] with scale-up text. Add data-testid to all buttons."
+  },
+  "layouts_and_grids": {
+    "hero": "Massive lifestyle image overlay. Max overlay bg-black/20. Text must be positioned creatively (e.g., bottom left or overlapping the image edge).",
+    "bento_benefits": "Bento 'Tetris' Grid (Mode A) for the benefits section. Mix tall image cells (col-span-1 md:col-span-4 row-span-2) with wide text cells (col-span-1 md:col-span-8). Padding p-8 to p-12 inside cards.",
+    "product_grid": "Editorial layout. Avoid uniform squares. Use aspect-[3/4] for product images. No visible container borders, let the image act as the card. Text flows cleanly below the image.",
+    "spacing": "Hyper-generous spacing. Use py-24, py-32 for section padding. Gap-8 to gap-16 in grids."
+  },
+  "motion_and_interactions": {
+    "smooth_scroll": "MANDATORY: Implement lenis smooth scrolling for that premium 'momentum' feel.",
+    "kinetic_hero": "Use framer-motion for a line-by-line masked reveal. Wrap each line of 'Sculpt Your Shape. Elevate Your Confidence.' in an overflow-hidden span, and animate the text from y: '100%' to y: '0%'.",
+    "parallax": "Apply a subtle framer-motion useScroll and useTransform to the hero image and the UGC gallery images to create depth as the user scrolls.",
+    "hover_states": "Product images should have a slow, subtle scale (scale 1.05) on hover. Buttons should transition colors smoothly."
+  },
+  "components": {
+    "header": "Sticky glassmorphism navigation (backdrop-blur-xl bg-[#F7F3F0]/80). Minimalist layout: Logo center, links left, cart/search right.",
+    "marquee": "Use react-fast-marquee. Slow speed. Background #E8B4B8 (Blush pink), Text #2D2D2D. Font Clash Display text-4xl uppercase.",
+    "cart_drawer": "Slide out from right. Sharp edges. Use Shadcn Sheet component customized to fit the brand colors.",
+    "toast": "Use Sonner for Add-to-Cart notifications. Position bottom-right."
+  },
+  "media_and_images": {
+    "hero": [
+      "https://images.unsplash.com/photo-1606903037631-f09fd0bd74b4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMHdlYXJpbmclMjBwaW5rJTIwbGVnZ2luZ3MlMjBmaXRuZXNzfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85"
+    ],
+    "products": [
+      "https://images.unsplash.com/photo-1606902965551-dce093cda6e7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHdlYXJpbmclMjBwaW5rJTIwbGVnZ2luZ3MlMjBmaXRuZXNzfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1769196716871-39a0712fb037?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHw0fHx3b21hbiUyMHdlYXJpbmclMjBkYXJrJTIwc3BvcnRzJTIwYnJhJTIwZ3ltfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1617085606193-6b17105cff2a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwzfHx3b21hbiUyMHdlYXJpbmclMjBwaW5rJTIwbGVnZ2luZ3MlMjBmaXRuZXNzfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1595909315417-2edd382a56dc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwY2xvdGhpbmclMjBmbGF0JTIwbGF5fGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85"
+    ],
+    "ugc_lifestyle": [
+      "https://images.unsplash.com/photo-1770026136858-6f12670dd131?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHwzfHx3b21hbiUyMHdlYXJpbmclMjBkYXJrJTIwc3BvcnRzJTIwYnJhJTIwZ3ltfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1595770022233-e0612bf561b4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwyfHx3b21hbiUyMGFjdGl2ZXdlYXIlMjBzdHVkaW8lMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODgxMzE0Nzl8MA&ixlib=rb-4.1.0&q=85"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Build the application using React (.js files, no .tsx), Tailwind CSS, and Framer Motion.",
+    "Implement Lenis for smooth scrolling in App.js or index.js.",
+    "Create a massive kinetic typography hero section. Animate lines individually.",
+    "Implement the products using sample data mirroring a Shopify API response structure for future integration.",
+    "Construct the Manifesto section using the Tetris bento grid strategy, numbering the chapters (01, 02, 03).",
+    "Use Phosphor Icons (@phosphor-icons/react) for clean, high-end editorial iconography.",
+    "Add 'data-testid' to all interactive elements, links, buttons, and form inputs for testing purposes."
+  ],
+  "universal_guidelines_for_main_agent": [
+    "Do not use generic centered layouts. Aim for optical balance and asymmetry.",
+    "Use 2-3x more spacing than typical templates to create a luxurious feel.",
+    "Absolutely NO pure transparent backgrounds in overlays/headers where text is present. Use glassmorphism.",
+    "No default browser scrollbars. Hide them or style them beautifully.",
+    "Ensure hover states exist for EVERY clickable element (change color, scale, or opacity)."
+  ]
+}

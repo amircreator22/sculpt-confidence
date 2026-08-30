@@ -1,0 +1,115 @@
+IMG = {
+    "leggings_blush": "https://images.unsplash.com/photo-1606902965551-dce093cda6e7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHdlYXJpbmclMjBwaW5rJTIwbGVnZ2luZ3MlMjBmaXRuZXNzfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+    "leggings_hero": "https://images.unsplash.com/photo-1606903037631-f09fd0bd74b4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMHdlYXJpbmclMjBwaW5rJTIwbGVnZ2luZ3MlMjBmaXRuZXNzfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+    "bra_dark": "https://images.unsplash.com/photo-1769196716871-39a0712fb037?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHw0fHx3b21hbiUyMHdlYXJpbmclMjBkYXJrJTIwc3BvcnRzJTIwYnJhJTIwZ3ltfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+    "leggings_gym": "https://images.unsplash.com/photo-1617085606193-6b17105cff2a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwzfHx3b21hbiUyMHdlYXJpbmclMjBwaW5rJTIwbGVnZ2luZ3MlMjBmaXRuZXNzfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+    "flatlay": "https://images.unsplash.com/photo-1595909315417-2edd382a56dc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwY2xvdGhpbmclMjBmbGF0JTIwbGF5fGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+    "ugc_gym": "https://images.unsplash.com/photo-1770026136858-6f12670dd131?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHwzfHx3b21hbiUyMHdlYXJpbmclMjBkYXJrJTIwc3BvcnRzJTIwYnJhJTIwZ3ltfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85",
+    "ugc_studio": "https://images.unsplash.com/photo-1595770022233-e0612bf561b4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwyfHx3b21hbiUyMGFjdGl2ZXdlYXIlMjBzdHVkaW8lMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODgxMzE0Nzl8MA&ixlib=rb-4.1.0&q=85",
+}
+
+SAMPLE_PRODUCTS = [
+    {
+        "id": "cs-001", "handle": "glute-sculpt-leggings", "title": "Glute Sculpt Leggings",
+        "category": "leggings", "price": 44.0, "compare_at": 56.0, "currency": "GBP",
+        "description": "Our signature sculpting legging. A contouring scrunch seam and high-rise compression waistband lift and shape your natural curves, while buttery squat-proof fabric moves with you from heavy lifts to slow Sundays.",
+        "images": [IMG["leggings_blush"], IMG["leggings_hero"]],
+        "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 231,
+        "featured": True, "bestseller": True, "variant_id": None, "source": "sample",
+    },
+    {
+        "id": "cs-002", "handle": "glute-sculpt-leggings-charcoal", "title": "Glute Sculpt Leggings — Charcoal",
+        "category": "leggings", "price": 44.0, "compare_at": None, "currency": "GBP",
+        "description": "The sculpt you love, in deep charcoal. Same contour scrunch, same compressive high waist — a darker mood for heavy days.",
+        "images": [IMG["leggings_gym"], IMG["leggings_blush"]],
+        "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.8, "reviews_count": 148,
+        "featured": False, "bestseller": False, "variant_id": None, "source": "sample",
+    },
+    {
+        "id": "cs-003", "handle": "seamless-sculpt-leggings", "title": "Seamless Sculpt Leggings",
+        "category": "leggings", "price": 46.0, "compare_at": 58.0, "currency": "GBP",
+        "description": "Zero seams, all sculpt. A second-skin knit with targeted shading under the glutes for a lifted look that feels like nothing.",
+        "images": [IMG["leggings_hero"], IMG["leggings_gym"]],
+        "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 96,
+        "featured": False, "bestseller": False, "variant_id": None, "source": "sample",
+    },
+    {
+        "id": "cs-004", "handle": "sculpt-shorts", "title": "Sculpt Shorts",
+        "category": "shorts", "price": 32.0, "compare_at": 40.0, "currency": "GBP",
+        "description": "A 5-inch inseam, a glute-lifting scrunch and no front seam. The short that stays put through every squat, sprint and stretch.",
+        "images": [IMG["leggings_gym"], IMG["flatlay"]],
+        "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.8, "reviews_count": 187,
+        "featured": True, "bestseller": True, "variant_id": None, "source": "sample",
+    },
+    {
+        "id": "cs-005", "handle": "ribbed-sculpt-shorts", "title": "Ribbed Sculpt Shorts",
+        "category": "shorts", "price": 34.0, "compare_at": None, "currency": "GBP",
+        "description": "Soft ribbed texture with our signature contour scrunch. Lounge-to-lift versatility in one short.",
+        "images": [IMG["flatlay"], IMG["leggings_gym"]],
+        "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.7, "reviews_count": 64,
+        "featured": False, "bestseller": False, "variant_id": None, "source": "sample",
+    },
+    {
+        "id": "cs-006", "handle": "sculpt-sports-bra", "title": "Sculpt Sports Bra",
+        "category": "bras", "price": 36.0, "compare_at": 44.0, "currency": "GBP",
+        "description": "Medium-support sculpting bra with removable pads and a buttery underband. Holds you in, never holds you back.",
+        "images": [IMG["bra_dark"], IMG["ugc_gym"]],
+        "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 173,
+        "featured": True, "bestseller": False, "variant_id": None, "source": "sample",
+    },
+    {
+        "id": "cs-007", "handle": "sculpt-longline-bra", "title": "Sculpt Longline Bra",
+        "category": "bras", "price": 38.0, "compare_at": None, "currency": "GBP",
+        "description": "An extended silhouette that doubles as a crop. Studio-to-street support with a sculpted neckline.",
+        "images": [IMG["ugc_gym"], IMG["bra_dark"]],
+        "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.8, "reviews_count": 58,
+        "featured": False, "bestseller": False, "variant_id": None, "source": "sample",
+    },
+    {
+        "id": "cs-008", "handle": "resistance-band-bundle", "title": "Resistance Band Bundle",
+        "category": "accessories", "price": 24.0, "compare_at": 32.0, "currency": "GBP",
+        "description": "Three fabric resistance bands (light, medium, heavy) in blush tones with a carry pouch. Your glute-day essential.",
+        "images": [IMG["flatlay"], IMG["ugc_studio"]],
+        "sizes": ["One Size"], "rating": 4.9, "reviews_count": 204,
+        "featured": True, "bestseller": False, "variant_id": None, "source": "sample",
+    },
+]
+
+SAMPLE_REVIEWS = [
+    {
+        "id": "r1", "product_handle": "glute-sculpt-leggings", "name": "Amelia R.", "rating": 5,
+        "title": "The confidence is real",
+        "text": "I've tried every 'scrunch' legging on TikTok and these are the only ones that actually lift without digging in. Wore them to leg day and got asked where they were from twice.",
+        "image": IMG["ugc_studio"], "verified": True, "location": "Manchester, UK",
+    },
+    {
+        "id": "r2", "product_handle": "sculpt-sports-bra", "name": "Sofia K.", "rating": 5,
+        "title": "Support without the squeeze",
+        "text": "Finally a bra that holds everything through HIIT but doesn't feel like armour. The fabric is unreal — buttery but compressive.",
+        "image": IMG["bra_dark"], "verified": True, "location": "London, UK",
+    },
+    {
+        "id": "r3", "product_handle": "sculpt-shorts", "name": "Priya M.", "rating": 5,
+        "title": "No rolling, no riding up",
+        "text": "Squat-proof actually means squat-proof here. The waistband doesn't roll when I deadlift and the scrunch is so flattering.",
+        "image": IMG["leggings_gym"], "verified": True, "location": "Leeds, UK",
+    },
+    {
+        "id": "r4", "product_handle": "glute-sculpt-leggings", "name": "Chloe T.", "rating": 5,
+        "title": "Bought a second pair same week",
+        "text": "Down 2 dress sizes and these leggings were with me the whole way. They make me feel like the strongest version of myself.",
+        "image": IMG["ugc_gym"], "verified": True, "location": "Bristol, UK",
+    },
+    {
+        "id": "r5", "product_handle": "resistance-band-bundle", "name": "Jade W.", "rating": 4,
+        "title": "Glute day essential",
+        "text": "Bands are thick fabric, not the rubbery kind that snaps. Heavy band is genuinely heavy. Pouch is cute too.",
+        "image": IMG["flatlay"], "verified": True, "location": "Glasgow, UK",
+    },
+    {
+        "id": "r6", "product_handle": "seamless-sculpt-leggings", "name": "Megan H.", "rating": 5,
+        "title": "Like a second skin",
+        "text": "The seamless pair feels like nothing but looks like everything. Zero camel toe, zero see-through. Obsessed.",
+        "image": IMG["leggings_hero"], "verified": True, "location": "Birmingham, UK",
+    },
+]
