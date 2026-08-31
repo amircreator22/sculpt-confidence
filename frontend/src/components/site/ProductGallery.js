@@ -2,6 +2,27 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CaretLeft, CaretRight, Play, SpeakerHigh, SpeakerSlash, X, MagnifyingGlassPlus } from '@phosphor-icons/react';
 
+export const PhotoSwatches = ({ colours, value, onChange, testIdPrefix = 'colour' }) => (
+  <div className="flex flex-wrap gap-3" data-testid={`${testIdPrefix}-selector`}>
+    {colours.map((c) => {
+      const active = value === c.name;
+      return (
+        <button
+          key={c.name}
+          onClick={() => onChange(c.name)}
+          aria-label={`Select colour ${c.name}`}
+          data-testid={`${testIdPrefix}-${c.name.toLowerCase().replace(/\s+/g, '-')}`}
+          className={`relative h-16 w-14 overflow-hidden transition-all duration-300 ${
+            active ? 'ring-2 ring-[#2D2D2D] ring-offset-2' : 'ring-1 ring-[#2D2D2D]/15 hover:ring-[#2D2D2D]/45'
+          }`}
+        >
+          <img src={c.images[0]} alt={c.name} loading="lazy" className="h-full w-full object-cover object-top" />
+        </button>
+      );
+    })}
+  </div>
+);
+
 export const ColourSwatches = ({ colours, value, onChange, testIdPrefix = 'colour' }) => (
   <div className="flex flex-wrap gap-4" data-testid={`${testIdPrefix}-selector`}>
     {colours.map((c) => {

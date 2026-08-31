@@ -69,10 +69,10 @@ SAMPLE_PRODUCTS = [
         "id": "cs-009", "handle": "sculptflex-contour-leggings", "title": "SculptFlex™ Contour Leggings",
         "category": "leggings", "price": 39.99, "compare_at": 54.99, "currency": "GBP",
         "description": "Elevate your confidence with SculptFlex™ Contour Leggings. Contour-enhancing panels, high-waisted support and ultra-soft stretch fabric for a sculpted, confident look in and out of the gym.",
-        "images": ["/sculptflex/img4.png", "/sculptflex/img2.png", "/sculptflex/img3.png", "/sculptflex/img5.png", "/sculptflex/img1.png"],
+        "images": ["/sculptflex/studio/front.png", "/sculptflex/studio/back.png", "/sculptflex/studio/side.png", "/sculptflex/studio/detail.png"],
         "colours": [
             {"name": "Obsidian Black", "hex": "#111111", "images": ["/sculptflex/colours/black.png", "/sculptflex/colours/black-front.png", "/sculptflex/colours/black-lunge.png", "/sculptflex/colours/black-detail.png"]},
-            {"name": "Charcoal Grey", "hex": "#5A5A5A", "images": ["/sculptflex/img4.png", "/sculptflex/img2.png", "/sculptflex/img3.png", "/sculptflex/img5.png"]},
+            {"name": "Charcoal Grey", "hex": "#5A5A5A", "images": ["/sculptflex/studio/front.png", "/sculptflex/studio/back.png", "/sculptflex/studio/side.png", "/sculptflex/studio/detail.png"]},
             {"name": "Mocha Brown", "hex": "#6F4E37", "images": ["/sculptflex/colours/mocha.png", "/sculptflex/colours/mocha-front.png", "/sculptflex/colours/mocha-lunge.png", "/sculptflex/colours/mocha-detail.png"]},
             {"name": "Deep Navy", "hex": "#1B2951", "images": ["/sculptflex/colours/navy.png", "/sculptflex/colours/navy-front.png", "/sculptflex/colours/navy-lunge.png", "/sculptflex/colours/navy-detail.png"]},
         ],
