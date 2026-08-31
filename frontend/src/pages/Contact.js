@@ -39,7 +39,7 @@ export default function Contact() {
           </Reveal>
           <div className="mt-10 space-y-4">
             {[
-              { icon: EnvelopeSimple, title: 'hello@sculptiva.co.uk', text: 'For orders, sizing and everything else' },
+              { icon: EnvelopeSimple, title: 'customercare@sculptivauk.com', text: 'For orders, sizing and everything else' },
               { icon: Clock, title: 'Mon–Fri, 9am–6pm GMT', text: 'Average reply time: under 4 hours' },
               { icon: MapPin, title: 'Blackburn, United Kingdom', text: 'All orders ship from our UK warehouse' },
             ].map((c, i) => (

@@ -120,7 +120,7 @@ export default function TrackOrder() {
                 <div className="border border-[#2D2D2D]/10 bg-white p-8" data-testid="track-order-not-found">
                   <p className="font-display uppercase tracking-tight text-xl">We couldn't find that order</p>
                   <p className="mt-3 text-sm text-[#2D2D2D]/60 leading-relaxed">
-                    Double-check the order number and make sure the email matches the one you ordered with. Still stuck? We're happy to help at hello@sculptiva.co.uk.
+                    Double-check the order number and make sure the email matches the one you ordered with. Still stuck? We're happy to help at customercare@sculptivauk.com.
                   </p>
                 </div>
               </Reveal>
@@ -133,7 +133,7 @@ export default function TrackOrder() {
                     <p className="font-display uppercase tracking-tight text-xl">Check your confirmation email</p>
                   </div>
                   <p className="mt-3 text-sm text-[#2D2D2D]/60 leading-relaxed">
-                    Live tracking lookup isn't switched on yet. Your order confirmation email contains a "View your order" button that takes you straight to real-time tracking. Can't find it? Email us at hello@sculptiva.co.uk with your order number and we'll send your tracking link within 24 hours.
+                    Live tracking lookup isn't switched on yet. Your order confirmation email contains a "View your order" button that takes you straight to real-time tracking. Can't find it? Email us at customercare@sculptivauk.com with your order number and we'll send your tracking link within 24 hours.
                   </p>
                 </div>
               </Reveal>
@@ -146,7 +146,7 @@ export default function TrackOrder() {
                     <li>Orders are dispatched within 1–2 working days.</li>
                     <li>UK delivery typically takes 2–4 working days after dispatch.</li>
                     <li>Your order number starts with # and is in your confirmation email.</li>
-                    <li>Questions? We reply within 24 hours at hello@sculptiva.co.uk.</li>
+                    <li>Questions? We reply within 24 hours at customercare@sculptivauk.com.</li>
                   </ul>
                 </div>
               </Reveal>
