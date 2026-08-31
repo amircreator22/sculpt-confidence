@@ -4,7 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { EmailCapture } from '@/components/site/EmailCapture';
 
 const FAQS = [
-  { q: 'Are Confidence Sculpt leggings really squat proof?', a: 'Yes. Every fabric batch is tested to full squat depth under bright studio lighting before it goes into production. If even a hint of light passes through, the batch never ships.' },
+  { q: 'Are Sculptiva leggings really squat proof?', a: 'Yes. Every fabric batch is tested to full squat depth under bright studio lighting before it goes into production. If even a hint of light passes through, the batch never ships.' },
   { q: 'How does sizing run?', a: 'True to size with high four-way stretch. If you are between sizes, size down for a more compressive sculpt fit or size up for all-day comfort. Check the size guide on any product page for exact measurements.' },
   { q: 'What is the Buy 2 Get 1 Free offer?', a: 'Add any three leggings to your bag and the lowest-priced pair is free at checkout. Mix colours and styles freely — the discount applies automatically.' },
   { q: 'How long does UK delivery take?', a: 'Orders placed before 2pm ship the same day from our Blackburn warehouse. Standard tracked delivery takes 2–3 working days (£3.95, free over £50). Express next-working-day is £5.95.' },
@@ -12,7 +12,7 @@ const FAQS = [
   { q: 'What is your returns policy?', a: '30 days, no questions asked. Items must be unworn with tags attached. Size exchanges are always free — we cover the return postage.' },
   { q: 'How do I wash my sculpt pieces?', a: 'Cold machine wash inside out, no fabric softener, hang dry. This protects the sculpt knit and keeps the compression strong for years.' },
   { q: 'Can I pay in instalments?', a: 'Yes — Klarna and Clearpay are available at checkout, letting you split your order into interest-free payments.' },
-  { q: 'How do I get featured on your socials?', a: 'Tag @confidencesculpt and #ConfidenceSculpt in your training clips and photos. We feature real community members every week — every body, every level, every journey.' },
+  { q: 'How do I get featured on your socials?', a: 'Tag @sculptiva and #Sculptiva in your training clips and photos. We feature real community members every week — every body, every level, every journey.' },
   { q: 'What does "Confidence Starts Here" mean?', a: "It's our whole reason for existing: helping women feel confident in their own skin. Confidence isn't a size, a trend, or something you earn — it starts with how you feel. We design flattering, comfortable activewear that supports that feeling every day, whether you're training, walking the dog, or just getting started." },
 ];
 

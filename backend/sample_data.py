@@ -8,28 +8,38 @@ IMG = {
     "ugc_studio": "https://images.unsplash.com/photo-1595770022233-e0612bf561b4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwyfHx3b21hbiUyMGFjdGl2ZXdlYXIlMjBzdHVkaW8lMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODgxMzE0Nzl8MA&ixlib=rb-4.1.0&q=85",
 }
 
+def _set(handle, colours):
+    return [
+        {
+            "name": name, "hex": hexcode,
+            "images": [f"/catalog/{handle}/{key}-{shot}.png" for shot in ("front", "back", "side", "detail")],
+        }
+        for name, hexcode, key in colours
+    ]
+
+
+BLUSH = ("Blush Pink", "#E8B4B8", "blush")
+BLACK = ("Obsidian Black", "#111111", "black")
+CHARCOAL = ("Charcoal Grey", "#5A5A5A", "charcoal")
+MOCHA = ("Mocha Brown", "#6F4E37", "mocha")
+NAVY = ("Deep Navy", "#1B2951", "navy")
+
 SAMPLE_PRODUCTS = [
     {
         "id": "cs-001", "handle": "glute-sculpt-leggings", "title": "Glute Sculpt Leggings",
         "category": "leggings", "price": 44.0, "compare_at": 56.0, "currency": "GBP",
         "description": "Our signature sculpting legging. A contouring scrunch seam and high-rise compression waistband lift and shape your natural curves, while buttery squat-proof fabric moves with you from heavy lifts to slow Sundays.",
-        "images": [IMG["leggings_blush"], IMG["leggings_hero"]],
+        "images": [f"/catalog/glute-sculpt-leggings/blush-{s}.png" for s in ("front", "back", "side", "detail")],
+        "colours": _set("glute-sculpt-leggings", [BLUSH, BLACK, CHARCOAL]),
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 231,
         "featured": True, "bestseller": True, "variant_id": None, "source": "sample",
-    },
-    {
-        "id": "cs-002", "handle": "glute-sculpt-leggings-charcoal", "title": "Glute Sculpt Leggings — Charcoal",
-        "category": "leggings", "price": 44.0, "compare_at": None, "currency": "GBP",
-        "description": "The sculpt you love, in deep charcoal. Same contour scrunch, same compressive high waist — a darker mood for heavy days.",
-        "images": [IMG["leggings_gym"], IMG["leggings_blush"]],
-        "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.8, "reviews_count": 148,
-        "featured": False, "bestseller": False, "variant_id": None, "source": "sample",
     },
     {
         "id": "cs-003", "handle": "seamless-sculpt-leggings", "title": "Seamless Sculpt Leggings",
         "category": "leggings", "price": 46.0, "compare_at": 58.0, "currency": "GBP",
         "description": "Zero seams, all sculpt. A second-skin knit with targeted shading under the glutes for a lifted look that feels like nothing.",
-        "images": [IMG["leggings_hero"], IMG["leggings_gym"]],
+        "images": [f"/catalog/seamless-sculpt-leggings/black-{s}.png" for s in ("front", "back", "side", "detail")],
+        "colours": _set("seamless-sculpt-leggings", [BLACK, MOCHA, BLUSH]),
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 96,
         "featured": False, "bestseller": False, "variant_id": None, "source": "sample",
     },
@@ -37,7 +47,8 @@ SAMPLE_PRODUCTS = [
         "id": "cs-004", "handle": "sculpt-shorts", "title": "Sculpt Shorts",
         "category": "shorts", "price": 32.0, "compare_at": 40.0, "currency": "GBP",
         "description": "A 5-inch inseam, a glute-lifting scrunch and no front seam. The short that stays put through every squat, sprint and stretch.",
-        "images": [IMG["leggings_gym"], IMG["flatlay"]],
+        "images": [f"/catalog/sculpt-shorts/black-{s}.png" for s in ("front", "back", "side", "detail")],
+        "colours": _set("sculpt-shorts", [BLACK, BLUSH, NAVY]),
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.8, "reviews_count": 187,
         "featured": True, "bestseller": True, "variant_id": None, "source": "sample",
     },
@@ -45,7 +56,8 @@ SAMPLE_PRODUCTS = [
         "id": "cs-005", "handle": "ribbed-sculpt-shorts", "title": "Ribbed Sculpt Shorts",
         "category": "shorts", "price": 34.0, "compare_at": None, "currency": "GBP",
         "description": "Soft ribbed texture with our signature contour scrunch. Lounge-to-lift versatility in one short.",
-        "images": [IMG["flatlay"], IMG["leggings_gym"]],
+        "images": [f"/catalog/ribbed-sculpt-shorts/mocha-{s}.png" for s in ("front", "back", "side", "detail")],
+        "colours": _set("ribbed-sculpt-shorts", [MOCHA, CHARCOAL, BLUSH]),
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.7, "reviews_count": 64,
         "featured": False, "bestseller": False, "variant_id": None, "source": "sample",
     },
@@ -53,7 +65,8 @@ SAMPLE_PRODUCTS = [
         "id": "cs-006", "handle": "sculpt-sports-bra", "title": "Sculpt Sports Bra",
         "category": "bras", "price": 36.0, "compare_at": 44.0, "currency": "GBP",
         "description": "Medium-support sculpting bra with removable pads and a buttery underband. Holds you in, never holds you back.",
-        "images": [IMG["bra_dark"], IMG["ugc_gym"]],
+        "images": [f"/catalog/sculpt-sports-bra/blush-{s}.png" for s in ("front", "back", "side", "detail")],
+        "colours": _set("sculpt-sports-bra", [BLUSH, BLACK, MOCHA]),
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 173,
         "featured": True, "bestseller": False, "variant_id": None, "source": "sample",
     },
@@ -61,7 +74,8 @@ SAMPLE_PRODUCTS = [
         "id": "cs-007", "handle": "sculpt-longline-bra", "title": "Sculpt Longline Bra",
         "category": "bras", "price": 38.0, "compare_at": None, "currency": "GBP",
         "description": "An extended silhouette that doubles as a crop. Studio-to-street support with a sculpted neckline.",
-        "images": [IMG["ugc_gym"], IMG["bra_dark"]],
+        "images": [f"/catalog/sculpt-longline-bra/black-{s}.png" for s in ("front", "back", "side", "detail")],
+        "colours": _set("sculpt-longline-bra", [BLACK, CHARCOAL, NAVY]),
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.8, "reviews_count": 58,
         "featured": False, "bestseller": False, "variant_id": None, "source": "sample",
     },
@@ -71,8 +85,8 @@ SAMPLE_PRODUCTS = [
         "description": "Elevate your confidence with SculptFlex™ Contour Leggings. Contour-enhancing panels, high-waisted support and ultra-soft stretch fabric for a sculpted, confident look in and out of the gym.",
         "images": ["/sculptflex/studio/front.png", "/sculptflex/studio/back.png", "/sculptflex/studio/side.png", "/sculptflex/studio/detail.png"],
         "colours": [
-            {"name": "Obsidian Black", "hex": "#111111", "images": ["/sculptflex/studio/black-front.png", "/sculptflex/studio/black-back.png", "/sculptflex/studio/black-side.png", "/sculptflex/studio/black-detail.png"]},
             {"name": "Charcoal Grey", "hex": "#5A5A5A", "images": ["/sculptflex/studio/front.png", "/sculptflex/studio/back.png", "/sculptflex/studio/side.png", "/sculptflex/studio/detail.png"]},
+            {"name": "Obsidian Black", "hex": "#111111", "images": ["/sculptflex/studio/black-front.png", "/sculptflex/studio/black-back.png", "/sculptflex/studio/black-side.png", "/sculptflex/studio/black-detail.png"]},
             {"name": "Mocha Brown", "hex": "#6F4E37", "images": ["/sculptflex/studio/mocha-front.png", "/sculptflex/studio/mocha-back.png", "/sculptflex/studio/mocha-side.png", "/sculptflex/studio/mocha-detail.png"]},
             {"name": "Deep Navy", "hex": "#1B2951", "images": ["/sculptflex/studio/navy-front.png", "/sculptflex/studio/navy-back.png", "/sculptflex/studio/navy-side.png", "/sculptflex/studio/navy-detail.png"]},
         ],
@@ -87,8 +101,13 @@ SAMPLE_PRODUCTS = [
     {
         "id": "cs-008", "handle": "resistance-band-bundle", "title": "Resistance Band Bundle",
         "category": "accessories", "price": 24.0, "compare_at": 32.0, "currency": "GBP",
-        "description": "Three fabric resistance bands (light, medium, heavy) in blush tones with a carry pouch. Your glute-day essential.",
-        "images": [IMG["flatlay"], IMG["ugc_studio"]],
+        "description": "Three fabric resistance bands (light, medium, heavy) with a carry pouch. Your glute-day essential — pick the tone set that matches your kit.",
+        "images": [f"/catalog/resistance-band-bundle/blushtones-{s}.png" for s in ("front", "back", "side", "detail")],
+        "colours": [
+            {"name": "Blush Tones", "hex": "#E8B4B8", "images": [f"/catalog/resistance-band-bundle/blushtones-{s}.png" for s in ("front", "back", "side", "detail")]},
+            {"name": "Neutral Tones", "hex": "#C8B8A6", "images": [f"/catalog/resistance-band-bundle/neutraltones-{s}.png" for s in ("front", "back", "side", "detail")]},
+            {"name": "Midnight Tones", "hex": "#3A3A3A", "images": [f"/catalog/resistance-band-bundle/midnighttones-{s}.png" for s in ("front", "back", "side", "detail")]},
+        ],
         "sizes": ["One Size"], "rating": 4.9, "reviews_count": 204,
         "featured": True, "bestseller": False, "variant_id": None, "source": "sample",
     },

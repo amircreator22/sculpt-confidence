@@ -73,3 +73,16 @@ Applied full copy sweep:
 - FAQ: added "What does Confidence Starts Here mean?" entry.
 Per user: urgency/offer elements (announcement bar, bundle offers, 10% code) KEPT.
 Verified via desktop screenshots (home hero, about hero, about promise/beliefs sections).
+
+## Gallery Everywhere (June 2026)
+User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-brand colours, merge charcoal leggings into Glute Sculpt Leggings.
+- Generated 84 grey-studio images via Gemini nano banana (generate_catalog_studio.py) using SculptFlex studio shots as pose/model refs; regenerated 13 (all 12 band shots + navy shorts back) to remove leaked Gymshark/VELA branding (fix_catalog_images.py). Assets: /app/frontend/public/catalog/{handle}/{colour}-{front|back|side|detail}.png
+- sample_data.py: removed cs-002 (merged as Charcoal Grey colour of glute-sculpt-leggings); all 8 products now have colours arrays (SculptFlex 4, others 3; bands use tone sets Blush/Neutral/Midnight). ProductPage default colour = colours[0] (SculptFlex reordered Charcoal first).
+- Testing agent iteration_1.json: 100% pass backend+frontend, 132 image URLs verified, colour switching + size retention + cart colour attribution all working. Fixed 3 cosmetic nits after: cart drawer Close/X overlap (mr-10), shop card title min-height, Size Guide DialogTitle a11y.
+
+## Rebrand to Sculptiva (June 2026)
+- Brand renamed Confidence Sculpt -> Sculptiva everywhere (header/footer logo "SCULPTiva", hero overline, About, FAQ, Info/legal, Contact email hello@sculptiva.co.uk, socials @sculptiva/#Sculptiva, server.py API brand, browser title/meta).
+- Subheading/tagline: "Move with Confidence" (footer under logo, hero overline, page title). Mission line "Confidence Starts Here." retained as hero headline + footer bottom strip.
+- Discount code renamed CONFIDENCE10 -> SCULPTIVA10 (EmailCapture, Info page, backend).
+- Verified via screenshots + curl (API brand + page title).
+- User purchased a custom domain on WIX — provided them the deploy + Link Domain/Entri + Wix DNS steps. Domain linking happens in Emergent UI after deployment (agent cannot do it from code).

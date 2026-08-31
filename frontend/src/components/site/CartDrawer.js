@@ -40,7 +40,7 @@ export const CartDrawer = () => {
       >
         <div className="flex items-center justify-between px-6 h-16 border-b border-[#2D2D2D]/10">
           <p className="font-display uppercase tracking-tight text-xl">Your Bag</p>
-          <button onClick={() => setDrawerOpen(false)} data-testid="cart-close-button" aria-label="Close bag" className="text-xs font-bold uppercase tracking-[0.2em] text-[#2D2D2D]/60 hover:text-[#2D2D2D] transition-colors">
+          <button onClick={() => setDrawerOpen(false)} data-testid="cart-close-button" aria-label="Close bag" className="mr-10 text-xs font-bold uppercase tracking-[0.2em] text-[#2D2D2D]/60 hover:text-[#2D2D2D] transition-colors">
             Close
           </button>
         </div>

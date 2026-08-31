@@ -71,7 +71,7 @@ export const Header = () => {
           </div>
           <Link to="/" className="justify-self-center text-center" data-testid="logo-link">
             <span className="font-display font-semibold uppercase tracking-tight text-xl md:text-2xl leading-none text-[#2D2D2D]">
-              Confidence<span className="text-[#E8B4B8]"> Sculpt</span>
+              Sculpt<span className="text-[#E8B4B8]">iva</span>
             </span>
           </Link>
           <div className="justify-self-end flex items-center gap-2">

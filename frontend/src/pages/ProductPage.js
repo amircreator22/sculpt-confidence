@@ -11,7 +11,7 @@ import { useCart } from '@/context/CartContext';
 import { Reveal, Stars } from '@/components/site/Reveal';
 import { ProductCard } from '@/components/site/ProductCard';
 import { ProductGallery, PhotoSwatches } from '@/components/site/ProductGallery';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const SIZE_GUIDE = [
@@ -60,7 +60,7 @@ export default function ProductPage() {
         setData(d);
         const colours = d.product.colours || [];
         if (colours.length) {
-          setColour((colours.find((c) => c.name === 'Charcoal Grey') || colours[0]).name);
+          setColour(colours[0].name);
         }
       })
       .catch(() => navigate('/shop'));
@@ -151,7 +151,7 @@ export default function ProductPage() {
                 </button>
               </DialogTrigger>
               <DialogContent className="bg-white border-[#2D2D2D]/10 max-w-md" data-testid="size-guide-dialog">
-                <h3 className="font-display uppercase tracking-tight text-2xl">Size Guide</h3>
+                <DialogTitle className="font-display uppercase tracking-tight text-2xl font-normal">Size Guide</DialogTitle>
                 <p className="text-sm text-[#2D2D2D]/60 mt-1">Measure around your natural waist and fullest hip.</p>
                 <table className="mt-4 w-full text-sm">
                   <thead>

@@ -36,7 +36,7 @@ const UGC_CLIPS = [
 const CHAPTERS = [
   { n: '01', title: 'Confidence Over Perfection', text: "Confidence isn't a size, a trend, or something you earn. It starts with how you feel — and that's what every piece we make is here to support." },
   { n: '02', title: 'Comfort Over Compromise', text: 'Flattering fits, thoughtful design and everyday comfort. Activewear should feel as good on the walk home as it does mid-workout.' },
-  { n: '03', title: 'Real Women Over Unrealistic Standards', text: '40,000+ women wear Confidence Sculpt at the gym, on dog walks, running errands and on day one of their journey. You are the campaign.' },
+  { n: '03', title: 'Real Women Over Unrealistic Standards', text: '40,000+ women wear Sculptiva at the gym, on dog walks, running errands and on day one of their journey. You are the campaign.' },
 ];
 
 const Hero = () => {
@@ -51,7 +51,7 @@ const Hero = () => {
     <section ref={ref} className="relative h-[100svh] min-h-[620px] overflow-hidden bg-[#2D2D2D]" data-testid="hero-section">
       <motion.img
         src={HERO_IMG}
-        alt="Confident woman wearing Confidence Sculpt leggings"
+        alt="Confident woman wearing Sculptiva leggings"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ y: imgY, scale: imgScale }}
         initial={{ opacity: 0 }}
@@ -66,7 +66,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
           >
-            <Overline light>Confidence Sculpt — Activewear for every woman</Overline>
+            <Overline light>Sculptiva — Move with Confidence</Overline>
           </motion.div>
           <LineReveal
             onLoad
@@ -115,7 +115,7 @@ const Benefits = () => (
     <div className="mx-auto max-w-[1400px] px-6 md:px-10">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
         <div>
-          <Reveal><Overline>Why Confidence Sculpt</Overline></Reveal>
+          <Reveal><Overline>Why Sculptiva</Overline></Reveal>
           <LineReveal
             className="mt-4"
             lineClassName="font-display uppercase tracking-tight text-4xl md:text-6xl text-[#2D2D2D]"
@@ -131,7 +131,7 @@ const Benefits = () => (
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         <Reveal className="md:col-span-4 md:row-span-2">
           <div className="relative h-full min-h-[420px] overflow-hidden group">
-            <img src={BENTO_IMG} alt="Woman in Confidence Sculpt activewear" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105" />
+            <img src={BENTO_IMG} alt="Woman in Sculptiva activewear" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/60 to-transparent" />
             <p className="absolute bottom-6 left-6 font-display uppercase text-2xl text-[#F7F3F0] tracking-tight max-w-[200px]">
               Worn by 40,000+ women
@@ -215,7 +215,7 @@ const BundleOffer = () => {
           </Reveal>
         </div>
         <Reveal className="relative overflow-hidden aspect-[4/5]">
-          <motion.img src={BUNDLE_IMG} alt="Confidence Sculpt bundle flat lay" loading="lazy" className="absolute inset-0 h-[116%] w-full object-cover" style={{ y: imgY }} />
+          <motion.img src={BUNDLE_IMG} alt="Sculptiva bundle flat lay" loading="lazy" className="absolute inset-0 h-[116%] w-full object-cover" style={{ y: imgY }} />
         </Reveal>
       </div>
     </section>
@@ -284,12 +284,12 @@ const UGCStrip = () => (
   <section className="py-24 md:py-32 bg-white border-y border-[#2D2D2D]/10" data-testid="ugc-section">
     <div className="mx-auto max-w-[1400px] px-6 md:px-10 mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
       <div>
-        <Reveal><Overline>@confidencesculpt</Overline></Reveal>
+        <Reveal><Overline>@sculptiva</Overline></Reveal>
         <LineReveal className="mt-4" lineClassName="font-display uppercase tracking-tight text-4xl md:text-6xl" lines={['As Seen On Your Feed']} />
       </div>
       <Reveal delay={0.2}>
         <p className="max-w-sm text-sm text-[#2D2D2D]/60 leading-relaxed">
-          Tag #ConfidenceSculpt to be featured. Real clips from the community — no ads, no filters.
+          Tag #Sculptiva to be featured. Real clips from the community — no ads, no filters.
         </p>
       </Reveal>
     </div>

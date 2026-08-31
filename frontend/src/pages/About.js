@@ -38,7 +38,7 @@ export default function About() {
   return (
     <div data-testid="about-page">
       <section className="relative overflow-hidden bg-[#2D2D2D]">
-        <img src={ABOUT_IMG} alt="Confidence Sculpt community member training" className="absolute inset-0 h-full w-full object-cover opacity-40" />
+        <img src={ABOUT_IMG} alt="Sculptiva community member training" className="absolute inset-0 h-full w-full object-cover opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#2D2D2D]/90 via-[#2D2D2D]/40 to-transparent" />
         <div className="relative mx-auto max-w-[1400px] px-6 md:px-10 py-28 md:py-44">
           <Reveal><Overline light>Our mission</Overline></Reveal>
@@ -60,7 +60,7 @@ export default function About() {
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <Reveal className="relative overflow-hidden aspect-[4/5] order-2 md:order-1">
-            <img src={STUDIO_IMG} alt="Woman in Confidence Sculpt studio portrait" loading="lazy" className="absolute inset-0 h-full w-full object-cover hover:scale-105 transition-transform duration-[1400ms]" />
+            <img src={STUDIO_IMG} alt="Woman in Sculptiva studio portrait" loading="lazy" className="absolute inset-0 h-full w-full object-cover hover:scale-105 transition-transform duration-[1400ms]" />
           </Reveal>
           <div className="order-1 md:order-2">
             <Reveal><Overline>Our philosophy</Overline></Reveal>
@@ -74,7 +74,7 @@ export default function About() {
                   Whether you're training at the gym, walking the dog, running errands or starting your fitness journey, our goal is simple: to create pieces that help you feel your best every day.
                 </p>
                 <p>
-                  Every fabric is tested by our own community — 40,000+ women who squat, sprint, stretch and live in Confidence Sculpt. Their feedback shapes every seam, every scrunch, every drop.
+                  Every fabric is tested by our own community — 40,000+ women who squat, sprint, stretch and live in Sculptiva. Their feedback shapes every seam, every scrunch, every drop.
                 </p>
               </div>
             </Reveal>

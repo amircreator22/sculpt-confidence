@@ -170,7 +170,7 @@ export default function SculptFlex() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/80 via-transparent to-[#2D2D2D]/20" />
         <div className="absolute inset-0 flex flex-col items-center justify-end text-center pb-16 md:pb-24 px-6">
-          <Reveal><Overline light>Confidence Sculpt</Overline></Reveal>
+          <Reveal><Overline light>Sculptiva</Overline></Reveal>
           <Reveal delay={0.15}>
             <h1 className="mt-4 font-display font-medium uppercase tracking-tighter text-[#F7F3F0] text-4xl md:text-7xl leading-[0.95] max-w-5xl" data-testid="sf-hero-title">
               SculptFlex™ Contour Leggings

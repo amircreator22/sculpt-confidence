@@ -54,7 +54,7 @@ export const ProductCard = ({ product, className = '' }) => {
       </div>
       <div className="pt-5 flex items-start justify-between gap-4">
         <div>
-          <h3 className="font-display text-lg leading-tight text-[#2D2D2D] group-hover:text-[#c98d92] transition-colors duration-300">
+          <h3 className="font-display text-lg leading-tight min-h-[2.5rem] text-[#2D2D2D] group-hover:text-[#c98d92] transition-colors duration-300">
             {product.title}
           </h3>
           <div className="mt-1.5 flex items-center gap-2">

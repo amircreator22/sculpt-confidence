@@ -72,7 +72,7 @@ export const EmailCapture = ({ compact = false, source = 'homepage' }) => {
             >
               <Check size={18} weight="bold" className="text-[#E8B4B8]" />
               <span className="text-sm font-semibold">
-                You're in. Use code <span className="text-[#E8B4B8] font-bold">CONFIDENCE10</span> at checkout.
+                You're in. Use code <span className="text-[#E8B4B8] font-bold">SCULPTIVA10</span> at checkout.
               </span>
             </div>
           ) : (

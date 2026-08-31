@@ -27,9 +27,9 @@ export const Footer = () => (
     <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-16 md:py-24 grid gap-12 md:grid-cols-12">
       <div className="md:col-span-5">
         <p className="font-display font-semibold uppercase tracking-tight text-2xl">
-          Confidence<span className="text-[#E8B4B8]"> Sculpt</span>
+          Sculpt<span className="text-[#E8B4B8]">iva</span>
         </p>
-        <p className="mt-3 font-display uppercase tracking-tight text-lg text-[#E8B4B8]" data-testid="footer-tagline">Confidence Starts Here.</p>
+        <p className="mt-3 font-display uppercase tracking-tight text-lg text-[#E8B4B8]" data-testid="footer-tagline">Move with Confidence.</p>
         <p className="mt-3 text-sm text-[#F7F3F0]/60 max-w-sm leading-relaxed">
           Activewear designed to help every woman feel comfortable, supported and confident from the moment she puts it on — at the gym and in everyday life.
         </p>
@@ -86,7 +86,7 @@ export const Footer = () => (
     </div>
     <div className="border-t border-[#F7F3F0]/10">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-[#F7F3F0]/40">
-        <p>© 2026 Confidence Sculpt. All rights reserved.</p>
+        <p>© 2026 Sculptiva. All rights reserved.</p>
         <p>Designed in the UK. Confidence Starts Here.</p>
       </div>
     </div>

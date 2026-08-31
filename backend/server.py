@@ -102,7 +102,7 @@ async def _load_products(force: bool = False):
 
 @api_router.get("/")
 async def root():
-    return {"message": "Confidence Sculpt API", "brand": "Confidence Sculpt"}
+    return {"message": "Sculptiva API", "brand": "Sculptiva"}
 
 
 @api_router.get("/shop/status")
@@ -179,16 +179,16 @@ async def subscribe_newsletter(req: NewsletterRequest):
         raise HTTPException(status_code=422, detail="Please enter a valid email address")
     existing = await db.newsletter_subscribers.find_one({"email": email})
     if existing:
-        return {"ok": True, "message": "You're already part of the community", "discount_code": "CONFIDENCE10"}
+        return {"ok": True, "message": "You're already part of the community", "discount_code": "SCULPTIVA10"}
     doc = {
         "id": str(uuid.uuid4()),
         "email": email,
         "source": req.source,
-        "discount_code": "CONFIDENCE10",
+        "discount_code": "SCULPTIVA10",
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     await db.newsletter_subscribers.insert_one(doc)
-    return {"ok": True, "message": "Welcome to the Confidence Sculpt community", "discount_code": "CONFIDENCE10"}
+    return {"ok": True, "message": "Welcome to the Sculptiva community", "discount_code": "SCULPTIVA10"}
 
 
 class ContactRequest(BaseModel):
