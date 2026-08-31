@@ -12,7 +12,13 @@ from sample_data import SAMPLE_PRODUCTS
 load_dotenv(Path(__file__).parent / '.env', override=True)
 
 DOMAIN = os.environ['SHOPIFY_SHOP_DOMAIN'].replace('https://', '').strip('/')
-TOKEN = os.environ['SHOPIFY_ACCESS_TOKEN']
+_grant = requests.post(f"https://{DOMAIN}/admin/oauth/access_token", data={
+    'grant_type': 'client_credentials',
+    'client_id': os.environ['SHOPIFY_CLIENT_ID'],
+    'client_secret': os.environ['SHOPIFY_CLIENT_SECRET'],
+}, timeout=20)
+_grant.raise_for_status()
+TOKEN = _grant.json()['access_token']
 API = f"https://{DOMAIN}/admin/api/2024-10"
 HEADERS = {"X-Shopify-Access-Token": TOKEN, "Content-Type": "application/json"}
 PUBLIC = Path('/app/frontend/public')
@@ -39,9 +45,9 @@ def req(method, url, payload=None):
 
 
 def existing_handles():
-    r = req('GET', f"{API}/products.json?limit=250&fields=id,handle")
+    r = req('GET', f"{API}/products.json?limit=250&fields=id,handle,options,tags")
     r.raise_for_status()
-    return {p['handle']: p['id'] for p in r.json()['products']}
+    return {p['handle']: p for p in r.json()['products']}
 
 
 def push_product(p):
@@ -118,6 +124,13 @@ def link_variant_images(prod, colours):
 def main():
     have = existing_handles()
     print(f"Existing products: {list(have.keys())}", flush=True)
+    ours = {p['handle'] for p in SAMPLE_PRODUCTS}
+    for handle, prod in list(have.items()):
+        if handle in ours and 'sculptiva' not in (prod.get('tags') or ''):
+            r = req('DELETE', f"{API}/products/{prod['id']}.json")
+            print(f"DELETED stale {handle}: {r.status_code}", flush=True)
+            have.pop(handle)
+            time.sleep(0.6)
     for p in SAMPLE_PRODUCTS:
         if p['handle'] in have:
             print(f"SKIP {p['handle']} (already in Shopify)", flush=True)

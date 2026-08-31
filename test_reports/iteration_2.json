@@ -1,0 +1,41 @@
+{
+  "summary": "Full backend + frontend test of the LIVE Shopify integration (uej6f0-ei.myshopify.com). Backend: rewrote /app/backend/tests/backend_test.py for live mode — 31/31 pytest passed. /api/shop/status returns mode:live, connected:true, live_product_count:8, error:null. /api/products returns exactly 8 sculptiva products, all source:shopify with gid IDs, 100% cdn.shopify.com image URLs, correct colour sets (3 each, SculptFlex 4) with exactly 4 images per colour, real palette hexes, variants = colours x sizes with gid ids + colour/size options, prices verified (glute 44/56, seamless 46/58, sculpt-shorts 32/40, ribbed 34/none, sports bra 36/44, longline 38/none, sculptflex 39.99/54.99, bands 24/32), GBP currency, no _id leak, zero AquaPure/Lumora references. Category counts leggings 3 / shorts 2 / bras 2 / accessories 1. POST /api/checkout with live variant gid returns {mode:live, url:https://uej6f0-ei.myshopify.com/cart/c/...}; multi-line cart works; null/bogus/empty variants fall back to {url:null, mode:sample}. POST /api/orders/track returns available:true, found:false for #1001 (admin client-credentials token works), 422 on invalid email/empty number. Newsletter (+idempotency), contact validation, reviews-by-handle all pass. Frontend (Playwright, 1920x1080 + 390x844): product page renders live Shopify CDN images (19/19, 0 broken), colour swatches switch the gallery and update selected-colour-name, selected size M persists across colour switch, 4 gallery thumbs, rating shows 4.9 (231). Add-to-bag with Obsidian Black + Size M shows correct cart line, and clicking cart-checkout-button issued POST /api/checkout returning a real live Shopify checkout URL and the browser attempted navigation to it (navigation intercepted/aborted — no purchase made). Resistance band bundle adds without size selection and maps to the Neutral Tones / One Size variant. Shop page: 8 cards, all Shopify CDN images, 0 broken, all 4 category filters return exact expected counts. Cart drawer qty +/- updates subtotal (36->72->36) and removal restores empty state. Track My Order page renders the not-found card cleanly. Home (5 featured cards, all CDN), About and footer newsletter signup (toast: Welcome to the Sculptiva community — code SCULPTIVA10) all work. Zero HTTP >=400 requests observed on any page.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/checkout", "issue": "Any Shopify cartCreate failure (bogus variant, userErrors, network) is swallowed and returned as {url:null, mode:'sample'} with HTTP 200. The client cannot distinguish 'no live catalog' from 'checkout genuinely failed', so the user gets a silent no-op on the Secure Checkout button. Suggest returning an error field (or 502) when SHOPIFY_CATALOG_MODE=live and cartCreate fails."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Cart drawer (all pages)", "issues": ["The 'added to bag' toast (bottom-right) sits directly on top of the SECURE CHECKOUT button in the drawer footer, visually covering it for ~5s after add-to-bag. Programmatic clicks still succeed (no pointer interception measured), but it is a poor UX on the most important CTA — consider moving the toast to top-right or above the drawer footer."]},
+      {"screen": "Track My Order (/track-order)", "issues": ["Email field is type=email so an invalid address is blocked by native browser validation and no in-app track-order-error message is ever shown; the app-level error path is effectively unreachable from the UI."]},
+      {"screen": "About (/about)", "issues": ["Page contains no <h1> or <h2> at all (all headings rendered as LineReveal divs) — SEO/a11y heading structure missing."]},
+      {"screen": "Product page - Size Guide dialog", "issues": ["Still-present Radix console error: DialogContent requires a DialogTitle for screen readers (also logs a missing aria-describedby warning). Carried over from iteration 1, unfixed."]},
+      {"screen": "SculptFlex product page (live mode)", "issues": ["Informational regression vs sample mode: the 3 SculptFlex product videos no longer appear (0 <video> elements) because live galleries come only from Shopify image edges. If the videos are intended merchandising, they need re-injecting for live mode."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Optional: reposition the add-to-bag toast so it does not overlay the SECURE CHECKOUT button in the cart drawer",
+    "Optional: surface a real error state on /api/checkout failure instead of silently returning mode:'sample'",
+    "Optional a11y/SEO: add DialogTitle to the Size Guide dialog and real h1/h2 headings on /about",
+    "Decide whether SculptFlex videos should be re-added in live catalog mode"
+  ],
+  "critical_code_review_comments": [
+    "server.py: EMAIL_RE is defined at line 327 but consumed by track_order() at line 250 — it only works because module import completes before any request. Move the regex (and other shared constants) to the top of the file to avoid a NameError if the routes are ever reordered/split.",
+    "server.py _transform_shopify_product(): colour grouping depends entirely on the image altText convention 'Colour — shot'. If any image is uploaded without that em-dash alt text it silently drops out of every colour set and the product renders with fewer/zero colours. Consider falling back to variant selectedOptions ordering.",
+    "server.py _load_products(): on a Shopify fetch failure in live mode it silently serves SAMPLE_PRODUCTS while /api/products still reports the previous mode value from cache — this can surface sample AquaPure/Lumora-style data to users. Prefer returning an explicit degraded/error state.",
+    "Single-file backend (385 lines) is still fine, but checkout/orders/catalog would be cleaner as separate routers as Shopify surface grows."
+  ],
+  "updated_files": ["/app/backend/tests/backend_test.py", "/app/test_reports/iteration_2.json"],
+  "success_rate": {"backend": "100% (31/31 pytest)", "frontend": "100% of tested flows (only cosmetic/a11y nits)"},
+  "seed_data_creation": "Newsletter subscribers TEST_qa_live@example.com and TEST_ui_qa@example.com inserted in Mongo. No Shopify writes; no checkout completed (navigation to the live checkout URL was aborted).",
+  "should_call_test_agent_after_fix": false,
+  "should_main_agent_self_test": true,
+  "test_credentials": "None required (no auth). /app/memory/test_credentials.md not needed for this app.",
+  "context_for_next_testing_agent": "Live Shopify mode verified. Run backend suite: cd /app/backend && python -m pytest tests/backend_test.py -v. It asserts live cdn.shopify.com URLs, 8 sculptiva handles, exact prices and live checkout URL prefix https://uej6f0-ei.myshopify.com/cart/c/ — if SHOPIFY_CATALOG_MODE is ever switched back to sample, most of these will fail by design. To capture the checkout URL in Playwright you must intercept the /api/checkout route (page.route + route.fetch) because the page navigates away immediately, and you must block https://uej6f0-ei.myshopify.com/** to avoid touching the real store. SculptFlex has 4 colours (charcoal-grey, obsidian-black, mocha-brown, deep-navy — no blush-pink) and 0 videos in live mode. Cart item keys are '{handle}-{size}-{colour}' e.g. 'sculpt-sports-bra-M-Blush Pink'; qty/remove testids are cart-qty-plus-{key}/cart-qty-minus-{key}/cart-remove-{key}.",
+  "rca_of_the_issue": "No functional defects found. The only genuine risk found is the /api/checkout silent fallback: cartCreate errors return HTTP 200 {url:null, mode:'sample'}, and the frontend then does nothing on Secure Checkout, which would look like a dead button to a real shopper. Reproduce with POST /api/checkout {items:[{variant_id:'gid://shopify/ProductVariant/1',quantity:1}]} -> 200 {url:null}. Mitigation: return an explicit error when in live mode."
+}

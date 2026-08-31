@@ -60,6 +60,8 @@ PALETTE = {
     "Blush Tones": "#E8B4B8", "Neutral Tones": "#C8B8A6", "Midnight Tones": "#3A3A3A",
 }
 _SAMPLE_META = {p['handle']: (p['rating'], p['reviews_count']) for p in SAMPLE_PRODUCTS}
+_SAMPLE_VIDEOS = {p['handle']: p['videos'] for p in SAMPLE_PRODUCTS if p.get('videos')}
+EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 
 
 async def _storefront_query(query: str, variables: dict | None = None):
@@ -112,6 +114,7 @@ def _transform_shopify_product(node: dict) -> dict:
         "id": node['id'],
         "handle": handle,
         "title": node['title'],
+        "videos": _SAMPLE_VIDEOS.get(handle, []),
         "category": category,
         "price": price,
         "compare_at": compare_at,
@@ -211,6 +214,31 @@ async def get_product(handle: str):
 
 
 SHOPIFY_ADMIN_TOKEN = os.environ.get('SHOPIFY_ACCESS_TOKEN', '')
+SHOPIFY_CLIENT_ID = os.environ.get('SHOPIFY_CLIENT_ID', '')
+SHOPIFY_CLIENT_SECRET = os.environ.get('SHOPIFY_CLIENT_SECRET', '')
+_admin_auth = {"token": None, "exp": 0.0}
+
+
+async def _get_admin_token():
+    if _admin_auth["token"] and time.time() < _admin_auth["exp"] - 120:
+        return _admin_auth["token"]
+    if not (SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET and SHOPIFY_DOMAIN):
+        return None
+    try:
+        async with httpx.AsyncClient(timeout=15) as c:
+            r = await c.post(f"https://{SHOPIFY_DOMAIN}/admin/oauth/access_token", data={
+                'grant_type': 'client_credentials',
+                'client_id': SHOPIFY_CLIENT_ID,
+                'client_secret': SHOPIFY_CLIENT_SECRET,
+            })
+        if r.status_code != 200:
+            return None
+        j = r.json()
+        _admin_auth.update(token=j['access_token'], exp=time.time() + j.get('expires_in', 86400))
+        return _admin_auth["token"]
+    except Exception as e:
+        logger.warning(f"Admin token grant failed: {e}")
+        return None
 
 
 class TrackOrderRequest(BaseModel):
@@ -224,12 +252,13 @@ async def track_order(req: TrackOrderRequest):
     number = req.order_number.strip().lstrip('#')
     if not number or not EMAIL_RE.match(email):
         raise HTTPException(status_code=422, detail="Please enter your order number and a valid email")
-    if not (SHOPIFY_DOMAIN and SHOPIFY_ADMIN_TOKEN):
+    admin_token = await _get_admin_token()
+    if not (SHOPIFY_DOMAIN and admin_token):
         return {"available": False}
     url = f"https://{SHOPIFY_DOMAIN}/admin/api/{SHOPIFY_API_VERSION}/orders.json?name=%23{number}&status=any&fields=name,email,created_at,fulfillment_status,financial_status,order_status_url,line_items"
     try:
         async with httpx.AsyncClient(timeout=15) as c:
-            r = await c.get(url, headers={"X-Shopify-Access-Token": SHOPIFY_ADMIN_TOKEN})
+            r = await c.get(url, headers={"X-Shopify-Access-Token": admin_token})
         if r.status_code in (401, 403):
             return {"available": False}
         orders = r.json().get('orders', [])
@@ -290,6 +319,7 @@ async def create_checkout(req: CheckoutRequest):
             logger.warning(f"cartCreate errors: {data['cartCreate'].get('userErrors')}")
         except Exception as e:
             logger.warning(f"cartCreate failed: {e}")
+        raise HTTPException(status_code=409, detail="Checkout is temporarily unavailable — please try again in a moment")
     return {"url": None, "mode": "sample"}
 
 
@@ -297,8 +327,6 @@ class NewsletterRequest(BaseModel):
     email: str
     source: str = "website"
 
-
-EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 
 
 @api_router.post("/newsletter")

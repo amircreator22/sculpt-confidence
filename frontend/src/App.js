@@ -74,7 +74,7 @@ const Shell = () => {
       </main>
       <Footer />
       <CartDrawer />
-      <Toaster position="bottom-right" toastOptions={{ style: { background: '#2D2D2D', color: '#F7F3F0', border: '1px solid rgba(232,180,184,0.4)', borderRadius: '9999px' } }} />
+      <Toaster position="top-right" toastOptions={{ style: { background: '#2D2D2D', color: '#F7F3F0', border: '1px solid rgba(232,180,184,0.4)', borderRadius: '9999px' } }} />
     </div>
   );
 };

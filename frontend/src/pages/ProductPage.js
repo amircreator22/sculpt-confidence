@@ -153,7 +153,7 @@ export default function ProductPage() {
                   <Ruler size={13} /> Size Guide
                 </button>
               </DialogTrigger>
-              <DialogContent className="bg-white border-[#2D2D2D]/10 max-w-md" data-testid="size-guide-dialog">
+              <DialogContent aria-describedby={undefined} className="bg-white border-[#2D2D2D]/10 max-w-md" data-testid="size-guide-dialog">
                 <DialogTitle className="font-display uppercase tracking-tight text-2xl font-normal">Size Guide</DialogTitle>
                 <p className="text-sm text-[#2D2D2D]/60 mt-1">Measure around your natural waist and fullest hip.</p>
                 <table className="mt-4 w-full text-sm">

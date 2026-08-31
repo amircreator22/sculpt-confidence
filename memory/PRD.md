@@ -93,3 +93,11 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - VERIFIED: /api/shop/status -> connected:true, shop "My Store", 4 live products; POST /api/checkout with real variant gid returns live Shopify checkout URL.
 - IMPORTANT: user's Shopify store contains 4 NON-activewear products (AquaPure water filter, Lumora recovery items). SHOPIFY_CATALOG_MODE=sample keeps the Sculptiva sample catalog displayed. Flip to "live" in backend/.env once user adds real Sculptiva products to Shopify.
 - Deployment initiated by user (async). NOTE for deploy: backend/.env Shopify vars must exist in production env.
+
+## Live Shopify Catalog + Push + Track Order (June 2026)
+- New Shopify Dev Dashboard app flow: static shpat tokens no longer exist; tokens obtained via client-credentials grant (SHOPIFY_CLIENT_ID/SHOPIFY_CLIENT_SECRET in backend/.env, cached 24h in _get_admin_token).
+- push_to_shopify.py executed: deleted 4 stale manual drafts, created all 8 Sculptiva products (98 variants, 100 images w/ altText "Colour — shot" convention, variant-image links). Published to Online Store + "My Store Headless" publications via publishablePublish (storefront token reads that channel).
+- SHOPIFY_CATALOG_MODE=live: catalog now 100% from Shopify (tag:sculptiva filter hides AquaPure/Lumora), colours rebuilt from image altText, ratings/videos enriched from sample meta, real checkout via cartCreate.
+- Track My Order page (/track-order) + POST /api/orders/track using admin client-credentials token; footer link added.
+- Testing agent iteration_2.json: 31/31 backend, 100% frontend. Post-test fixes: checkout live failure now 409 (was silent sample fallback), toast moved top-right (was covering checkout CTA), SculptFlex videos re-injected in live mode, EMAIL_RE moved to top, sr-only h1 on About, dialog aria fix.
+- Redeploy dispatched after catalog go-live (user-approved order of ops).

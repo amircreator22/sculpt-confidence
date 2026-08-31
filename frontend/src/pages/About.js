@@ -37,6 +37,7 @@ export default function About() {
   const navigate = useNavigate();
   return (
     <div data-testid="about-page">
+      <h1 className="sr-only">Sculptiva — Confidence Starts Here. Our mission, promise and beliefs.</h1>
       <section className="relative overflow-hidden bg-[#2D2D2D]">
         <img src={ABOUT_IMG} alt="Sculptiva community member training" className="absolute inset-0 h-full w-full object-cover opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#2D2D2D]/90 via-[#2D2D2D]/40 to-transparent" />
