@@ -27,7 +27,7 @@ const SIZE_LABELS = { XS: 'xs (4–6)', S: 's (8–10)', M: 'm (10–12)', L: 'l
 const FEATURES = [
   { icon: Feather, title: 'Seamless', text: 'A seamless knit means zero distractions and full focus on your training.' },
   { icon: Sparkle, title: 'Body-Contouring', text: 'Contour panels enhance your natural shape and physique.' },
-  { icon: Lightning, title: 'Waist-Snatching Waistband', text: 'A high-rise waistband that cinches in the right places and stays up while you move.' },
+  { icon: Lightning, title: 'Supportive High-Rise Waistband', text: 'A high-rise waistband that supports you gently and stays put while you move — no digging in.' },
   { icon: Barbell, title: 'Glute Scrunch', text: 'A ruched scrunch seam on the back lifts and enhances your glutes.' },
 ];
 

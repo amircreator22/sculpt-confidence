@@ -52,16 +52,16 @@ export const EmailCapture = ({ compact = false, source = 'homepage' }) => {
     <section className="bg-[#E8B4B8] py-24 md:py-32" data-testid="email-capture-section">
       <div className="mx-auto max-w-4xl px-6 text-center">
         <Reveal>
-          <Overline className="!text-[#2D2D2D]/60">Get 10% off your first order</Overline>
+          <Overline className="!text-[#2D2D2D]/60">Join the community — 10% off your first order</Overline>
         </Reveal>
         <LineReveal
           className="mt-6"
           lineClassName="font-display uppercase text-4xl md:text-6xl tracking-tight text-[#2D2D2D] leading-[1.02]"
-          lines={['Join the Confidence', 'Sculpt Community']}
+          lines={['Confidence', 'Starts Here.']}
         />
         <Reveal delay={0.3}>
           <p className="mt-6 text-[#2D2D2D]/70 max-w-xl mx-auto">
-            Early access to drops, member-only bundles and training tips from women who lift. No spam — just sculpt.
+            Early access to drops, member-only bundles and real encouragement from women on the same journey. No pressure, no spam — just support.
           </p>
         </Reveal>
         <Reveal delay={0.4}>

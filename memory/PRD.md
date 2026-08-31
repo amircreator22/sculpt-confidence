@@ -61,3 +61,15 @@ Premium Shopify ecommerce brand "Confidence Sculpt" selling glute-enhancing acti
 - P1: Drop Meta/TikTok pixel IDs into frontend env.
 - P1: Real UGC video embeds (TikTok oEmbed or self-hosted mp4).
 - P2: Search, wishlist, size-specific Shopify variant mapping, multi-currency.
+
+## Brand Voice Sweep (June 2026)
+User supplied official BRAND MISSION doc (mission: help women feel confident in their own skin; promise: confidence>perfection, comfort>compromise, quality>hype, real women>unrealistic standards, trust>sales; tagline: "Confidence Starts Here.").
+Applied full copy sweep:
+- Home: hero headline now "Confidence Starts Here.", inclusive overline ("for every woman"), mission-led subcopy, marquee items = brand promises, manifesto chapters rewritten (Confidence Over Perfection / Comfort Over Compromise / Real Women Over Unrealistic Standards), benefits headline "Made to feel your best."
+- About: fully rewritten brand story page — mission hero, philosophy section, "Our Promise" 5-card grid + never-shame card, "We Believe" / "Who We Serve" dark section, stats.
+- Footer: tagline under logo + mission description + bottom strip tagline.
+- EmailCapture: headline "Confidence Starts Here.", supportive copy.
+- ProductPage: "Waist-Snatching Waistband" -> "Supportive High-Rise Waistband" (no transformation-claim language).
+- FAQ: added "What does Confidence Starts Here mean?" entry.
+Per user: urgency/offer elements (announcement bar, bundle offers, 10% code) KEPT.
+Verified via desktop screenshots (home hero, about hero, about promise/beliefs sections).

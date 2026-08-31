@@ -23,7 +23,7 @@ const BENEFITS = [
   { icon: Truck, title: 'Free UK Shipping Over £50', text: 'Fast, tracked delivery across the UK — free when you spend £50 or more.' },
 ];
 
-const MARQUEE_ITEMS = ['Sculpt Your Shape', 'Squat Proof', 'Confidence First', 'Free UK Shipping Over £50', 'Made For Women Who Lift'];
+const MARQUEE_ITEMS = ['Confidence Starts Here', 'Comfort Over Compromise', 'Quality Over Hype', 'Free UK Shipping Over £50', 'Real Women, Real Confidence'];
 
 const UGC_CLIPS = [
   { img: 'https://images.unsplash.com/photo-1606902965551-dce093cda6e7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHdlYXJpbmclMjBwaW5rJTIwbGVnZ2luZ3MlMjBmaXRuZXNzfGVufDB8fHx8MTc4ODEzMTQ3OXww&ixlib=rb-4.1.0&q=85', handle: '@amelia.lifts', caption: 'Leg day in the Sculpt Leggings', views: '1.2M' },
@@ -34,9 +34,9 @@ const UGC_CLIPS = [
 ];
 
 const CHAPTERS = [
-  { n: '01', title: 'Confidence First', text: 'Every seam is placed to make you stand taller. We design for the mirror moments — the ones where you catch yourself and smile.' },
-  { n: '02', title: 'Community Strong', text: '40,000+ women share their training days, wins and real bodies in Confidence Sculpt. You are the campaign.' },
-  { n: '03', title: 'Real Results', text: 'From first squat to first pull-up, our community tracks progress in the same four-way stretch. More than leggings — a reminder of how far you have come.' },
+  { n: '01', title: 'Confidence Over Perfection', text: "Confidence isn't a size, a trend, or something you earn. It starts with how you feel — and that's what every piece we make is here to support." },
+  { n: '02', title: 'Comfort Over Compromise', text: 'Flattering fits, thoughtful design and everyday comfort. Activewear should feel as good on the walk home as it does mid-workout.' },
+  { n: '03', title: 'Real Women Over Unrealistic Standards', text: '40,000+ women wear Confidence Sculpt at the gym, on dog walks, running errands and on day one of their journey. You are the campaign.' },
 ];
 
 const Hero = () => {
@@ -66,13 +66,13 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
           >
-            <Overline light>Confidence Sculpt — Activewear for women who lift</Overline>
+            <Overline light>Confidence Sculpt — Activewear for every woman</Overline>
           </motion.div>
           <LineReveal
             onLoad
             className="mt-5"
             lineClassName="font-display font-medium uppercase leading-[0.95] tracking-tighter text-[#F7F3F0] text-[11vw] sm:text-5xl md:text-[5.2vw]"
-            lines={['Sculpt Your Shape.', 'Elevate Your Confidence.']}
+            lines={['Confidence', 'Starts Here.']}
           />
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -80,7 +80,7 @@ const Hero = () => {
             transition={{ delay: 0.75, duration: 0.9 }}
             className="mt-6 max-w-md text-[#F7F3F0]/80 text-sm md:text-base leading-relaxed"
           >
-            Premium activewear designed to enhance your natural curves while keeping you comfortable all day.
+            Activewear that helps you feel comfortable, supported and confident from the moment you put it on — at the gym, on the school run, or day one of your journey.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -119,12 +119,12 @@ const Benefits = () => (
           <LineReveal
             className="mt-4"
             lineClassName="font-display uppercase tracking-tight text-4xl md:text-6xl text-[#2D2D2D]"
-            lines={['Engineered for her.']}
+            lines={['Made to feel your best.']}
           />
         </div>
         <Reveal delay={0.2}>
           <p className="max-w-sm text-[#2D2D2D]/60 text-sm leading-relaxed">
-            Six reasons women switch and never go back. Tested in real gyms, on real bodies, by our own community.
+            Six reasons women switch and never go back. Tested by real women, on real bodies, in real life — not just the gym.
           </p>
         </Reveal>
       </div>
@@ -225,7 +225,7 @@ const BundleOffer = () => {
 const Manifesto = () => (
   <section className="bg-[#2D2D2D] text-[#F7F3F0] py-24 md:py-32" data-testid="manifesto-section">
     <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-      <Reveal><Overline light>The Confidence Sculpt manifesto</Overline></Reveal>
+      <Reveal><Overline light>Our promise</Overline></Reveal>
       <LineReveal className="mt-4 mb-16 md:mb-24" lineClassName="font-display uppercase tracking-tight text-4xl md:text-7xl text-[#F7F3F0]" lines={['More Than Leggings']} />
       <div className="grid md:grid-cols-3 gap-px bg-[#F7F3F0]/10 border border-[#F7F3F0]/10">
         {CHAPTERS.map((c, i) => (
