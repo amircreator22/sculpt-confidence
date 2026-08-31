@@ -12,6 +12,10 @@ Premium Shopify ecommerce brand "Confidence Sculpt" selling glute-enhancing acti
 - Backend: FastAPI. Shopify Admin API (REST 2024-10) via httpx with 120s cache and automatic fallback to curated sample catalog when scope/token fails. MongoDB (motor): newsletter_subscribers, contact_messages.
 - Key endpoints: GET /api/products, /api/products/{handle}, /api/shop/status, /api/reviews; POST /api/newsletter, /api/contact, /api/checkout (Shopify cart permalink when live variant IDs exist).
 
+## Implemented (2026-08-31, update 6)
+- Studio photo sets for ALL SculptFlex™ colourways: Obsidian Black, Mocha Brown and Deep Navy each got 4 AI-generated grey-studio shots (front, back, side lunge, waistband detail) using their angle photos as reference — same model, exact colour match, Gymshark-style seamless light-grey backdrop. All 4 colourways now have complete, consistent studio galleries (7 gallery slides each: 3 videos + 4 studio photos). Script: /app/backend/generate_studio_colours.py.
+- Verified: all 4 swatches switch galleries correctly with 7 thumbs each; studio imagery confirmed per colour.
+
 ## Implemented (2026-08-31, update 5)
 - Product page rebuilt to match the Gymshark PDP the merchant linked (uk.gymshark.com Relay Seamless Legging): clean white page, left large gallery (videos first, then studio photos), right info panel — NEW tag, title, "Regular fit", price, rating link, short description, SQUARE PHOTO colour swatches (each colourway's own photo, black active ring), size boxes with UK ranges (xs (4–6)…), "Customers say this fits true to size", full-width black rectangular Add to Bag, Klarna/PayPal row, delivery strip (Free Standard over £50 / Express by 2pm / free exchanges), trust badges, accordions (Description & Features with icon features, Size & Care, Delivery & Returns, FAQs).
 - Below the fold: Gymshark-style feature trio blocks (Glute-Sculpting / High-Stretch Fabric / Stay-Put Waistband) with studio imagery, Reviews with rating snapshot bars (4.9, 86% 5★), Get The Look related products.

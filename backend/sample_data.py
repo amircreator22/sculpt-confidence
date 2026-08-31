@@ -71,10 +71,10 @@ SAMPLE_PRODUCTS = [
         "description": "Elevate your confidence with SculptFlex™ Contour Leggings. Contour-enhancing panels, high-waisted support and ultra-soft stretch fabric for a sculpted, confident look in and out of the gym.",
         "images": ["/sculptflex/studio/front.png", "/sculptflex/studio/back.png", "/sculptflex/studio/side.png", "/sculptflex/studio/detail.png"],
         "colours": [
-            {"name": "Obsidian Black", "hex": "#111111", "images": ["/sculptflex/colours/black.png", "/sculptflex/colours/black-front.png", "/sculptflex/colours/black-lunge.png", "/sculptflex/colours/black-detail.png"]},
+            {"name": "Obsidian Black", "hex": "#111111", "images": ["/sculptflex/studio/black-front.png", "/sculptflex/studio/black-back.png", "/sculptflex/studio/black-side.png", "/sculptflex/studio/black-detail.png"]},
             {"name": "Charcoal Grey", "hex": "#5A5A5A", "images": ["/sculptflex/studio/front.png", "/sculptflex/studio/back.png", "/sculptflex/studio/side.png", "/sculptflex/studio/detail.png"]},
-            {"name": "Mocha Brown", "hex": "#6F4E37", "images": ["/sculptflex/colours/mocha.png", "/sculptflex/colours/mocha-front.png", "/sculptflex/colours/mocha-lunge.png", "/sculptflex/colours/mocha-detail.png"]},
-            {"name": "Deep Navy", "hex": "#1B2951", "images": ["/sculptflex/colours/navy.png", "/sculptflex/colours/navy-front.png", "/sculptflex/colours/navy-lunge.png", "/sculptflex/colours/navy-detail.png"]},
+            {"name": "Mocha Brown", "hex": "#6F4E37", "images": ["/sculptflex/studio/mocha-front.png", "/sculptflex/studio/mocha-back.png", "/sculptflex/studio/mocha-side.png", "/sculptflex/studio/mocha-detail.png"]},
+            {"name": "Deep Navy", "hex": "#1B2951", "images": ["/sculptflex/studio/navy-front.png", "/sculptflex/studio/navy-back.png", "/sculptflex/studio/navy-side.png", "/sculptflex/studio/navy-detail.png"]},
         ],
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 312,
         "videos": [
