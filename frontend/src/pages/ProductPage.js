@@ -88,7 +88,10 @@ export default function ProductPage() {
       toast.error('Please choose a size first');
       return;
     }
-    addItem({ ...product, images: galleryImages }, chosen, qty, colour);
+    const variant = (product.variants || []).find(
+      (v) => (!v.options?.colour || v.options.colour === colour) && (!v.options?.size || v.options.size === chosen)
+    );
+    addItem({ ...product, images: galleryImages, variant_id: variant?.id || product.variant_id }, chosen, qty, colour);
     toast.success(`${product.title} added to bag`);
   };
 

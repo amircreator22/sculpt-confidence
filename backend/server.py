@@ -39,11 +39,11 @@ CACHE_TTL = 120
 
 PRODUCTS_QUERY = """{
   shop { name }
-  products(first: 100) {
+  products(first: 100, query: "tag:sculptiva") {
     edges { node {
-      id handle title description productType tags
+      id handle title description productType tags vendor
       options { name values }
-      images(first: 20) { edges { node { url } } }
+      images(first: 50) { edges { node { url altText } } }
       variants(first: 100) { edges { node {
         id title availableForSale
         price { amount currencyCode }
@@ -53,6 +53,13 @@ PRODUCTS_QUERY = """{
     } }
   }
 }"""
+
+PALETTE = {
+    "Blush Pink": "#E8B4B8", "Obsidian Black": "#111111", "Charcoal Grey": "#5A5A5A",
+    "Mocha Brown": "#6F4E37", "Deep Navy": "#1B2951",
+    "Blush Tones": "#E8B4B8", "Neutral Tones": "#C8B8A6", "Midnight Tones": "#3A3A3A",
+}
+_SAMPLE_META = {p['handle']: (p['rating'], p['reviews_count']) for p in SAMPLE_PRODUCTS}
 
 
 async def _storefront_query(query: str, variables: dict | None = None):
@@ -86,6 +93,21 @@ def _transform_shopify_product(node: dict) -> dict:
     else:
         category = 'leggings'
     tags = [t.lower() for t in (node.get('tags') or [])]
+    images = [(e['node']['url'], e['node'].get('altText') or '') for e in node['images']['edges']]
+    colour_groups = {}
+    for url, alt in images:
+        cname = alt.split(' — ')[0] if ' — ' in alt else None
+        if cname:
+            colour_groups.setdefault(cname, []).append(url)
+    colours = None
+    if len(colour_groups) > 1:
+        order = []
+        for opt in node.get('options', []):
+            if opt['name'].lower() in ('colour', 'color'):
+                order = opt['values']
+        names = [n for n in order if n in colour_groups] or list(colour_groups)
+        colours = [{"name": n, "hex": PALETTE.get(n, "#999999"), "images": colour_groups[n]} for n in names]
+    rating, reviews_count = _SAMPLE_META.get(handle, (4.9, 0))
     return {
         "id": node['id'],
         "handle": handle,
@@ -95,10 +117,11 @@ def _transform_shopify_product(node: dict) -> dict:
         "compare_at": compare_at,
         "currency": currency,
         "description": node.get('description') or '',
-        "images": [e['node']['url'] for e in node['images']['edges']],
+        "images": colours[0]['images'] if colours else [u for u, _ in images],
+        "colours": colours,
         "sizes": sizes or ["XS", "S", "M", "L", "XL"],
-        "rating": 4.9,
-        "reviews_count": 0,
+        "rating": rating,
+        "reviews_count": reviews_count,
         "featured": 'featured' in tags,
         "bestseller": 'bestseller' in tags,
         "variant_id": variants[0]['id'] if variants else None,
@@ -116,7 +139,7 @@ async def _check_connection():
         _cache.update(shop_name=None, live_count=None, error="Storefront token not configured")
         return False
     try:
-        data = await _storefront_query('{ shop { name } products(first: 100) { edges { node { id } } } }')
+        data = await _storefront_query('{ shop { name } products(first: 100, query: "tag:sculptiva") { edges { node { id } } } }')
         _cache.update(shop_name=data['shop']['name'], live_count=len(data['products']['edges']), error=None)
         return True
     except Exception as e:
@@ -185,6 +208,49 @@ async def get_product(handle: str):
                 related += [r for r in products if r['handle'] != handle and r not in related][:4 - len(related)]
             return {"product": p, "related": related, "mode": _cache["mode"]}
     raise HTTPException(status_code=404, detail="Product not found")
+
+
+SHOPIFY_ADMIN_TOKEN = os.environ.get('SHOPIFY_ACCESS_TOKEN', '')
+
+
+class TrackOrderRequest(BaseModel):
+    order_number: str
+    email: str
+
+
+@api_router.post("/orders/track")
+async def track_order(req: TrackOrderRequest):
+    email = req.email.strip().lower()
+    number = req.order_number.strip().lstrip('#')
+    if not number or not EMAIL_RE.match(email):
+        raise HTTPException(status_code=422, detail="Please enter your order number and a valid email")
+    if not (SHOPIFY_DOMAIN and SHOPIFY_ADMIN_TOKEN):
+        return {"available": False}
+    url = f"https://{SHOPIFY_DOMAIN}/admin/api/{SHOPIFY_API_VERSION}/orders.json?name=%23{number}&status=any&fields=name,email,created_at,fulfillment_status,financial_status,order_status_url,line_items"
+    try:
+        async with httpx.AsyncClient(timeout=15) as c:
+            r = await c.get(url, headers={"X-Shopify-Access-Token": SHOPIFY_ADMIN_TOKEN})
+        if r.status_code in (401, 403):
+            return {"available": False}
+        orders = r.json().get('orders', [])
+    except Exception as e:
+        logger.warning(f"Order lookup failed: {e}")
+        return {"available": False}
+    for o in orders:
+        if (o.get('email') or '').lower() == email:
+            return {
+                "available": True,
+                "found": True,
+                "order": {
+                    "name": o.get('name'),
+                    "created_at": o.get('created_at'),
+                    "fulfillment_status": o.get('fulfillment_status') or 'processing',
+                    "financial_status": o.get('financial_status'),
+                    "status_url": o.get('order_status_url'),
+                    "items": [{"title": li.get('title'), "quantity": li.get('quantity')} for li in o.get('line_items', [])],
+                },
+            }
+    return {"available": True, "found": False}
 
 
 @api_router.get("/reviews")

@@ -11,6 +11,7 @@ const SHOP_LINKS = [
 ];
 
 const HELP_LINKS = [
+  { to: '/track-order', label: 'Track My Order' },
   { to: '/faq', label: 'FAQ' },
   { to: '/shipping-returns', label: 'Shipping & Returns' },
   { to: '/contact', label: 'Contact Us' },
