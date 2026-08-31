@@ -86,3 +86,10 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - Discount code renamed CONFIDENCE10 -> SCULPTIVA10 (EmailCapture, Info page, backend).
 - Verified via screenshots + curl (API brand + page title).
 - User purchased a custom domain on WIX — provided them the deploy + Link Domain/Entri + Wix DNS steps. Domain linking happens in Emergent UI after deployment (agent cannot do it from code).
+
+## Shopify Storefront API Connected (June 2026)
+- User's app had only Storefront (unauthenticated_*) scopes; Admin read_products remained blocked. Solution: switched integration to Storefront GraphQL API with user's PUBLIC storefront token (SHOPIFY_STOREFRONT_TOKEN in backend/.env).
+- server.py rewritten: _storefront_query helper, PRODUCTS_QUERY (products+variants+options+images), _check_connection, live checkout via cartCreate mutation returning real checkoutUrl. CheckoutItem.variant_id now str (gid).
+- VERIFIED: /api/shop/status -> connected:true, shop "My Store", 4 live products; POST /api/checkout with real variant gid returns live Shopify checkout URL.
+- IMPORTANT: user's Shopify store contains 4 NON-activewear products (AquaPure water filter, Lumora recovery items). SHOPIFY_CATALOG_MODE=sample keeps the Sculptiva sample catalog displayed. Flip to "live" in backend/.env once user adds real Sculptiva products to Shopify.
+- Deployment initiated by user (async). NOTE for deploy: backend/.env Shopify vars must exist in production env.

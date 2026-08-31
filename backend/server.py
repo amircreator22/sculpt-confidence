@@ -24,29 +24,59 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 SHOPIFY_DOMAIN = os.environ.get('SHOPIFY_SHOP_DOMAIN', '').replace('https://', '').replace('http://', '').strip('/')
-SHOPIFY_TOKEN = os.environ.get('SHOPIFY_ACCESS_TOKEN', '')
+SHOPIFY_STOREFRONT_TOKEN = os.environ.get('SHOPIFY_STOREFRONT_TOKEN', '')
+SHOPIFY_CATALOG_MODE = os.environ.get('SHOPIFY_CATALOG_MODE', 'sample')
 SHOPIFY_API_VERSION = '2024-10'
+STOREFRONT_URL = f"https://{SHOPIFY_DOMAIN}/api/{SHOPIFY_API_VERSION}/graphql.json"
+STOREFRONT_HEADERS = {"X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_TOKEN, "Content-Type": "application/json"}
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
 logger = logging.getLogger(__name__)
 
-_cache = {"products": None, "ts": 0.0, "mode": "sample", "shop_name": None, "error": None}
+_cache = {"products": None, "ts": 0.0, "mode": "sample", "shop_name": None, "error": None, "live_count": None}
 CACHE_TTL = 120
 
+PRODUCTS_QUERY = """{
+  shop { name }
+  products(first: 100) {
+    edges { node {
+      id handle title description productType tags
+      options { name values }
+      images(first: 20) { edges { node { url } } }
+      variants(first: 100) { edges { node {
+        id title availableForSale
+        price { amount currencyCode }
+        compareAtPrice { amount }
+        selectedOptions { name value }
+      } } }
+    } }
+  }
+}"""
 
-def _transform_shopify_product(p: dict) -> dict:
-    variants = p.get('variants', [])
-    price = float(variants[0]['price']) if variants else 0.0
+
+async def _storefront_query(query: str, variables: dict | None = None):
+    async with httpx.AsyncClient(timeout=15) as c:
+        r = await c.post(STOREFRONT_URL, json={"query": query, "variables": variables or {}}, headers=STOREFRONT_HEADERS)
+    data = r.json()
+    if r.status_code != 200 or 'errors' in data:
+        raise RuntimeError(str(data.get('errors', r.text))[:200])
+    return data['data']
+
+
+def _transform_shopify_product(node: dict) -> dict:
+    variants = [e['node'] for e in node['variants']['edges']]
+    price = float(variants[0]['price']['amount']) if variants else 0.0
+    currency = variants[0]['price']['currencyCode'] if variants else 'GBP'
     compare_at = None
-    if variants and variants[0].get('compare_at_price'):
-        compare_at = float(variants[0]['compare_at_price'])
+    if variants and variants[0].get('compareAtPrice'):
+        compare_at = float(variants[0]['compareAtPrice']['amount'])
     sizes = []
-    for opt in p.get('options', []):
-        if opt.get('name', '').lower() in ('size', 'sizes'):
-            sizes = opt.get('values', [])
-    ptype = (p.get('product_type') or '').lower()
-    handle = p.get('handle', '')
+    for opt in node.get('options', []):
+        if opt['name'].lower() in ('size', 'sizes'):
+            sizes = opt['values']
+    ptype = (node.get('productType') or '').lower()
+    handle = node['handle']
     if 'bra' in ptype or 'bra' in handle:
         category = 'bras'
     elif 'short' in ptype or 'short' in handle:
@@ -55,44 +85,58 @@ def _transform_shopify_product(p: dict) -> dict:
         category = 'accessories'
     else:
         category = 'leggings'
-    tags = [t.strip().lower() for t in (p.get('tags') or '').split(',')]
+    tags = [t.lower() for t in (node.get('tags') or [])]
     return {
-        "id": str(p['id']),
+        "id": node['id'],
         "handle": handle,
-        "title": p.get('title', ''),
+        "title": node['title'],
         "category": category,
         "price": price,
         "compare_at": compare_at,
-        "currency": "GBP",
-        "description": re.sub(r'<[^>]+>', '', p.get('body_html') or ''),
-        "images": [img['src'] for img in p.get('images', [])],
+        "currency": currency,
+        "description": node.get('description') or '',
+        "images": [e['node']['url'] for e in node['images']['edges']],
         "sizes": sizes or ["XS", "S", "M", "L", "XL"],
         "rating": 4.9,
         "reviews_count": 0,
         "featured": 'featured' in tags,
         "bestseller": 'bestseller' in tags,
         "variant_id": variants[0]['id'] if variants else None,
+        "variants": [
+            {"id": v['id'], "title": v['title'], "available": v['availableForSale'],
+             "options": {o['name'].lower(): o['value'] for o in v['selectedOptions']}}
+            for v in variants
+        ],
         "source": "shopify",
     }
+
+
+async def _check_connection():
+    if not (SHOPIFY_DOMAIN and SHOPIFY_STOREFRONT_TOKEN):
+        _cache.update(shop_name=None, live_count=None, error="Storefront token not configured")
+        return False
+    try:
+        data = await _storefront_query('{ shop { name } products(first: 100) { edges { node { id } } } }')
+        _cache.update(shop_name=data['shop']['name'], live_count=len(data['products']['edges']), error=None)
+        return True
+    except Exception as e:
+        _cache.update(error=str(e)[:200])
+        return False
 
 
 async def _load_products(force: bool = False):
     now = time.time()
     if not force and _cache["products"] is not None and now - _cache["ts"] < CACHE_TTL:
         return _cache["products"]
-    if SHOPIFY_DOMAIN and SHOPIFY_TOKEN:
+    if SHOPIFY_CATALOG_MODE == 'live' and SHOPIFY_DOMAIN and SHOPIFY_STOREFRONT_TOKEN:
         try:
-            url = f"https://{SHOPIFY_DOMAIN}/admin/api/{SHOPIFY_API_VERSION}/products.json?limit=250"
-            headers = {"X-Shopify-Access-Token": SHOPIFY_TOKEN}
-            async with httpx.AsyncClient(timeout=10) as c:
-                r = await c.get(url, headers=headers)
-                data = r.json()
-            if r.status_code == 200 and 'products' in data and data['products']:
-                products = [_transform_shopify_product(p) for p in data['products']]
-                _cache.update(products=products, ts=now, mode="live", error=None)
+            data = await _storefront_query(PRODUCTS_QUERY)
+            nodes = [e['node'] for e in data['products']['edges']]
+            if nodes:
+                products = [_transform_shopify_product(n) for n in nodes]
+                _cache.update(products=products, ts=now, mode="live", shop_name=data['shop']['name'], error=None)
                 return products
-            err = data.get('errors') if isinstance(data, dict) else r.text
-            _cache["error"] = str(err)[:200]
+            _cache["error"] = "Shopify store has no products yet"
         except Exception as e:
             _cache["error"] = str(e)[:200]
             logger.warning(f"Shopify fetch failed, serving sample catalog: {e}")
@@ -107,12 +151,16 @@ async def root():
 
 @api_router.get("/shop/status")
 async def shop_status():
+    connected = await _check_connection()
     await _load_products()
     return {
         "mode": _cache["mode"],
+        "catalog_mode_setting": SHOPIFY_CATALOG_MODE,
         "shop_domain": SHOPIFY_DOMAIN or None,
-        "connected": _cache["mode"] == "live",
-        "error": _cache["error"] if _cache["mode"] == "sample" else None,
+        "shop_name": _cache["shop_name"],
+        "connected": connected,
+        "live_product_count": _cache["live_count"],
+        "error": _cache["error"],
     }
 
 
@@ -147,7 +195,7 @@ async def list_reviews(product_handle: Optional[str] = None):
 
 
 class CheckoutItem(BaseModel):
-    variant_id: Optional[int] = None
+    variant_id: Optional[str] = None
     quantity: int = 1
 
 
@@ -155,12 +203,27 @@ class CheckoutRequest(BaseModel):
     items: List[CheckoutItem]
 
 
+CART_CREATE = """mutation cartCreate($lines: [CartLineInput!]!) {
+  cartCreate(input: { lines: $lines }) {
+    cart { checkoutUrl }
+    userErrors { message }
+  }
+}"""
+
+
 @api_router.post("/checkout")
 async def create_checkout(req: CheckoutRequest):
     items = [i for i in req.items if i.variant_id and i.quantity > 0]
-    if items and len(items) == len(req.items) and SHOPIFY_DOMAIN:
-        parts = ",".join(f"{i.variant_id}:{i.quantity}" for i in items)
-        return {"url": f"https://{SHOPIFY_DOMAIN}/cart/{parts}", "mode": "live"}
+    if items and len(items) == len(req.items) and SHOPIFY_DOMAIN and SHOPIFY_STOREFRONT_TOKEN:
+        lines = [{"merchandiseId": str(i.variant_id), "quantity": i.quantity} for i in items]
+        try:
+            data = await _storefront_query(CART_CREATE, {"lines": lines})
+            cart = data['cartCreate'].get('cart')
+            if cart and cart.get('checkoutUrl'):
+                return {"url": cart['checkoutUrl'], "mode": "live"}
+            logger.warning(f"cartCreate errors: {data['cartCreate'].get('userErrors')}")
+        except Exception as e:
+            logger.warning(f"cartCreate failed: {e}")
     return {"url": None, "mode": "sample"}
 
 
