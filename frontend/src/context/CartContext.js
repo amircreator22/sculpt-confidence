@@ -17,8 +17,8 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
-  const addItem = (product, size, qty = 1) => {
-    const key = `${product.handle}-${size}`;
+  const addItem = (product, size, qty = 1, colour = null) => {
+    const key = `${product.handle}-${size}-${colour || ''}`;
     setItems((prev) => {
       const existing = prev.find((i) => i.key === key);
       if (existing) {
@@ -33,6 +33,7 @@ export const CartProvider = ({ children }) => {
           price: product.price,
           image: product.images?.[0],
           size,
+          colour,
           qty,
           variant_id: product.variant_id || null,
         },

@@ -10,6 +10,7 @@ import { useCart } from '@/context/CartContext';
 import { createCheckout, formatPrice, getProducts } from '@/lib/api';
 import { Overline, Reveal, Stars } from '@/components/site/Reveal';
 import { ProductCard } from '@/components/site/ProductCard';
+import { ColourSwatches } from '@/components/site/ProductGallery';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const IMG = {
@@ -31,9 +32,10 @@ const PRODUCT = {
 };
 
 const COLOURS = [
-  { name: 'Charcoal', hex: '#3a3a40' },
-  { name: 'Blush Pink', hex: '#E8B4B8' },
-  { name: 'Jet Black', hex: '#161616' },
+  { name: 'Obsidian Black', hex: '#111111', img: '/sculptflex/colours/black.png' },
+  { name: 'Charcoal Grey', hex: '#5A5A5A', img: '/sculptflex/img4.png' },
+  { name: 'Mocha Brown', hex: '#6F4E37', img: '/sculptflex/colours/mocha.png' },
+  { name: 'Deep Navy', hex: '#1B2951', img: '/sculptflex/colours/navy.png' },
 ];
 
 const FEATURES = [
@@ -105,7 +107,7 @@ const ParallaxImage = ({ src, alt, className = '', position = 'center' }) => {
 export default function SculptFlex() {
   const { addItem } = useCart();
   const [size, setSize] = useState(null);
-  const [colour, setColour] = useState('Charcoal');
+  const [colour, setColour] = useState('Charcoal Grey');
   const [reviewIdx, setReviewIdx] = useState(0);
   const [showSticky, setShowSticky] = useState(false);
   const [related, setRelated] = useState([]);
@@ -194,7 +196,19 @@ export default function SculptFlex() {
         <div className="mx-auto max-w-[1300px] px-6 md:px-10 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <Reveal>
             <div className="relative overflow-hidden aspect-[4/5] bg-[#F7F3F0]">
-              <img src={IMG.front} alt="SculptFlex Contour Leggings front view" className="absolute inset-0 h-full w-full object-cover" />
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={colour}
+                  src={COLOURS.find((c) => c.name === colour)?.img || IMG.front}
+                  alt={`SculptFlex Contour Leggings in ${colour}`}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  initial={{ opacity: 0, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  data-testid="sf-module-image"
+                />
+              </AnimatePresence>
               <span className="absolute left-5 top-5 bg-[#E8B4B8] text-[#2D2D2D] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5">Save 27%</span>
             </div>
           </Reveal>
@@ -216,17 +230,8 @@ export default function SculptFlex() {
 
             <Reveal delay={0.1}>
               <p className="mt-7 text-xs font-bold uppercase tracking-[0.2em]">Colour — <span className="text-[#c98d92]" data-testid="sf-colour-label">{colour}</span></p>
-              <div className="mt-3 flex gap-3" data-testid="sf-colour-selector">
-                {COLOURS.map((c) => (
-                  <button
-                    key={c.name}
-                    onClick={() => setColour(c.name)}
-                    aria-label={`Colour ${c.name}`}
-                    data-testid={`sf-colour-${c.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    className={`h-10 w-10 rounded-full border-2 transition-all duration-300 ${colour === c.name ? 'border-[#2D2D2D] scale-110' : 'border-[#2D2D2D]/15 hover:border-[#E8B4B8]'}`}
-                    style={{ backgroundColor: c.hex }}
-                  />
-                ))}
+              <div className="mt-4">
+                <ColourSwatches colours={COLOURS} value={colour} onChange={setColour} testIdPrefix="sf-colour" />
               </div>
               <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em]">Size</p>
               <div className="mt-3 flex flex-wrap gap-2" data-testid="sf-size-selector">

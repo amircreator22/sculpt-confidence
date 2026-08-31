@@ -9,6 +9,7 @@ import { getProduct, getReviews, formatPrice } from '@/lib/api';
 import { useCart } from '@/context/CartContext';
 import { Reveal, Stars } from '@/components/site/Reveal';
 import { ProductCard } from '@/components/site/ProductCard';
+import { ProductGallery, ColourSwatches } from '@/components/site/ProductGallery';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -34,15 +35,22 @@ export default function ProductPage() {
   const [data, setData] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [size, setSize] = useState(null);
-  const [activeImg, setActiveImg] = useState(0);
+  const [colour, setColour] = useState(null);
   const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
     setData(null);
     setSize(null);
-    setActiveImg(0);
+    setColour(null);
     getProduct(handle)
-      .then((d) => setData(d))
+      .then((d) => {
+        setData(d);
+        const colours = d.product.colours || [];
+        if (colours.length) {
+          const preferred = colours.find((c) => c.name === 'Charcoal Grey') || colours[0];
+          setColour(preferred.name);
+        }
+      })
       .catch(() => navigate('/shop'));
     getReviews(handle).then((d) => setReviews(d.reviews)).catch(() => setReviews([]));
   }, [handle, navigate]);
@@ -58,6 +66,9 @@ export default function ProductPage() {
   }
 
   const { product, related } = data;
+  const colours = product.colours || [];
+  const activeColour = colours.find((c) => c.name === colour) || null;
+  const galleryImages = activeColour ? activeColour.images : product.images;
 
   const add = (qty = 1) => {
     const chosen = size || (product.sizes.length === 1 ? product.sizes[0] : null);
@@ -65,9 +76,13 @@ export default function ProductPage() {
       toast.error('Please choose a size first');
       return;
     }
-    addItem(product, chosen, qty);
-    toast.success(`${product.title} (${chosen}) added to bag`);
+    addItem({ ...product, images: galleryImages }, chosen, qty, colour);
+    toast.success(`${product.title}${colour ? ` (${colour}` : ''}${colour ? `, ${chosen})` : ` (${chosen})`} added to bag`);
   };
+
+  const bestsellerBadge = product.bestseller ? (
+    <span className="absolute left-5 top-5 z-10 bg-[#2D2D2D] text-[#F7F3F0] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5">Bestseller</span>
+  ) : null;
 
   return (
     <div data-testid={`product-page-${handle}`}>
@@ -77,39 +92,13 @@ export default function ProductPage() {
             <ArrowLeft size={14} weight="bold" /> Back to shop
           </Link>
           <Reveal>
-            <div className="relative overflow-hidden bg-white aspect-[4/5]">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={activeImg}
-                  src={product.images[activeImg]}
-                  alt={product.title}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  initial={{ opacity: 0, scale: 1.04 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  data-testid="product-main-image"
-                />
-              </AnimatePresence>
-              {product.bestseller && (
-                <span className="absolute left-5 top-5 bg-[#2D2D2D] text-[#F7F3F0] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5">Bestseller</span>
-              )}
-            </div>
+            <ProductGallery
+              images={galleryImages}
+              title={product.title}
+              galleryKey={colour || 'default'}
+              badge={bestsellerBadge}
+            />
           </Reveal>
-          {product.images.length > 1 && (
-            <div className="mt-3 flex gap-3">
-              {product.images.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveImg(i)}
-                  data-testid={`product-thumb-${i}`}
-                  className={`relative h-24 w-20 overflow-hidden bg-white transition-opacity ${i === activeImg ? 'ring-2 ring-[#E8B4B8]' : 'opacity-60 hover:opacity-100'}`}
-                >
-                  <img src={img} alt={`${product.title} view ${i + 1}`} className="h-full w-full object-cover" />
-                </button>
-              ))}
-            </div>
-          )}
         </div>
 
         <div>
@@ -127,6 +116,19 @@ export default function ProductPage() {
             </div>
             <p className="mt-6 text-[#2D2D2D]/70 leading-relaxed text-sm md:text-base">{product.description}</p>
           </Reveal>
+
+          {colours.length > 0 && (
+            <Reveal delay={0.05}>
+              <div className="mt-8">
+                <p className="text-xs font-bold uppercase tracking-[0.2em]">
+                  Colour — <span className="text-[#c98d92]" data-testid="selected-colour-name">{colour}</span>
+                </p>
+                <div className="mt-4">
+                  <ColourSwatches colours={colours} value={colour} onChange={setColour} testIdPrefix="colour" />
+                </div>
+              </div>
+            </Reveal>
+          )}
 
           <Reveal delay={0.1}>
             <div className="mt-8 flex items-center justify-between">
@@ -314,10 +316,12 @@ export default function ProductPage() {
             data-testid="sticky-add-to-cart"
           >
             <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-3.5 flex items-center gap-4">
-              <img src={product.images[0]} alt="" className="hidden sm:block h-12 w-10 object-cover" />
+              <img src={galleryImages[0]} alt="" className="hidden sm:block h-12 w-10 object-cover" />
               <div className="flex-1 min-w-0">
                 <p className="font-display text-sm truncate">{product.title}</p>
-                <p className="text-xs text-[#2D2D2D]/50">{formatPrice(product.price)}{size ? ` · Size ${size}` : ''}</p>
+                <p className="text-xs text-[#2D2D2D]/50">
+                  {formatPrice(product.price)}{colour ? ` · ${colour}` : ''}{size ? ` · Size ${size}` : ''}
+                </p>
               </div>
               <div className="hidden md:flex gap-1.5">
                 {product.sizes.slice(0, 5).map((s) => (

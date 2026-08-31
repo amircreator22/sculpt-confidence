@@ -80,7 +80,7 @@ export const CartDrawer = () => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-display text-base leading-tight">{item.title}</p>
-                    <p className="mt-1 text-xs text-[#2D2D2D]/50 uppercase tracking-wider">Size {item.size}</p>
+                    <p className="mt-1 text-xs text-[#2D2D2D]/50 uppercase tracking-wider">{item.colour ? `${item.colour} · ` : ''}Size {item.size}</p>
                     <div className="mt-3 flex items-center justify-between">
                       <div className="flex items-center border border-[#2D2D2D]/15 rounded-full">
                         <button onClick={() => updateQty(item.key, item.qty - 1)} data-testid={`cart-qty-minus-${item.key}`} aria-label="Decrease quantity" className="p-2 hover:text-[#c98d92] transition-colors">

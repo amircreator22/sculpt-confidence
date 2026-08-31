@@ -70,6 +70,12 @@ SAMPLE_PRODUCTS = [
         "category": "leggings", "price": 39.99, "compare_at": 54.99, "currency": "GBP",
         "description": "Elevate your confidence with SculptFlex™ Contour Leggings. Contour-enhancing panels, high-waisted support and ultra-soft stretch fabric for a sculpted, confident look in and out of the gym.",
         "images": ["/sculptflex/img4.png", "/sculptflex/img2.png", "/sculptflex/img3.png", "/sculptflex/img5.png", "/sculptflex/img1.png"],
+        "colours": [
+            {"name": "Obsidian Black", "hex": "#111111", "images": ["/sculptflex/colours/black.png"]},
+            {"name": "Charcoal Grey", "hex": "#5A5A5A", "images": ["/sculptflex/img4.png", "/sculptflex/img2.png", "/sculptflex/img3.png", "/sculptflex/img5.png", "/sculptflex/img1.png"]},
+            {"name": "Mocha Brown", "hex": "#6F4E37", "images": ["/sculptflex/colours/mocha.png"]},
+            {"name": "Deep Navy", "hex": "#1B2951", "images": ["/sculptflex/colours/navy.png"]},
+        ],
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 312,
         "featured": True, "bestseller": True, "variant_id": None, "source": "sample",
     },
