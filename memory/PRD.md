@@ -12,6 +12,10 @@ Premium Shopify ecommerce brand "Confidence Sculpt" selling glute-enhancing acti
 - Backend: FastAPI. Shopify Admin API (REST 2024-10) via httpx with 120s cache and automatic fallback to curated sample catalog when scope/token fails. MongoDB (motor): newsletter_subscribers, contact_messages.
 - Key endpoints: GET /api/products, /api/products/{handle}, /api/shop/status, /api/reviews; POST /api/newsletter, /api/contact, /api/checkout (Shopify cart permalink when live variant IDs exist).
 
+## Implemented (2026-08-31, update 3)
+- Every SculptFlex™ colourway now has a 4-angle big-photo gallery: hero (back pose, merchant photo), front view, side lunge, fabric/scrunch detail close-up. Black/Navy/Mocha angles AI-generated (Gemini Nano Banana via Emergent key) using the merchant's colour photos as reference — same model, same gym, exact colour match. Charcoal Grey uses the merchant's 4 real angle photos (infographic moved out of the gallery, still on campaign page). Generation script saved at /app/backend/generate_colourways.py for future colourways.
+- Verified: each colourway shows 4 thumbnails, angle switching, colour switching, sticky bar variant attribution.
+
 ## Implemented (2026-08-31, update 2)
 - Colour-variant system on the standard product page: 4 SculptFlex™ colourways (Obsidian Black #111111, Charcoal Grey #5A5A5A, Mocha Brown #6F4E37, Deep Navy #1B2951) with circular premium swatches (name below, black active ring, hover scale). Selecting a colour instantly swaps the whole gallery with a fade — no reload, scroll preserved, size selection maintained. Cart lines carry colour ("Deep Navy · Size M").
 - New shared ProductGallery component used by EVERY product page: desktop large stage with cursor-following zoom-on-hover (1.8x), thumbnail carousel, full-screen lightbox (arrows, keyboard, counter, backdrop close); mobile full-width swipe gallery with snap + dot indicators. Lazy loading on thumbnails.
