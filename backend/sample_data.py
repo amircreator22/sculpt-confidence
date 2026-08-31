@@ -69,7 +69,7 @@ SAMPLE_PRODUCTS = [
         "id": "cs-009", "handle": "sculptflex-contour-leggings", "title": "SculptFlex™ Contour Leggings",
         "category": "leggings", "price": 39.99, "compare_at": 54.99, "currency": "GBP",
         "description": "Elevate your confidence with SculptFlex™ Contour Leggings. Contour-enhancing panels, high-waisted support and ultra-soft stretch fabric for a sculpted, confident look in and out of the gym.",
-        "images": ["/sculptflex/img4.png", "/sculptflex/img2.png"],
+        "images": ["/sculptflex/img4.png", "/sculptflex/img2.png", "/sculptflex/img3.png", "/sculptflex/img5.png", "/sculptflex/img1.png"],
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 312,
         "featured": True, "bestseller": True, "variant_id": None, "source": "sample",
     },
