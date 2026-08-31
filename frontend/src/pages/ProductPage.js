@@ -94,6 +94,7 @@ export default function ProductPage() {
           <Reveal>
             <ProductGallery
               images={galleryImages}
+              videos={product.videos || []}
               title={product.title}
               galleryKey={colour || 'default'}
               badge={bestsellerBadge}

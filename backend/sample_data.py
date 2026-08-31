@@ -77,6 +77,11 @@ SAMPLE_PRODUCTS = [
             {"name": "Deep Navy", "hex": "#1B2951", "images": ["/sculptflex/colours/navy.png", "/sculptflex/colours/navy-front.png", "/sculptflex/colours/navy-lunge.png", "/sculptflex/colours/navy-detail.png"]},
         ],
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 312,
+        "videos": [
+            {"src": "/sculptflex/videos/tryon-1.mp4", "poster": "/sculptflex/videos/poster1.png", "label": "Amelia wears M · Front fit"},
+            {"src": "/sculptflex/videos/tryon-2.mp4", "poster": "/sculptflex/videos/poster2.jpg", "label": "Jasmine wears S · Gym test"},
+            {"src": "/sculptflex/videos/tryon-3.mp4", "poster": "/sculptflex/videos/poster3.jpg", "label": "Maya wears M · Everyday wear"},
+        ],
         "featured": True, "bestseller": True, "variant_id": None, "source": "sample",
     },
     {

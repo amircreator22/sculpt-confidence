@@ -12,6 +12,10 @@ Premium Shopify ecommerce brand "Confidence Sculpt" selling glute-enhancing acti
 - Backend: FastAPI. Shopify Admin API (REST 2024-10) via httpx with 120s cache and automatic fallback to curated sample catalog when scope/token fails. MongoDB (motor): newsletter_subscribers, contact_messages.
 - Key endpoints: GET /api/products, /api/products/{handle}, /api/shop/status, /api/reviews; POST /api/newsletter, /api/contact, /api/checkout (Shopify cart permalink when live variant IDs exist).
 
+## Implemented (2026-08-31, update 4)
+- Try-on video slides in the main product gallery (Gymshark-style): 3 video slides sit FIRST in the gallery, autoplay muted on loop, tap-to-unmute, model label chips ("Amelia wears M · Front fit" etc.), play-icon thumbnails, work in desktop stage, mobile swipe gallery, and across all colourways. Clips are locally produced Ken Burns motion videos (ffmpeg, WebM VP9 + H.264 MP4 dual-source for all browsers) — placeholder content until the merchant supplies real try-on footage; ZERO AI credits used. To swap in real videos: replace files in /frontend/public/sculptflex/videos/ (keep names) or edit the videos array in backend/sample_data.py.
+- Verified: videos auto-play advancing (desktop + mobile), mute toggle, thumbnails, image slides, lightbox, colourway switching intact. Note: the mandated testing_agent subagent is not available in this environment; verification was done via automated browser playback checks instead.
+
 ## Implemented (2026-08-31, update 3)
 - Every SculptFlex™ colourway now has a 4-angle big-photo gallery: hero (back pose, merchant photo), front view, side lunge, fabric/scrunch detail close-up. Black/Navy/Mocha angles AI-generated (Gemini Nano Banana via Emergent key) using the merchant's colour photos as reference — same model, same gym, exact colour match. Charcoal Grey uses the merchant's 4 real angle photos (infographic moved out of the gallery, still on campaign page). Generation script saved at /app/backend/generate_colourways.py for future colourways.
 - Verified: each colourway shows 4 thumbnails, angle switching, colour switching, sticky bar variant attribution.
