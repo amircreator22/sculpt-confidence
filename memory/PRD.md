@@ -12,6 +12,9 @@ Premium Shopify ecommerce brand "Confidence Sculpt" selling glute-enhancing acti
 - Backend: FastAPI. Shopify Admin API (REST 2024-10) via httpx with 120s cache and automatic fallback to curated sample catalog when scope/token fails. MongoDB (motor): newsletter_subscribers, contact_messages.
 - Key endpoints: GET /api/products, /api/products/{handle}, /api/shop/status, /api/reviews; POST /api/newsletter, /api/contact, /api/checkout (Shopify cart permalink when live variant IDs exist).
 
+## Implemented (2026-08-31)
+- SculptFlex™ Contour Leggings (£39.99) campaign product page at /sculptflex: full-bleed hero ("Confidence Starts Here"), purchase module (colour swatches, size selector, live same-day-dispatch countdown, Add To Cart / Buy Now, Klarna/Clearpay/PayPal note, trust badges, Save 27% badge), alternating editorial sections (Designed To Flatter split, Move With Confidence full-width, Premium Sculpting Support split, Built For Every Workout infographic full-width), floating glass feature cards (Squat Proof / Sweat Wicking / Seamless Comfort / Four-Way Stretch), before/after UGC gallery, "Loved By Women Everywhere" review carousel with photos, FAQ accordion, related products, final conversion section ("Feel Strong. Look Incredible."), sticky add-to-cart bar (mobile-first). Real product photography supplied by the merchant, hosted in /frontend/public/sculptflex/. Added to sample catalog (appears in Shop). Verified desktop + mobile: colour/size select, add-to-bag (£39.99 in drawer), carousel, countdown.
+
 ## Implemented (2026-08-30)
 - Full homepage: parallax kinetic hero with masked line reveal, blush marquee, benefits bento, featured collection, bundle offer ("Train Smarter. Save More."), dark manifesto with numbered chapters 01–03, reviews with star ratings, TikTok-style UGC strip, email capture with CONFIDENCE10 code.
 - Shop page with category filters; collection pages (leggings / sports-bras / sculpt-shorts) with editorial hero banners.

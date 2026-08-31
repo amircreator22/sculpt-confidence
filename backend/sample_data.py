@@ -66,6 +66,14 @@ SAMPLE_PRODUCTS = [
         "featured": False, "bestseller": False, "variant_id": None, "source": "sample",
     },
     {
+        "id": "cs-009", "handle": "sculptflex-contour-leggings", "title": "SculptFlex™ Contour Leggings",
+        "category": "leggings", "price": 39.99, "compare_at": 54.99, "currency": "GBP",
+        "description": "Elevate your confidence with SculptFlex™ Contour Leggings. Contour-enhancing panels, high-waisted support and ultra-soft stretch fabric for a sculpted, confident look in and out of the gym.",
+        "images": ["/sculptflex/img4.png", "/sculptflex/img2.png"],
+        "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 312,
+        "featured": True, "bestseller": True, "variant_id": None, "source": "sample",
+    },
+    {
         "id": "cs-008", "handle": "resistance-band-bundle", "title": "Resistance Band Bundle",
         "category": "accessories", "price": 24.0, "compare_at": 32.0, "currency": "GBP",
         "description": "Three fabric resistance bands (light, medium, heavy) in blush tones with a carry pouch. Your glute-day essential.",
