@@ -106,3 +106,13 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - Support email updated everywhere to customercare@sculptivauk.com (Contact, Info/legal x3, TrackOrder x3).
 - Instagram connected (links-only per user): @sculptivaofficial — footer icon, homepage UGC overline + all 5 community clips, FAQ mention. Verified 7 links on home via screenshot automation.
 - google-site-verification meta tag added to index.html; redeploy queued for it.
+
+## Real Customer Try-On Videos (Sept 2026)
+- User uploaded 3 real MP4s; downloaded, compressed (1080x1920 -> 720w h264 crf27 + AAC, ~4MB each), posters generated: /sculptflex/videos/tryreal-{1,2,3}.mp4 + -poster.jpg.
+- Replaced the old photo-motion tryon clips in sample_data cs-009 videos (labels: "Customer try-on · Real fit review / Movement test / Everyday wear"); served via _SAMPLE_VIDEOS enrichment in live mode.
+- Verified: 3 videos autoplay in SculptFlex gallery, thumb switching works, mute toggle present. Needs redeploy to reach live domain.
+
+## Correction: videos moved out of gallery (Sept 2026)
+- User wanted the 3 real clips as a showcase ABOVE reviews, not in the gallery. Gallery now photos-only (videos={[]} passed to ProductGallery).
+- New section on ProductPage: "See Them On Real Women" (data-testid video-testimonials-section) with TestimonialVideo component (9:16, autoplay muted, mute toggle, label). Renders for any product with videos.
+- Verified via screenshot: 4 photo thumbs in gallery, 3 videos in showcase above Reviews. No AI/credit spend.

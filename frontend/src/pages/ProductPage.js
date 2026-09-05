@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowCounterClockwise, Barbell, Check, Drop, Feather, LockSimple, Package,
-  Ruler, ShieldCheck, Sparkle, Star, Truck, Lightning,
+  Ruler, ShieldCheck, Sparkle, Star, Truck, Lightning, SpeakerHigh, SpeakerSlash,
 } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 import { getProduct, getReviews, formatPrice } from '@/lib/api';
@@ -13,6 +13,40 @@ import { ProductCard } from '@/components/site/ProductCard';
 import { ProductGallery, PhotoSwatches } from '@/components/site/ProductGallery';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
+const TestimonialVideo = ({ video, index }) => {
+  const [muted, setMuted] = useState(true);
+  const ref = useRef(null);
+  useEffect(() => {
+    if (ref.current) ref.current.muted = muted;
+  }, [muted]);
+  return (
+    <div className="relative overflow-hidden aspect-[9/16] bg-[#2D2D2D] group" data-testid={`testimonial-video-${index}`}>
+      <video
+        ref={ref}
+        poster={video.poster}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src={video.src} type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/60 via-transparent to-transparent pointer-events-none" />
+      <button
+        onClick={() => setMuted((m) => !m)}
+        aria-label={muted ? 'Unmute video' : 'Mute video'}
+        data-testid={`testimonial-video-mute-${index}`}
+        className="absolute top-3 right-3 h-9 w-9 rounded-full bg-[#2D2D2D]/50 backdrop-blur-md border border-[#F7F3F0]/30 flex items-center justify-center text-[#F7F3F0] hover:bg-[#2D2D2D]/80 transition-colors"
+      >
+        {muted ? <SpeakerSlash size={15} /> : <SpeakerHigh size={15} />}
+      </button>
+      <p className="absolute bottom-4 left-4 right-4 text-[#F7F3F0] text-sm font-bold uppercase tracking-[0.12em]">{video.label}</p>
+    </div>
+  );
+};
 
 const SIZE_GUIDE = [
   { size: 'XS', waist: '24–26"', hips: '34–36"' },
@@ -116,7 +150,7 @@ export default function ProductPage() {
           </div>
           <ProductGallery
             images={galleryImages}
-            videos={product.videos || []}
+            videos={[]}
             title={product.title}
             galleryKey={colour || 'default'}
             badge={bestsellerBadge}
@@ -302,6 +336,23 @@ export default function ProductPage() {
           ))}
         </div>
       </section>
+
+      {/* Customer video testimonials */}
+      {(product.videos || []).length > 0 && (
+        <section className="border-t border-[#2D2D2D]/10 py-16 md:py-24" data-testid="video-testimonials-section">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#c98d92]">Real customers, real confidence</p>
+            <h2 className="mt-3 font-display uppercase tracking-tight text-3xl md:text-5xl mb-12">See Them On Real Women</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+              {product.videos.map((v, i) => (
+                <Reveal key={v.src} delay={0.08 * i}>
+                  <TestimonialVideo video={v} index={i} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Reviews with rating snapshot */}
       <section id="reviews" className="bg-[#F7F3F0] border-y border-[#2D2D2D]/10 py-16 md:py-24" data-testid="product-reviews-section">

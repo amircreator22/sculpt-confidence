@@ -92,9 +92,9 @@ SAMPLE_PRODUCTS = [
         ],
         "sizes": ["XS", "S", "M", "L", "XL"], "rating": 4.9, "reviews_count": 312,
         "videos": [
-            {"src": "/sculptflex/videos/tryon-1.mp4", "poster": "/sculptflex/videos/poster1.png", "label": "Amelia wears M · Front fit"},
-            {"src": "/sculptflex/videos/tryon-2.mp4", "poster": "/sculptflex/videos/poster2.jpg", "label": "Jasmine wears S · Gym test"},
-            {"src": "/sculptflex/videos/tryon-3.mp4", "poster": "/sculptflex/videos/poster3.jpg", "label": "Maya wears M · Everyday wear"},
+            {"src": "/sculptflex/videos/tryreal-1.mp4", "poster": "/sculptflex/videos/tryreal-1-poster.jpg", "label": "Customer try-on · Real fit review"},
+            {"src": "/sculptflex/videos/tryreal-2.mp4", "poster": "/sculptflex/videos/tryreal-2-poster.jpg", "label": "Customer try-on · Movement test"},
+            {"src": "/sculptflex/videos/tryreal-3.mp4", "poster": "/sculptflex/videos/tryreal-3-poster.jpg", "label": "Customer try-on · Everyday wear"},
         ],
         "featured": True, "bestseller": True, "variant_id": None, "source": "sample",
     },
