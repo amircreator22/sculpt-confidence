@@ -50,7 +50,10 @@ const Hero = () => {
   return (
     <section ref={ref} className="relative h-[100svh] min-h-[620px] overflow-hidden bg-[#2D2D2D]" data-testid="hero-section">
       <motion.img
-        src={HERO_IMG}
+        src={`${HERO_IMG}&w=1600`}
+        srcSet={`${HERO_IMG}&w=800 800w, ${HERO_IMG}&w=1200 1200w, ${HERO_IMG}&w=1900 1900w`}
+        sizes="100vw"
+        fetchpriority="high"
         alt="Confident woman wearing Sculptiva leggings"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ y: imgY, scale: imgScale }}

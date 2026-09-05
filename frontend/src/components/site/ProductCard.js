@@ -47,7 +47,7 @@ export const ProductCard = ({ product, className = '' }) => {
           onClick={quickAdd}
           data-testid={`quick-add-${product.handle}`}
           aria-label={`Quick add ${product.title}`}
-          className="absolute bottom-4 right-4 h-11 w-11 rounded-full bg-[#F7F3F0] text-[#2D2D2D] flex items-center justify-center opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-[#E8B4B8]"
+          className="absolute bottom-4 right-4 h-11 w-11 rounded-full bg-[#F7F3F0] text-[#2D2D2D] shadow-md flex items-center justify-center opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 transition-all duration-500 md:group-hover:opacity-100 md:group-hover:translate-y-0 hover:bg-[#E8B4B8]"
         >
           <Plus size={18} weight="bold" />
         </button>

@@ -131,3 +131,8 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - Footer: @sculptivaofficial text link next to social icons; FAQ handle mention now a link (answer is JSX — FAQ has no text search so safe).
 - TestimonialVideo: autoplay removed — poster + centered play button, click plays WITH sound, click video to pause, mute toggle while playing.
 - Klarna activation in Shopify Payments is admin-UI-only; instructions given to user. Verified all via screenshots. Awaiting user "deploy" for live.
+
+## Mobile optimization pass (Sept 2026)
+- Full mobile audit at 390x844: home, shop, product page, cart drawer, mobile menu, track order, footer — no horizontal overflow, layouts verified via screenshots.
+- Fixes: quick-add button on product cards was hover-only (invisible on touch) — now always visible on mobile (md:opacity-0 pattern) + shadow; hero image now responsive (srcSet 800/1200/1900w + fetchpriority=high) cutting mobile LCP payload.
+- Everything else already mobile-first (gallery dots/swipe, sticky ATC bar, tap targets ≥44px, toast top-right, lazy images).
