@@ -11,6 +11,7 @@ import { useCart } from '@/context/CartContext';
 import { Reveal, Stars } from '@/components/site/Reveal';
 import { ProductCard } from '@/components/site/ProductCard';
 import { ProductGallery, PhotoSwatches } from '@/components/site/ProductGallery';
+import { track } from '@/components/site/Pixels';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -95,6 +96,13 @@ export default function ProductPage() {
     getProduct(handle)
       .then((d) => {
         setData(d);
+        track('ViewContent', {
+          content_ids: [d.product.handle],
+          content_name: d.product.title,
+          content_type: 'product',
+          value: d.product.price,
+          currency: d.product.currency || 'GBP',
+        });
         const colours = d.product.colours || [];
         if (colours.length) {
           setColour(colours[0].name);

@@ -1,27 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+
+export const track = (event, data) => {
+  try {
+    if (window.fbq) window.fbq('track', event, data);
+  } catch {
+    /* noop */
+  }
+};
 
 export const Pixels = () => {
+  const { pathname } = useLocation();
+  const first = useRef(true);
+
   useEffect(() => {
-    const metaId = process.env.REACT_APP_META_PIXEL_ID;
-    const tiktokId = process.env.REACT_APP_TIKTOK_PIXEL_ID;
-
-    if (metaId && !window.fbq) {
-      const n = (window.fbq = function (...args) {
-        n.callMethod ? n.callMethod(...args) : n.queue.push(args);
-      });
-      if (!window._fbq) window._fbq = n;
-      n.push = n;
-      n.loaded = true;
-      n.version = '2.0';
-      n.queue = [];
-      const s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://connect.facebook.net/en_US/fbevents.js';
-      document.head.appendChild(s);
-      window.fbq('init', metaId);
-      window.fbq('track', 'PageView');
+    if (first.current) {
+      first.current = false;
+      return;
     }
+    track('PageView');
+  }, [pathname]);
 
+  useEffect(() => {
+    const tiktokId = process.env.REACT_APP_TIKTOK_PIXEL_ID;
     if (tiktokId && !window.ttq) {
       const ttq = (window.ttq = []);
       ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie'];

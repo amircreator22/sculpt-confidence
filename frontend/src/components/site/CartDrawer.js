@@ -5,11 +5,12 @@ import { Sheet, SheetContent } from '../ui/sheet';
 import { toast } from 'sonner';
 import { useCart } from '../../context/CartContext';
 import { createCheckout, formatPrice } from '../../lib/api';
+import { track } from './Pixels';
 
 const FREE_SHIPPING_THRESHOLD = 50;
 
 export const CartDrawer = () => {
-  const { items, drawerOpen, setDrawerOpen, updateQty, removeItem, subtotal } = useCart();
+  const { items, drawerOpen, setDrawerOpen, updateQty, removeItem, subtotal, count } = useCart();
   const [checkingOut, setCheckingOut] = useState(false);
   const navigate = useNavigate();
   const remaining = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
@@ -17,6 +18,7 @@ export const CartDrawer = () => {
 
   const checkout = async () => {
     setCheckingOut(true);
+    track('InitiateCheckout', { value: subtotal, currency: 'GBP', num_items: count });
     try {
       const res = await createCheckout(items.map((i) => ({ variant_id: i.variant_id, quantity: i.qty })));
       if (res.url) {

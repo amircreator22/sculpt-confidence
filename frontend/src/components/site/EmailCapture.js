@@ -3,6 +3,7 @@ import { ArrowRight, Check } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 import { subscribeNewsletter } from '../../lib/api';
 import { Reveal, Overline, LineReveal } from './Reveal';
+import { track } from './Pixels';
 
 export const EmailCapture = ({ compact = false, source = 'homepage' }) => {
   const [email, setEmail] = useState('');
@@ -16,6 +17,7 @@ export const EmailCapture = ({ compact = false, source = 'homepage' }) => {
     try {
       const res = await subscribeNewsletter(email, source);
       setDone(true);
+      track('Lead', { content_name: 'newsletter-signup' });
       toast.success(`${res.message} — code ${res.discount_code}`);
     } catch (err) {
       toast.error(err.response?.data?.detail || 'Please enter a valid email');

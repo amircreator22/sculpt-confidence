@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { track } from '../components/site/Pixels';
 
 const CartContext = createContext(null);
 const STORAGE_KEY = 'cs_cart';
@@ -18,6 +19,13 @@ export const CartProvider = ({ children }) => {
   }, [items]);
 
   const addItem = (product, size, qty = 1, colour = null) => {
+    track('AddToCart', {
+      content_ids: [product.handle],
+      content_name: product.title,
+      content_type: 'product',
+      value: (product.price || 0) * qty,
+      currency: product.currency || 'GBP',
+    });
     const key = `${product.handle}-${size}-${colour || ''}`;
     setItems((prev) => {
       const existing = prev.find((i) => i.key === key);

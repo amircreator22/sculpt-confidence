@@ -119,3 +119,9 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 
 ## Video 3 replaced (Sept 2026)
 - User uploaded replacement clip; compressed and overwrote /sculptflex/videos/tryreal-3.mp4 + poster (same filenames, no data change needed). Added play() nudge on mount in TestimonialVideo.
+
+## Meta Pixel (Sept 2026)
+- Base pixel snippet (ID 2576284096124806) added verbatim to frontend/public/index.html head incl. noscript fallback.
+- Pixels.js rewritten: exports track() helper; SPA PageView fired on route changes (skips first load, base snippet covers it); TikTok loader remains placeholder (REACT_APP_TIKTOK_PIXEL_ID unset).
+- Events wired: ViewContent (ProductPage load), AddToCart (CartContext.addItem — covers quick-add too), InitiateCheckout (CartDrawer.checkout), Lead (EmailCapture success).
+- Verified via fbq spy in browser: ViewContent + AddToCart fire; checkout flow navigated to real Shopify checkout. NOTE: Purchase event occurs on Shopify's checkout domain — user must also connect the pixel inside Shopify (Facebook & Instagram channel) to capture Purchase.
