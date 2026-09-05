@@ -116,3 +116,6 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - User wanted the 3 real clips as a showcase ABOVE reviews, not in the gallery. Gallery now photos-only (videos={[]} passed to ProductGallery).
 - New section on ProductPage: "See Them On Real Women" (data-testid video-testimonials-section) with TestimonialVideo component (9:16, autoplay muted, mute toggle, label). Renders for any product with videos.
 - Verified via screenshot: 4 photo thumbs in gallery, 3 videos in showcase above Reviews. No AI/credit spend.
+
+## Video 3 replaced (Sept 2026)
+- User uploaded replacement clip; compressed and overwrote /sculptflex/videos/tryreal-3.mp4 + poster (same filenames, no data change needed). Added play() nudge on mount in TestimonialVideo.

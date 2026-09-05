@@ -20,6 +20,9 @@ const TestimonialVideo = ({ video, index }) => {
   useEffect(() => {
     if (ref.current) ref.current.muted = muted;
   }, [muted]);
+  useEffect(() => {
+    ref.current?.play().catch(() => {});
+  }, []);
   return (
     <div className="relative overflow-hidden aspect-[9/16] bg-[#2D2D2D] group" data-testid={`testimonial-video-${index}`}>
       <video
