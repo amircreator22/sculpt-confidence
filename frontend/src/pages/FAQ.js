@@ -12,7 +12,7 @@ const FAQS = [
   { q: 'What is your returns policy?', a: '30 days, no questions asked. Items must be unworn with tags attached. Size exchanges are always free — we cover the return postage.' },
   { q: 'How do I wash my sculpt pieces?', a: 'Cold machine wash inside out, no fabric softener, hang dry. This protects the sculpt knit and keeps the compression strong for years.' },
   { q: 'Can I pay in instalments?', a: 'Yes — Klarna and Clearpay are available at checkout, letting you split your order into interest-free payments.' },
-  { q: 'How do I get featured on your socials?', a: 'Tag @sculptiva and #Sculptiva in your training clips and photos. We feature real community members every week — every body, every level, every journey.' },
+  { q: 'How do I get featured on your socials?', a: 'Tag @sculptivaofficial and #Sculptiva in your training clips and photos. We feature real community members every week — every body, every level, every journey.' },
   { q: 'What does "Confidence Starts Here" mean?', a: "It's our whole reason for existing: helping women feel confident in their own skin. Confidence isn't a size, a trend, or something you earn — it starts with how you feel. We design flattering, comfortable activewear that supports that feeling every day, whether you're training, walking the dog, or just getting started." },
 ];
 

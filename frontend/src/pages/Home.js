@@ -284,7 +284,11 @@ const UGCStrip = () => (
   <section className="py-24 md:py-32 bg-white border-y border-[#2D2D2D]/10" data-testid="ugc-section">
     <div className="mx-auto max-w-[1400px] px-6 md:px-10 mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
       <div>
-        <Reveal><Overline>@sculptiva</Overline></Reveal>
+        <Reveal>
+          <a href="https://www.instagram.com/sculptivaofficial" target="_blank" rel="noreferrer" data-testid="ugc-instagram-link" className="inline-block hover:opacity-70 transition-opacity">
+            <Overline>@sculptivaofficial</Overline>
+          </a>
+        </Reveal>
         <LineReveal className="mt-4" lineClassName="font-display uppercase tracking-tight text-4xl md:text-6xl" lines={['As Seen On Your Feed']} />
       </div>
       <Reveal delay={0.2}>
@@ -296,6 +300,7 @@ const UGCStrip = () => (
     <div className="flex gap-4 overflow-x-auto no-scrollbar px-6 md:px-10 snap-x snap-mandatory" data-testid="ugc-gallery">
       {UGC_CLIPS.map((clip, i) => (
         <Reveal key={clip.handle} delay={0.06 * i} className="snap-start shrink-0">
+          <a href="https://www.instagram.com/sculptivaofficial" target="_blank" rel="noreferrer" aria-label={`View ${clip.handle} on Instagram`} data-testid={`ugc-clip-link-${i}`}>
           <div className="relative w-[240px] md:w-[280px] aspect-[9/16] overflow-hidden group cursor-pointer" data-testid={`ugc-clip-${i}`}>
             <img src={clip.img} alt={clip.caption} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/70 via-transparent to-[#2D2D2D]/20" />
@@ -310,6 +315,7 @@ const UGCStrip = () => (
               <p className="text-[#F7F3F0]/50 text-[11px] mt-1">{clip.views} views</p>
             </div>
           </div>
+          </a>
         </Reveal>
       ))}
     </div>

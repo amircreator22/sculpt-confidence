@@ -101,3 +101,8 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - Track My Order page (/track-order) + POST /api/orders/track using admin client-credentials token; footer link added.
 - Testing agent iteration_2.json: 31/31 backend, 100% frontend. Post-test fixes: checkout live failure now 409 (was silent sample fallback), toast moved top-right (was covering checkout CTA), SculptFlex videos re-injected in live mode, EMAIL_RE moved to top, sr-only h1 on About, dialog aria fix.
 - Redeploy dispatched after catalog go-live (user-approved order of ops).
+
+## Contact + Socials (June 2026)
+- Support email updated everywhere to customercare@sculptivauk.com (Contact, Info/legal x3, TrackOrder x3).
+- Instagram connected (links-only per user): @sculptivaofficial — footer icon, homepage UGC overline + all 5 community clips, FAQ mention. Verified 7 links on home via screenshot automation.
+- google-site-verification meta tag added to index.html; redeploy queued for it.

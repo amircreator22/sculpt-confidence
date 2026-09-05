@@ -35,7 +35,7 @@ export const Footer = () => (
           Activewear designed to help every woman feel comfortable, supported and confident from the moment she puts it on — at the gym and in everyday life.
         </p>
         <div className="mt-6 flex gap-3">
-          <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" data-testid="footer-instagram"
+          <a href="https://www.instagram.com/sculptivaofficial" target="_blank" rel="noreferrer" aria-label="Instagram" data-testid="footer-instagram"
             className="h-10 w-10 rounded-full border border-[#F7F3F0]/20 flex items-center justify-center hover:bg-[#E8B4B8] hover:text-[#2D2D2D] hover:border-[#E8B4B8] transition-colors">
             <InstagramLogo size={18} />
           </a>
