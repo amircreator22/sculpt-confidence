@@ -125,3 +125,9 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - Pixels.js rewritten: exports track() helper; SPA PageView fired on route changes (skips first load, base snippet covers it); TikTok loader remains placeholder (REACT_APP_TIKTOK_PIXEL_ID unset).
 - Events wired: ViewContent (ProductPage load), AddToCart (CartContext.addItem — covers quick-add too), InitiateCheckout (CartDrawer.checkout), Lead (EmailCapture success).
 - Verified via fbq spy in browser: ViewContent + AddToCart fire; checkout flow navigated to real Shopify checkout. NOTE: Purchase event occurs on Shopify's checkout domain — user must also connect the pixel inside Shopify (Facebook & Instagram channel) to capture Purchase.
+
+## Footer payment icons + video play buttons (Sept 2026)
+- PaymentIcons.js: 8 inline-SVG badges (Visa, MC, Amex, PayPal, Apple Pay, G Pay, Klarna, Clearpay) in footer bottom strip.
+- Footer: @sculptivaofficial text link next to social icons; FAQ handle mention now a link (answer is JSX — FAQ has no text search so safe).
+- TestimonialVideo: autoplay removed — poster + centered play button, click plays WITH sound, click video to pause, mute toggle while playing.
+- Klarna activation in Shopify Payments is admin-UI-only; instructions given to user. Verified all via screenshots. Awaiting user "deploy" for live.

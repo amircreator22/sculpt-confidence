@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowCounterClockwise, Barbell, Check, Drop, Feather, LockSimple, Package,
-  Ruler, ShieldCheck, Sparkle, Star, Truck, Lightning, SpeakerHigh, SpeakerSlash,
+  Ruler, ShieldCheck, Sparkle, Star, Truck, Lightning, Play, SpeakerHigh, SpeakerSlash,
 } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 import { getProduct, getReviews, formatPrice } from '@/lib/api';
@@ -16,38 +16,60 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const TestimonialVideo = ({ video, index }) => {
-  const [muted, setMuted] = useState(true);
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(false);
   const ref = useRef(null);
   useEffect(() => {
     if (ref.current) ref.current.muted = muted;
   }, [muted]);
-  useEffect(() => {
-    ref.current?.play().catch(() => {});
-  }, []);
+  const toggle = () => {
+    const v = ref.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play().catch(() => {});
+      setPlaying(true);
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  };
   return (
     <div className="relative overflow-hidden aspect-[9/16] bg-[#2D2D2D] group" data-testid={`testimonial-video-${index}`}>
       <video
         ref={ref}
         poster={video.poster}
-        autoPlay
-        muted
         loop
         playsInline
         preload="metadata"
-        className="absolute inset-0 h-full w-full object-cover"
+        onClick={toggle}
+        className="absolute inset-0 h-full w-full object-cover cursor-pointer"
       >
         <source src={video.src} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/60 via-transparent to-transparent pointer-events-none" />
-      <button
-        onClick={() => setMuted((m) => !m)}
-        aria-label={muted ? 'Unmute video' : 'Mute video'}
-        data-testid={`testimonial-video-mute-${index}`}
-        className="absolute top-3 right-3 h-9 w-9 rounded-full bg-[#2D2D2D]/50 backdrop-blur-md border border-[#F7F3F0]/30 flex items-center justify-center text-[#F7F3F0] hover:bg-[#2D2D2D]/80 transition-colors"
-      >
-        {muted ? <SpeakerSlash size={15} /> : <SpeakerHigh size={15} />}
-      </button>
-      <p className="absolute bottom-4 left-4 right-4 text-[#F7F3F0] text-sm font-bold uppercase tracking-[0.12em]">{video.label}</p>
+      {!playing && (
+        <button
+          onClick={toggle}
+          aria-label="Play video"
+          data-testid={`testimonial-video-play-${index}`}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <span className="h-16 w-16 rounded-full bg-[#F7F3F0]/90 backdrop-blur-sm flex items-center justify-center shadow-xl transition-transform duration-300 hover:scale-110">
+            <Play size={24} weight="fill" className="text-[#2D2D2D] translate-x-0.5" />
+          </span>
+        </button>
+      )}
+      {playing && (
+        <button
+          onClick={() => setMuted((m) => !m)}
+          aria-label={muted ? 'Unmute video' : 'Mute video'}
+          data-testid={`testimonial-video-mute-${index}`}
+          className="absolute top-3 right-3 h-9 w-9 rounded-full bg-[#2D2D2D]/50 backdrop-blur-md border border-[#F7F3F0]/30 flex items-center justify-center text-[#F7F3F0] hover:bg-[#2D2D2D]/80 transition-colors"
+        >
+          {muted ? <SpeakerSlash size={15} /> : <SpeakerHigh size={15} />}
+        </button>
+      )}
+      <p className="absolute bottom-4 left-4 right-4 text-[#F7F3F0] text-sm font-bold uppercase tracking-[0.12em] pointer-events-none">{video.label}</p>
     </div>
   );
 };

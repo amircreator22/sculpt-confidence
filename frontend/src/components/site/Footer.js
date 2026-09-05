@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { InstagramLogo, TiktokLogo } from '@phosphor-icons/react';
 import { EmailCapture } from './EmailCapture';
+import { PaymentIcons } from './PaymentIcons';
 
 const SHOP_LINKS = [
   { to: '/shop', label: 'Shop All' },
@@ -34,7 +35,7 @@ export const Footer = () => (
         <p className="mt-3 text-sm text-[#F7F3F0]/60 max-w-sm leading-relaxed">
           Activewear designed to help every woman feel comfortable, supported and confident from the moment she puts it on — at the gym and in everyday life.
         </p>
-        <div className="mt-6 flex gap-3">
+        <div className="mt-6 flex items-center gap-3">
           <a href="https://www.instagram.com/sculptivaofficial" target="_blank" rel="noreferrer" aria-label="Instagram" data-testid="footer-instagram"
             className="h-10 w-10 rounded-full border border-[#F7F3F0]/20 flex items-center justify-center hover:bg-[#E8B4B8] hover:text-[#2D2D2D] hover:border-[#E8B4B8] transition-colors">
             <InstagramLogo size={18} />
@@ -42,6 +43,10 @@ export const Footer = () => (
           <a href="https://www.tiktok.com" target="_blank" rel="noreferrer" aria-label="TikTok" data-testid="footer-tiktok"
             className="h-10 w-10 rounded-full border border-[#F7F3F0]/20 flex items-center justify-center hover:bg-[#E8B4B8] hover:text-[#2D2D2D] hover:border-[#E8B4B8] transition-colors">
             <TiktokLogo size={18} />
+          </a>
+          <a href="https://www.instagram.com/sculptivaofficial" target="_blank" rel="noreferrer" data-testid="footer-instagram-handle"
+            className="text-sm text-[#F7F3F0]/70 hover:text-[#E8B4B8] transition-colors">
+            @sculptivaofficial
           </a>
         </div>
         <div className="mt-8 max-w-sm">
@@ -86,8 +91,9 @@ export const Footer = () => (
       </div>
     </div>
     <div className="border-t border-[#F7F3F0]/10">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-[#F7F3F0]/40">
+      <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#F7F3F0]/40">
         <p>© 2026 Sculptiva. All rights reserved.</p>
+        <PaymentIcons />
         <p>Designed in the UK. Confidence Starts Here.</p>
       </div>
     </div>
