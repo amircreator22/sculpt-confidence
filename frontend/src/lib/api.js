@@ -26,5 +26,11 @@ export const createCheckout = (items) =>
 export const trackOrder = (orderNumber, email) =>
   axios.post(`${API}/orders/track`, { order_number: orderNumber, email }).then((r) => r.data);
 
+export const trackCart = (email, items) =>
+  axios.post(`${API}/cart/track`, { email, items }).then((r) => r.data);
+
+export const cartConverted = (email) =>
+  axios.post(`${API}/cart/converted`, { email }).then((r) => r.data);
+
 export const formatPrice = (value) =>
   `£${Number(value).toFixed(Number(value) % 1 === 0 ? 0 : 2)}`;

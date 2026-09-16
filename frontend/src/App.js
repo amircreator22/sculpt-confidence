@@ -7,6 +7,7 @@ import { CartProvider } from '@/context/CartContext';
 import { Header } from '@/components/site/Header';
 import { Footer } from '@/components/site/Footer';
 import { CartDrawer } from '@/components/site/CartDrawer';
+import { DiscountPopup } from '@/components/site/DiscountPopup';
 import { Pixels } from '@/components/site/Pixels';
 import Home from '@/pages/Home';
 import Shop from '@/pages/Shop';
@@ -74,6 +75,7 @@ const Shell = () => {
       </main>
       <Footer />
       <CartDrawer />
+      <DiscountPopup />
       <Toaster position="top-right" toastOptions={{ style: { background: '#2D2D2D', color: '#F7F3F0', border: '1px solid rgba(232,180,184,0.4)', borderRadius: '9999px' } }} />
     </div>
   );

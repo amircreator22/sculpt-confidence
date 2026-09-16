@@ -53,7 +53,7 @@ const Hero = () => {
         src={`${HERO_IMG}&w=1600`}
         srcSet={`${HERO_IMG}&w=800 800w, ${HERO_IMG}&w=1200 1200w, ${HERO_IMG}&w=1900 1900w`}
         sizes="100vw"
-        fetchpriority="high"
+        fetchPriority="high"
         alt="Confident woman wearing Sculptiva leggings"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ y: imgY, scale: imgScale }}

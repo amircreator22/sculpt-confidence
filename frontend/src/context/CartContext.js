@@ -1,8 +1,10 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { track } from '../components/site/Pixels';
+import { trackCart } from '../lib/api';
 
 const CartContext = createContext(null);
 const STORAGE_KEY = 'cs_cart';
+const EMAIL_KEY = 'sculptiva_email';
 
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState(() => {
@@ -13,9 +15,25 @@ export const CartProvider = ({ children }) => {
     }
   });
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const syncTimer = useRef(null);
+  const firstRender = useRef(true);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    const email = localStorage.getItem(EMAIL_KEY);
+    if (!email) return;
+    clearTimeout(syncTimer.current);
+    syncTimer.current = setTimeout(() => {
+      trackCart(email, items.map((i) => ({
+        handle: i.handle, title: i.title, price: i.price, qty: i.qty,
+        image: i.image || null, size: i.size || null, colour: i.colour || null,
+      }))).catch(() => {});
+    }, 2000);
+    return () => clearTimeout(syncTimer.current);
   }, [items]);
 
   const addItem = (product, size, qty = 1, colour = null) => {

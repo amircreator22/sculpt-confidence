@@ -136,3 +136,11 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - Full mobile audit at 390x844: home, shop, product page, cart drawer, mobile menu, track order, footer — no horizontal overflow, layouts verified via screenshots.
 - Fixes: quick-add button on product cards was hover-only (invisible on touch) — now always visible on mobile (md:opacity-0 pattern) + shadow; hero image now responsive (srcSet 800/1200/1900w + fetchpriority=high) cutting mobile LCP payload.
 - Everything else already mobile-first (gallery dots/swipe, sticky ATC bar, tap targets ≥44px, toast top-right, lazy images).
+
+## Abandoned cart emails + 15% popup (Sept 2026)
+- User choices: SendGrid, 1-hour delay, popup after 8s, SCULPTIVA15 created manually by user in Shopify.
+- Backend: POST /api/cart/track (upsert abandoned_carts by email), POST /api/cart/converted, abandoned_cart_worker startup task (5-min loop, sends branded HTML email via SendGrid, one reminder per cart, dormant while SENDGRID_API_KEY empty). Newsletter source 'popup' -> SCULPTIVA15, else SCULPTIVA10. Env: SENDGRID_API_KEY(empty), SENDER_EMAIL=customercare@sculptivauk.com, SITE_URL(preview for now — update to live domain), ABANDONED_CART_DELAY_MINUTES=60. sendgrid lib installed + requirements frozen.
+- Frontend: DiscountPopup (8s, once per visitor via sculptiva_popup_seen, stores sculptiva_email, tap-to-copy code, Lead pixel); CartContext debounced trackCart sync; CartDrawer fires cartConverted on checkout; EmailCapture also stores sculptiva_email.
+- iteration_3.json: 100% backend + frontend. Post-test: fixed fetchPriority casing + cart drawer SheetTitle/aria a11y.
+- PENDING FROM USER: SendGrid API key (+ verified sender), SCULPTIVA15 code creation in Shopify, live domain for SITE_URL email links.
+- NOTE: .env append via printf corrupted EMERGENT_LLM_KEY line once (missing trailing newline) — fixed; never append to .env without checking trailing newline.

@@ -17,6 +17,7 @@ export const EmailCapture = ({ compact = false, source = 'homepage' }) => {
     try {
       const res = await subscribeNewsletter(email, source);
       setDone(true);
+      localStorage.setItem('sculptiva_email', email.trim().toLowerCase());
       track('Lead', { content_name: 'newsletter-signup' });
       toast.success(`${res.message} — code ${res.discount_code}`);
     } catch (err) {

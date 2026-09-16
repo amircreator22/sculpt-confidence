@@ -2,9 +2,10 @@ import os
 import re
 import time
 import uuid
+import asyncio
 import logging
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Optional, List
 
 import httpx
@@ -334,24 +335,164 @@ async def subscribe_newsletter(req: NewsletterRequest):
     email = req.email.strip().lower()
     if not EMAIL_RE.match(email):
         raise HTTPException(status_code=422, detail="Please enter a valid email address")
+    code = "SCULPTIVA15" if req.source == "popup" else "SCULPTIVA10"
     existing = await db.newsletter_subscribers.find_one({"email": email})
     if existing:
-        return {"ok": True, "message": "You're already part of the community", "discount_code": "SCULPTIVA10"}
+        return {"ok": True, "message": "You're already part of the community", "discount_code": existing.get("discount_code", code)}
     doc = {
         "id": str(uuid.uuid4()),
         "email": email,
         "source": req.source,
-        "discount_code": "SCULPTIVA10",
+        "discount_code": code,
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     await db.newsletter_subscribers.insert_one(doc)
-    return {"ok": True, "message": "Welcome to the Sculptiva community", "discount_code": "SCULPTIVA10"}
+    return {"ok": True, "message": "Welcome to the Sculptiva community", "discount_code": code}
 
 
 class ContactRequest(BaseModel):
     name: str
     email: str
     message: str
+
+
+class CartTrackItem(BaseModel):
+    handle: str
+    title: str
+    price: float
+    qty: int
+    image: Optional[str] = None
+    size: Optional[str] = None
+    colour: Optional[str] = None
+
+
+class CartTrackRequest(BaseModel):
+    email: str
+    items: List[CartTrackItem]
+
+
+class CartEmailRequest(BaseModel):
+    email: str
+
+
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', '')
+SENDER_EMAIL = os.environ.get('SENDER_EMAIL', '')
+SITE_URL = os.environ.get('SITE_URL', '')
+ABANDONED_CART_DELAY_MINUTES = int(os.environ.get('ABANDONED_CART_DELAY_MINUTES', '60'))
+
+
+@api_router.post("/cart/track")
+async def track_cart(req: CartTrackRequest):
+    email = req.email.strip().lower()
+    if not EMAIL_RE.match(email):
+        raise HTTPException(status_code=422, detail="Invalid email")
+    await db.abandoned_carts.update_one(
+        {"email": email},
+        {"$set": {
+            "email": email,
+            "items": [i.model_dump() for i in req.items],
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+            "reminder_sent": False,
+            "converted": False,
+        }},
+        upsert=True,
+    )
+    return {"ok": True}
+
+
+@api_router.post("/cart/converted")
+async def cart_converted(req: CartEmailRequest):
+    email = req.email.strip().lower()
+    await db.abandoned_carts.update_one({"email": email}, {"$set": {"converted": True}})
+    return {"ok": True}
+
+
+def _cart_email_html(cart: dict) -> str:
+    site = SITE_URL.rstrip('/')
+    rows = ""
+    subtotal = 0.0
+    for it in cart.get("items", []):
+        subtotal += it["price"] * it["qty"]
+        img = it.get("image") or ""
+        if img.startswith('/'):
+            img = f"{site}{img}"
+        meta = " · ".join(x for x in [it.get("colour"), f"Size {it.get('size')}" if it.get("size") else None] if x)
+        rows += f"""
+        <tr>
+          <td style="padding:12px 0;border-bottom:1px solid #eee;width:72px;"><img src="{img}" width="64" height="80" style="object-fit:cover;border-radius:4px;" alt=""/></td>
+          <td style="padding:12px 12px;border-bottom:1px solid #eee;font-family:Arial,sans-serif;">
+            <div style="font-weight:700;color:#2D2D2D;">{it['title']}</div>
+            <div style="color:#888;font-size:12px;margin-top:4px;">{meta} · Qty {it['qty']}</div>
+          </td>
+          <td style="padding:12px 0;border-bottom:1px solid #eee;text-align:right;font-family:Arial,sans-serif;color:#2D2D2D;font-weight:700;">£{it['price'] * it['qty']:.2f}</td>
+        </tr>"""
+    return f"""
+    <div style="background:#F7F3F0;padding:32px 16px;">
+      <div style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;">
+        <div style="background:#2D2D2D;padding:28px 24px;text-align:center;">
+          <div style="font-family:Arial,sans-serif;font-weight:800;letter-spacing:2px;font-size:22px;color:#F7F3F0;">SCULPT<span style="color:#E8B4B8;">IVA</span></div>
+          <div style="font-family:Arial,sans-serif;color:#E8B4B8;font-size:11px;letter-spacing:3px;margin-top:6px;">MOVE WITH CONFIDENCE</div>
+        </div>
+        <div style="padding:28px 24px;">
+          <h1 style="font-family:Arial,sans-serif;color:#2D2D2D;font-size:22px;margin:0 0 8px;">You left something behind 💗</h1>
+          <p style="font-family:Arial,sans-serif;color:#666;font-size:14px;line-height:1.6;margin:0 0 20px;">Your Sculptiva pieces are still in your bag — and they'd love to move with you. Here's what's waiting:</p>
+          <table style="width:100%;border-collapse:collapse;">{rows}</table>
+          <p style="font-family:Arial,sans-serif;text-align:right;color:#2D2D2D;font-weight:700;font-size:15px;margin:14px 0 22px;">Subtotal: £{subtotal:.2f}</p>
+          <div style="background:#FDF1F2;border:1px dashed #E8B4B8;border-radius:8px;padding:16px;text-align:center;margin-bottom:22px;">
+            <div style="font-family:Arial,sans-serif;color:#2D2D2D;font-size:13px;">Come back within 24 hours and take <b>15% off</b> with code</div>
+            <div style="font-family:Arial,sans-serif;color:#c94f5e;font-weight:800;font-size:20px;letter-spacing:2px;margin-top:6px;">SCULPTIVA15</div>
+          </div>
+          <div style="text-align:center;">
+            <a href="{site}/shop" style="font-family:Arial,sans-serif;background:#2D2D2D;color:#F7F3F0;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:2px;padding:14px 34px;border-radius:999px;display:inline-block;">COMPLETE MY ORDER</a>
+          </div>
+        </div>
+        <div style="padding:18px 24px;background:#fafafa;text-align:center;font-family:Arial,sans-serif;color:#999;font-size:11px;">
+          Sculptiva · Confidence Starts Here · <a href="{site}" style="color:#c94f5e;">sculptiva</a><br/>
+          You received this because you shopped with us. Questions? customercare@sculptivauk.com
+        </div>
+      </div>
+    </div>"""
+
+
+def _send_cart_email(cart: dict) -> bool:
+    from sendgrid import SendGridAPIClient
+    from sendgrid.helpers.mail import Mail
+    message = Mail(
+        from_email=SENDER_EMAIL,
+        to_emails=cart["email"],
+        subject="You left something in your bag — 15% off inside 💗",
+        html_content=_cart_email_html(cart),
+    )
+    sg = SendGridAPIClient(SENDGRID_API_KEY)
+    resp = sg.send(message)
+    return resp.status_code in (200, 202)
+
+
+async def abandoned_cart_worker():
+    while True:
+        try:
+            if SENDGRID_API_KEY and SENDER_EMAIL:
+                cutoff = (datetime.now(timezone.utc) - timedelta(minutes=ABANDONED_CART_DELAY_MINUTES)).isoformat()
+                cursor = db.abandoned_carts.find({
+                    "reminder_sent": False,
+                    "converted": False,
+                    "items.0": {"$exists": True},
+                    "updated_at": {"$lt": cutoff},
+                })
+                async for cart in cursor:
+                    try:
+                        ok = await asyncio.to_thread(_send_cart_email, cart)
+                        await db.abandoned_carts.update_one(
+                            {"email": cart["email"]},
+                            {"$set": {"reminder_sent": ok, "reminder_sent_at": datetime.now(timezone.utc).isoformat()}},
+                        )
+                        logger.info(f"Abandoned cart email {'sent' if ok else 'failed'}: {cart['email']}")
+                    except Exception as e:
+                        logger.warning(f"Cart email failed for {cart.get('email')}: {e}")
+                        await db.abandoned_carts.update_one({"email": cart["email"]}, {"$set": {"reminder_sent": True, "reminder_error": str(e)[:200]}})
+        except Exception as e:
+            logger.warning(f"Abandoned cart worker error: {e}")
+        await asyncio.sleep(300)
 
 
 @api_router.post("/contact")
@@ -380,6 +521,11 @@ app.add_middleware(
 )
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+
+@app.on_event("startup")
+async def start_cart_worker():
+    asyncio.create_task(abandoned_cart_worker())
 
 
 @app.on_event("shutdown")

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Minus, Plus, Trash, Truck, LockSimple } from '@phosphor-icons/react';
-import { Sheet, SheetContent } from '../ui/sheet';
+import { Sheet, SheetContent, SheetTitle } from '../ui/sheet';
 import { toast } from 'sonner';
 import { useCart } from '../../context/CartContext';
-import { createCheckout, formatPrice } from '../../lib/api';
+import { createCheckout, formatPrice, cartConverted } from '../../lib/api';
 import { track } from './Pixels';
 
 const FREE_SHIPPING_THRESHOLD = 50;
@@ -19,6 +19,8 @@ export const CartDrawer = () => {
   const checkout = async () => {
     setCheckingOut(true);
     track('InitiateCheckout', { value: subtotal, currency: 'GBP', num_items: count });
+    const savedEmail = localStorage.getItem('sculptiva_email');
+    if (savedEmail) cartConverted(savedEmail).catch(() => {});
     try {
       const res = await createCheckout(items.map((i) => ({ variant_id: i.variant_id, quantity: i.qty })));
       if (res.url) {
@@ -37,11 +39,12 @@ export const CartDrawer = () => {
     <Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
       <SheetContent
         side="right"
+        aria-describedby={undefined}
         className="w-full sm:max-w-md bg-[#F7F3F0] border-l border-[#2D2D2D]/10 p-0 flex flex-col shadow-[0_20px_40px_rgba(45,45,45,0.08)]"
         data-testid="cart-drawer"
       >
         <div className="flex items-center justify-between px-6 h-16 border-b border-[#2D2D2D]/10">
-          <p className="font-display uppercase tracking-tight text-xl">Your Bag</p>
+          <SheetTitle className="font-display uppercase tracking-tight text-xl font-normal text-[#2D2D2D]">Your Bag</SheetTitle>
           <button onClick={() => setDrawerOpen(false)} data-testid="cart-close-button" aria-label="Close bag" className="mr-10 text-xs font-bold uppercase tracking-[0.2em] text-[#2D2D2D]/60 hover:text-[#2D2D2D] transition-colors">
             Close
           </button>
