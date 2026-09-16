@@ -269,6 +269,9 @@ export default function ProductPage() {
           >
             <LockSimple size={15} weight="bold" /> Add to Bag
           </button>
+          <p className="mt-3 text-center text-[11px] text-[#2D2D2D]/55 leading-relaxed" data-testid="high-demand-notice">
+            Due to high demand, please allow 5–10 business days for delivery.
+          </p>
           <div className="mt-3 flex items-center justify-center gap-2" data-testid="bnpl-badges">
             <span className="border border-[#2D2D2D]/15 px-3 py-1.5 text-[11px] font-bold text-[#2D2D2D]/70">Klarna</span>
             <span className="border border-[#2D2D2D]/15 px-3 py-1.5 text-[11px] font-bold text-[#2D2D2D]/70">PayPal</span>
