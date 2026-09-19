@@ -189,3 +189,12 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - App.js routes added: /blog, /blog/:slug (imported BlogIndex, BlogPost).
 - prerender-seo.js bakes body into #root for curated collections AND blog routes (body_routes set in gen_seo_static.py).
 - Verified locally: build baked 30 routes; each blog file has unique title/H1/body/FAQ + Article+FAQPage+BreadcrumbList + datePublished/author + JS bundle; human pages render (index cards + post breadcrumb/hero/body/FAQ). Redeployed.
+
+## Blog: 5 more articles (Phase 5 #12/#13/#22/#23/#62) (June 2026)
+- Added 5 posts (blog now 8 total): how-we-test-leggings-for-squat-proofing, squat-proof-vs-see-through-how-to-tell-before-you-buy, high-waisted-vs-mid-rise-leggings, do-tummy-control-leggings-really-work, how-to-measure-yourself-for-leggings-at-home. Same static-prerender pattern.
+- Mirrored in blogPosts.js + seo.py BLOG; BLOG_ORDER updated (8). COLLECTION_ARTICLE changed from single tuple -> LIST per collection (squat-proof=3 articles, high-waisted=3, scrunch=1). Collection.js Learn-more block + seo.py curated Related-reading now loop over the list.
+- #62 sizing article: no /size-guide route exists, so primary link points to /collections/leggings (per instruction to use judgment).
+- gen_seo_static.py now bakes 35 routes; sitemap includes all 8 posts. Verified locally (all 5 titles/H1/Article+FAQPage+BreadcrumbList/body + bundle) and testing_agent iteration_6.json = 11/11 pass, no bugs.
+- Regression suites: /app/backend/tests/test_blog_seo.py (first 3) + test_blog_seo_new_posts.py (5 new + cross-links + sitemap + 8-slug uniqueness).
+- PROPAGATION NOTE: prior blog deploy (30-route) had not propagated to prod (prod was on 26-route curated build); this 35-route deploy was triggered to supersede it and a deployer debug was dispatched to confirm the run lands. Verify prod /blog/* + sitemap after deploy.
+- KNOWN NIT (non-blocking, from reviews): blog content duplicated in seo.py + blogPosts.js (keep in sync); Learn-more loop should cap if a collection exceeds ~5 articles.
