@@ -10,12 +10,14 @@ from typing import Optional, List
 
 import httpx
 from dotenv import load_dotenv
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Response
+from fastapi.responses import HTMLResponse, PlainTextResponse
 from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from sample_data import SAMPLE_PRODUCTS, SAMPLE_REVIEWS
+import seo
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -508,6 +510,30 @@ async def send_contact(req: ContactRequest):
     }
     await db.contact_messages.insert_one(doc)
     return {"ok": True, "message": "Message received — we reply within 24 hours"}
+
+
+def _seo_base(proto: str, host: str) -> str:
+    if host:
+        return f"{proto}://{host}"
+    return (SITE_URL or "").rstrip("/")
+
+
+@api_router.get("/_seo/render")
+async def seo_render(path: str = "/", proto: str = "https", host: str = ""):
+    products = await _load_products()
+    body, status = seo.render_page(path, _seo_base(proto, host), products)
+    return HTMLResponse(content=body, status_code=status)
+
+
+@api_router.get("/_seo/robots.txt")
+async def seo_robots(proto: str = "https", host: str = ""):
+    return PlainTextResponse(seo.build_robots(_seo_base(proto, host)))
+
+
+@api_router.get("/_seo/sitemap.xml")
+async def seo_sitemap(proto: str = "https", host: str = ""):
+    products = await _load_products()
+    return Response(content=seo.build_sitemap(_seo_base(proto, host), products), media_type="application/xml")
 
 
 app.include_router(api_router)

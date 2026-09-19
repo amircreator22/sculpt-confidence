@@ -144,3 +144,21 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - iteration_3.json: 100% backend + frontend. Post-test: fixed fetchPriority casing + cart drawer SheetTitle/aria a11y.
 - PENDING FROM USER: SendGrid API key (+ verified sender), SCULPTIVA15 code creation in Shopify, live domain for SITE_URL email links.
 - NOTE: .env append via printf corrupted EMERGENT_LLM_KEY line once (missing trailing newline) — fixed; never append to .env without checking trailing newline.
+
+## Google Ads tag + delivery notice (June 2026)
+- Google Ads gtag.js (AW-18217038802) present in frontend/public/index.html head. Detection needs live deploy (Google checks prod domain, not preview). Deploy triggered.
+- Google Ads Purchase conversion (label AW-18217038802/k-mYCIn8vtMcENLnx-5D): CANNOT fire from this app — checkout is Shopify-hosted, thank-you page is on Shopify's domain. Gave user a Shopify Custom Pixel snippet (Settings > Customer events) using analytics.subscribe('checkout_completed') -> gtag conversion with dynamic value/currency/transaction_id. User must paste it into Shopify; cannot be done in-app.
+- ProductPage.js: small high-demand delivery notice ("Due to high demand, please allow 5-10 business days for delivery") under Add to Bag (data-testid="high-demand-notice").
+
+## Shopify product logo removal (June 2026)
+- Removed AI-baked marks from product photos: infinity/double-ring emblem on back/side waistbands + bra bands, a Gymshark logo on sculpt-sports-bra black front, and a faint monogram pattern on SculptFlex charcoal/navy leggings.
+- 22 photos edited via image_generation_tool (Gemini) preserving model/pose/colour, then pushed to live Shopify (backend/push_logo_fixes.py): matched each by image alt "{Colour} — {shot}", preserved position + variant_ids, delete+recreate. Result ok=22 fail=0. Verified sculpt-sports-bra black front is clean on Shopify CDN.
+- Shopify access: existing Admin token had lost read_products (403). User created a new Dev Dashboard app "sculptiva image push" with read_products+write_products, installed on store via OAuth. Backend mints admin tokens via client_credentials grant (SHOPIFY_CLIENT_ID/SECRET in .env, _get_admin_token in server.py). NOTE: only the sculptiva-tagged colours/shots with a visible mark were edited; front/detail shots were clean.
+
+## SEO dynamic rendering (June 2026)
+- Problem: SPA returned identical shell for every route (same title/meta), nonexistent URLs returned 200. Fixed with dynamic rendering (NOT Next.js migration).
+- ARCHITECTURE NOTE: platform ingress routes all non-/api traffic to the frontend server, so backend middleware never sees page routes. Implemented crawler detection in the FRONTEND serving layer: frontend/seo-middleware.js (hooked via craco.config.js devServer.setupMiddlewares) detects crawler UAs + serves /robots.txt & /sitemap.xml, proxying to backend renderer. Humans get untouched SPA.
+- Backend: backend/seo.py (render_page/build_robots/build_sitemap) + routes /api/_seo/render, /api/_seo/robots.txt, /api/_seo/sitemap.xml. Pulls from _load_products() (live Shopify) so SEO never drifts.
+- Per-route unique <title>/<meta description>/<h1>/body + JSON-LD: Organization (all), Product+Offer+AggregateRating (products), CollectionPage+ItemList (collections), FAQPage (/faq). Collections: leggings, sports-bras, sculpt-shorts. No /blog exists on site.
+- Verified curl -A Googlebot: distinct collection vs product title/meta/body; robots.txt + sitemap.xml real; nonexistent product -> 404 for crawlers; human UA -> untouched SPA shell. Uses x-forwarded-host for correct canonical on prod domain.
+- Needs deploy for prod. After deploy: submit sitemap.xml in Google Search Console.

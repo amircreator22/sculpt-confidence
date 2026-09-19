@@ -148,4 +148,18 @@ const configureDevServer = webpackConfig.devServer;
 webpackConfig.devServer = (devServerConfig) =>
   makeDevServerV5Compatible(configureDevServer(devServerConfig));
 
+// Crawler dynamic-rendering: serve SEO HTML / robots.txt / sitemap.xml to bots.
+const seoMiddleware = require("./seo-middleware");
+const withSeo = webpackConfig.devServer;
+webpackConfig.devServer = (devServerConfig) => {
+  const cfg = withSeo(devServerConfig);
+  const prevSetup = cfg.setupMiddlewares;
+  cfg.setupMiddlewares = (middlewares, devServer) => {
+    const result = prevSetup ? prevSetup(middlewares, devServer) : middlewares;
+    result.unshift({ name: "seo-prerender", middleware: seoMiddleware });
+    return result;
+  };
+  return cfg;
+};
+
 module.exports = webpackConfig;
