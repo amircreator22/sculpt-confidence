@@ -1,0 +1,21 @@
+{
+  "summary": "SEO dynamic rendering verified end-to-end against the public preview URL. All 8 pytest tests pass: crawler UA gets unique server-rendered HTML for homepage, /collections/leggings and /products/sculpt-shorts with distinct titles/meta/H1 and correct JSON-LD (Organization, CollectionPage+ItemList, Product with GBP offer+InStock+aggregateRating). /robots.txt returns real text starting with 'User-agent: *', includes 'Allow: /' and 'Sitemap:'. /sitemap.xml returns real XML with <urlset> and multiple <loc> entries including product and collection URLs. Nonexistent product /products/does-not-exist-xyz correctly returns HTTP 404 with 'Page not found' title. Human Chrome UA on /products/sculpt-shorts receives the untouched SPA shell containing '<div id=\"root\">' and 'You need to enable JavaScript to run this app.' with no SEO-rendered product H1. The prior bug (identical HTML shell for every route, 200 for nonexistent URLs) is confirmed fixed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/test_seo_dynamic_rendering.py",
+    "/app/test_reports/pytest/seo_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "seo-middleware.js CRAWLER_RE contains generic tokens 'bot', 'crawler', 'spider' — this is intentional for wide dynamic-rendering coverage but will match any UA substring containing 'bot' (e.g. 'CubotBrowser'). Acceptable trade-off for SEO; document if strict UA filtering is later required.",
+    "seo.py product description truncation uses len>155 but slices to 152 + ellipsis; when the raw description is between 153-155 chars the ellipsis unnecessarily replaces last chars. Minor cosmetic.",
+    "reqMeta encodes the host/proto via encodeURIComponent then passes to backend as query params — backend must decode. Confirm server.py handles this (works in practice per tests)."
+  ],
+  "updated_files": ["/app/backend/tests/test_seo_dynamic_rendering.py"],
+  "success_rate": {"backend": "100%", "frontend": "N/A (backend-only per request)"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Reusable pytest suite at /app/backend/tests/test_seo_dynamic_rendering.py covers all crawler-vs-human, robots.txt, sitemap.xml and 404 paths. BASE_URL falls back to preview URL if PUBLIC_BASE_URL env not set. Run: pytest backend/tests/test_seo_dynamic_rendering.py -v."
+}
