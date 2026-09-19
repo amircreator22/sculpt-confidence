@@ -21,11 +21,17 @@ try {
   const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
   let count = 0;
 
-  for (const [route, head] of Object.entries(data)) {
+  for (const [route, entry] of Object.entries(data)) {
+    const head = typeof entry === "string" ? entry : entry.head;
+    const body = entry && typeof entry === "object" ? entry.body : null;
+
     let html = base
       .replace(/<title>[\s\S]*?<\/title>/i, "")
       .replace(/<meta\s+name="description"[^>]*>/i, "");
     html = html.replace("</head>", `${head}\n</head>`);
+    if (body) {
+      html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+    }
 
     let outPath;
     if (route === "/") {
