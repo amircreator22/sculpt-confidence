@@ -257,19 +257,129 @@ BLOG = {
             ("SculptFlex Contour Leggings", "/products/sculptflex-contour-leggings"),
         ],
     },
+    "how-we-test-leggings-for-squat-proofing": {
+        "title_tag": "How We Test Our Leggings for Squat-Proofing | Sculptiva",
+        "desc": "A look inside our actual squat-proof testing process — the stretch test, the lighting, the angle — before any fabric makes it into a finished pair of leggings.",
+        "h1": "How We Test Our Leggings for Squat-Proofing",
+        "date": "2026-06-14",
+        "excerpt": "Inside our actual squat-proof testing process — the stretch test, the light box, the angle.",
+        "image": _LEGGINGS_IMG,
+        "body": "Most brands print \"squat-proof\" on a swing tag and never test it. Ours goes through a specific process before a fabric batch is approved. Every roll of fabric is cut, sewn into a sample, and stretched to full squat depth over a light box — the same conditions that expose thinning fabric under a gym mirror or a phone camera. We check from directly behind, at the angle a training partner or a mirror actually sees, not a flat lay on a table. If light passes through and skin tone shows, the batch is rejected before it reaches production, regardless of how the fabric performs in other tests like colour-fastness or stretch recovery. This isn't a one-off pre-launch check either — batches are periodically re-tested through the production run, because fabric mills can drift on density between orders even when the spec sheet stays the same. It's a slower, more expensive way to source fabric than trusting a supplier's spec sheet. It's also the only way we're comfortable putting \"squat-proof\" on a product page.",
+        "faqs": [
+            ("Do you test every batch of fabric, or just the first sample?", "Every batch. Fabric density can drift between production runs even from the same supplier, so a pass on the first sample doesn't guarantee later batches meet the same standard."),
+            ("What exactly fails a squat-proof test?", "Any visible skin tone or colour change through the fabric when stretched to full squat depth under bright light, viewed from behind — that's an automatic rejection regardless of how the fabric performs elsewhere."),
+            ("Can I request test results for a specific pair I've bought?", "We don't publish per-batch lab reports publicly, but our customer team can talk through our testing process for any current product — get in touch via our contact page."),
+        ],
+        "primary": ("Shop Squat-Proof Leggings", "/collections/squat-proof-leggings"),
+        "links": [
+            ("What Makes Leggings Squat Proof?", "/blog/what-makes-leggings-squat-proof"),
+            ("SculptFlex Contour Leggings", "/products/sculptflex-contour-leggings"),
+        ],
+    },
+    "squat-proof-vs-see-through-how-to-tell-before-you-buy": {
+        "title_tag": "Squat-Proof vs See-Through: How to Tell Before You Buy | Sculptiva",
+        "desc": "How to spot see-through leggings before you buy — without needing to actually squat in the changing room. Five checks you can do from the product photos and fabric description alone.",
+        "h1": "Squat-Proof vs See-Through: How to Tell Before You Buy",
+        "date": "2026-06-17",
+        "excerpt": "Five checks to spot see-through leggings from the listing alone — before you buy.",
+        "image": _LEGGINGS_IMG,
+        "body": "You can't squat-test leggings before you've bought them, but you can spot the warning signs from the listing alone. First, check the fabric weight if it's listed — anything under roughly 250 grams per square metre is worth being cautious about; denser fabric is harder to see through. Second, look at the product photography itself: if every photo is shot standing straight-on with no movement or stretch shots, that's often because the fabric doesn't hold up under stretch. Third, read the fabric composition — a high spandex/elastane percentage (above roughly 18-22%) paired with a double-knit or brushed construction tends to perform better than a thin single-jersey blend. Fourth, check for language that's specific rather than vague — \"tested to full squat depth\" says more than \"buttery soft, second-skin feel.\" Finally, check reviews specifically for the words \"see-through,\" \"sheer,\" or \"opaque\" rather than just star ratings, since overall ratings often don't reflect this one issue if the fit and comfort are otherwise good.",
+        "faqs": [
+            ("Does fabric weight alone guarantee leggings won't be see-through?", "No — weight matters, but weave tightness and compression fit matter just as much. A dense double-knit at a moderate weight can outperform a heavier but loosely woven fabric."),
+            ("Are darker colours automatically less see-through?", "Not automatically, but darker colours do hide thinning fabric better than light colours or pastels, which show sheerness more readily under the same fabric construction."),
+            ("What's the fastest way to check if leggings I already own are see-through?", "Stretch the fabric tight over your knuckles under a bright light — if you can see your skin tone change through it, it isn't squat-proof, regardless of the label."),
+        ],
+        "primary": ("Shop Squat-Proof Leggings", "/collections/squat-proof-leggings"),
+        "links": [
+            ("What Makes Leggings Squat Proof?", "/blog/what-makes-leggings-squat-proof"),
+            ("How We Test for Squat-Proofing", "/blog/how-we-test-leggings-for-squat-proofing"),
+        ],
+    },
+    "high-waisted-vs-mid-rise-leggings": {
+        "title_tag": "High-Waisted vs Mid-Rise Leggings: Which Is Right for You? | Sculptiva",
+        "desc": "High-waisted and mid-rise leggings sit differently, support differently, and suit different workouts. Here's how to pick between them.",
+        "h1": "High-Waisted vs Mid-Rise Leggings: Which Is Right for You?",
+        "date": "2026-06-20",
+        "excerpt": "Where the waistband sits changes support and movement. How to pick between them.",
+        "image": _DARK_IMG,
+        "body": "The difference comes down to where the waistband sits and what that means for support and movement. High-waisted leggings sit above the belly button, giving full core coverage and a wider band of compression — better for weight training, running, and anything where you don't want to think about your waistband. Mid-rise sits at or just below the belly button, offering more freedom through the torso and a lower profile under cropped tops, which suits Pilates, yoga, or lower-intensity training where a wide, high band can feel restrictive during deep bends. Neither is objectively better — it's a question of what you're doing in them. If you're deciding based on tummy coverage alone, high-waisted usually wins, but if you find high-waisted bands digging in during seated or twisting movements, mid-rise is worth trying. Body shape matters too: a longer torso often suits high-waisted better since there's more room for the band to sit naturally above the navel without riding up.",
+        "faqs": [
+            ("Which is better for weight training, high-waisted or mid-rise?", "High-waisted, generally — the wider band and higher coverage stay in place better during heavy compound lifts like squats and deadlifts."),
+            ("Does mid-rise give less tummy support than high-waisted?", "It typically covers less of the torso, but a well-constructed mid-rise band can still use the same graduated-compression fabric — the difference is coverage area, not necessarily compression quality."),
+            ("Can I wear high-waisted leggings for yoga?", "Yes, but some people find the taller band restrictive during deep forward folds or twists — it's a personal preference rather than a hard rule."),
+        ],
+        "primary": ("Shop High-Waisted Leggings", "/collections/high-waisted-gym-leggings"),
+        "links": [
+            ("High-Waisted vs Tummy Control", "/blog/high-waisted-vs-tummy-control-leggings"),
+            ("Seamless Gym Leggings", "/collections/seamless-gym-leggings"),
+        ],
+    },
+    "do-tummy-control-leggings-really-work": {
+        "title_tag": "Do Tummy Control Leggings Really Work? | Sculptiva",
+        "desc": "What tummy control leggings actually do to your body, what they don't do, and how to tell if a pair is genuinely engineered for compression or just marketed that way.",
+        "h1": "Do Tummy Control Leggings Really Work?",
+        "date": "2026-06-23",
+        "excerpt": "What they actually do, what they don't, and how to spot real compression.",
+        "image": _DARK_IMG,
+        "body": "They work, but it helps to be precise about what \"work\" means. Tummy control leggings use graduated compression — firmer through the core, easing off toward the edges — to smooth the silhouette and provide light postural support while you move. That's a real, physical effect you can feel and see immediately. What they don't do is change your body shape permanently or replace anything like exercise or diet — the effect lasts as long as you're wearing them, the same as any compression garment. The other thing genuine tummy control depends on is the compression actually being engineered into the waistband, not just implied by a legging being high-waisted. A tall waistband with ordinary stretch fabric will hold you in slightly by virtue of covering more skin, but it isn't the same as a waistband built with a denser, targeted-compression panel. If a product only says \"high-waisted\" and never mentions compression, support, or a sculpting panel specifically, it's worth asking before assuming it does more than a regular pair.",
+        "faqs": [
+            ("Will tummy control leggings flatten my stomach permanently?", "No — the compression effect lasts while you're wearing them, similar to any compression garment. They don't change body composition."),
+            ("Is tummy control the same as shapewear?", "Similar principle, different intensity — tummy control leggings are built for movement and workouts, so the compression is generally lighter and more breathable than dedicated shapewear."),
+            ("How do I know if leggings have real tummy control or just a high waistband?", "Look for the brand explicitly mentioning graduated compression or a sculpting/support panel — a plain high-rise cut alone doesn't guarantee compression engineering."),
+        ],
+        "primary": ("Shop High-Waisted Leggings", "/collections/high-waisted-gym-leggings"),
+        "links": [
+            ("High-Waisted vs Tummy Control", "/blog/high-waisted-vs-tummy-control-leggings"),
+            ("High-Waisted vs Mid-Rise", "/blog/high-waisted-vs-mid-rise-leggings"),
+        ],
+    },
+    "how-to-measure-yourself-for-leggings-at-home": {
+        "title_tag": "How to Measure Yourself for Leggings at Home | Sculptiva",
+        "desc": "The three measurements that actually matter when buying leggings online, and how to take them accurately with a tape measure and no fitting room.",
+        "h1": "How to Measure Yourself for Leggings at Home",
+        "date": "2026-06-26",
+        "excerpt": "The three measurements that decide fit — waist, hip, inseam — done at home.",
+        "image": _LEGGINGS_IMG,
+        "body": "Three measurements decide fit more than any other: waist, hip, and inseam. Waist is measured at the narrowest point, usually just above the belly button — not where your trousers currently sit, which can be lower. Hip is measured at the widest point, typically across the widest part of your seat, keeping the tape parallel to the floor rather than angled. Inseam matters most for length: measure from the crotch seam of a well-fitting pair of leggings or trousers you already own, down to where you want the hem to sit, rather than your full outer leg length, which includes the waistband and throws the number off. Take all three in centimetres or inches consistently, without pulling the tape tight enough to compress skin. If you're between two sizes on our chart, sizing up is usually the safer call for compression leggings specifically, since fabric with a strong compression element will always feel tighter than a non-compression legging at the same labelled size.",
+        "faqs": [
+            ("Should I measure over clothes or against skin?", "Against skin or light clothing — measuring over bulky clothing adds inaccurate inches to every measurement."),
+            ("What if my waist and hip measurements fall into two different sizes on the chart?", "Size to your hip measurement for leggings specifically, since waistbands on most of our styles use compression fabric that stretches to accommodate a smaller waist."),
+            ("How often should I re-measure?", "Body measurements can shift over months, especially around training changes, so it's worth re-measuring before any purchase if it's been six months or more since your last check."),
+        ],
+        "primary": ("Shop Leggings", "/collections/leggings"),
+        "links": [
+            ("High-Waisted Gym Leggings", "/collections/high-waisted-gym-leggings"),
+            ("Seamless Gym Leggings", "/collections/seamless-gym-leggings"),
+        ],
+    },
 }
 
 BLOG_ORDER = [
+    "how-to-measure-yourself-for-leggings-at-home",
+    "do-tummy-control-leggings-really-work",
+    "high-waisted-vs-mid-rise-leggings",
+    "squat-proof-vs-see-through-how-to-tell-before-you-buy",
+    "how-we-test-leggings-for-squat-proofing",
     "high-waisted-vs-tummy-control-leggings",
     "what-is-a-scrunch-seam",
     "what-makes-leggings-squat-proof",
 ]
 
-# Collection handle -> related article (slug, label) for internal linking.
+# Collection handle -> related articles (slug, label) for internal linking.
 COLLECTION_ARTICLE = {
-    "squat-proof-leggings": ("what-makes-leggings-squat-proof", "What makes leggings squat proof?"),
-    "scrunch-bum-leggings": ("what-is-a-scrunch-seam", "What is a scrunch seam?"),
-    "high-waisted-gym-leggings": ("high-waisted-vs-tummy-control-leggings", "High-waisted vs tummy control leggings"),
+    "squat-proof-leggings": [
+        ("what-makes-leggings-squat-proof", "What makes leggings squat proof?"),
+        ("how-we-test-leggings-for-squat-proofing", "How we test our leggings for squat-proofing"),
+        ("squat-proof-vs-see-through-how-to-tell-before-you-buy", "Squat-proof vs see-through: how to tell before you buy"),
+    ],
+    "scrunch-bum-leggings": [
+        ("what-is-a-scrunch-seam", "What is a scrunch seam?"),
+    ],
+    "high-waisted-gym-leggings": [
+        ("high-waisted-vs-tummy-control-leggings", "High-waisted vs tummy control leggings"),
+        ("high-waisted-vs-mid-rise-leggings", "High-waisted vs mid-rise leggings"),
+        ("do-tummy-control-leggings-really-work", "Do tummy control leggings really work?"),
+    ],
 }
 
 
@@ -475,10 +585,11 @@ def render_page(path, base, products):
             article = COLLECTION_ARTICLE.get(handle)
             article_html = ""
             if article:
-                a_slug, a_label = article
-                article_html = (
-                    f'<h2>Related reading</h2><ul><li><a href="{esc(_abs(base, "/blog/" + a_slug))}">{esc(a_label)}</a></li></ul>'
+                lis = "".join(
+                    f'<li><a href="{esc(_abs(base, "/blog/" + s))}">{esc(l)}</a></li>'
+                    for s, l in article
                 )
+                article_html = f"<h2>Related reading</h2><ul>{lis}</ul>"
             body = (
                 f"<main><p>{esc(cur['body'])}</p>"
                 f"<h2>Featured styles</h2><ul>{prod_rows}</ul>"

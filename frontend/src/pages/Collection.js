@@ -123,15 +123,20 @@ export default function Collection() {
                     </div>
                   ))}
                 </dl>
-                {COLLECTION_ARTICLE[handle] && (
-                  <Link
-                    to={`/blog/${COLLECTION_ARTICLE[handle].slug}`}
-                    data-testid="collection-learn-more"
-                    className="mt-6 group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[#2D2D2D]"
-                  >
-                    Learn more: {COLLECTION_ARTICLE[handle].label}
-                    <ArrowRight size={14} weight="bold" className="transition-transform duration-300 group-hover:translate-x-1" />
-                  </Link>
+                {COLLECTION_ARTICLE[handle]?.length > 0 && (
+                  <div className="mt-6 flex flex-col items-start gap-3" data-testid="collection-learn-more">
+                    {COLLECTION_ARTICLE[handle].map((a) => (
+                      <Link
+                        key={a.slug}
+                        to={`/blog/${a.slug}`}
+                        data-testid={`collection-learn-more-${a.slug}`}
+                        className="group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[#2D2D2D]"
+                      >
+                        Learn more: {a.label}
+                        <ArrowRight size={14} weight="bold" className="transition-transform duration-300 group-hover:translate-x-1" />
+                      </Link>
+                    ))}
+                  </div>
                 )}
               </div>
             </Reveal>
