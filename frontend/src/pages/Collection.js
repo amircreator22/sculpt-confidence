@@ -5,6 +5,7 @@ import { getProducts } from '@/lib/api';
 import { LineReveal, Overline, Reveal } from '@/components/site/Reveal';
 import { ProductCard } from '@/components/site/ProductCard';
 import { CURATED, CURATED_LINKS } from '@/data/curatedCollections';
+import { COLLECTION_ARTICLE } from '@/data/blogPosts';
 
 const COLLECTIONS = {
   leggings: {
@@ -122,6 +123,16 @@ export default function Collection() {
                     </div>
                   ))}
                 </dl>
+                {COLLECTION_ARTICLE[handle] && (
+                  <Link
+                    to={`/blog/${COLLECTION_ARTICLE[handle].slug}`}
+                    data-testid="collection-learn-more"
+                    className="mt-6 group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[#2D2D2D]"
+                  >
+                    Learn more: {COLLECTION_ARTICLE[handle].label}
+                    <ArrowRight size={14} weight="bold" className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                )}
               </div>
             </Reveal>
           </div>

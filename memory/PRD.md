@@ -180,3 +180,12 @@ User approved: full studio sets (3 colours x 4 angles/product), agent-picked on-
 - Collection.js: curated pages render breadcrumb, hero, product grid (filtered by handle), editorial body, FAQ list, and a "Shop by Style" internal-links block (shown on ALL collection pages for internal linking). Top nav left uncluttered (no mega-menu exists).
 - sitemap.xml now includes all 5 (build_sitemap iterates COLLECTIONS + CURATED + products). Regenerate via `python3 /app/backend/gen_seo_static.py` then redeploy when catalogue/curated copy changes.
 - Verified locally: yarn build baked 26 routes; all 5 curated build files have unique title/H1/body/FAQs + all 4 schema types + JS bundle; human page renders (breadcrumb + 3 products). Redeployed.
+
+## Blog / Journal section (June 2026)
+- Added /blog (index) + /blog/:slug with 3 SEO articles: what-makes-leggings-squat-proof, what-is-a-scrunch-seam, high-waisted-vs-tummy-control-leggings. Same static-prerender pattern as collections.
+- Content source of truth mirrored: frontend/src/data/blogPosts.js (human pages: BlogIndex.js, BlogPost.js) + backend/seo.py BLOG dict (prerender). Each: title tag, meta desc, H1, datePublished, excerpt, body, 3 FAQs, primary+related internal links, hero image.
+- seo.py render_page: /blog index (list + BreadcrumbList) and /blog/:slug (Article + FAQPage + BreadcrumbList JSON-LD, author=Organization Sculptiva, og:type=article) with baked body. Added article_ld(). build_sitemap now includes /blog + posts (seo-data.json = 30 routes).
+- Cross-linking: COLLECTION_ARTICLE map links each curated collection to its article — baked "Related reading" link in collection SEO body + a "Learn more" link on the human collection page (Collection.js). Footer now has a "Journal" (/blog) link.
+- App.js routes added: /blog, /blog/:slug (imported BlogIndex, BlogPost).
+- prerender-seo.js bakes body into #root for curated collections AND blog routes (body_routes set in gen_seo_static.py).
+- Verified locally: build baked 30 routes; each blog file has unique title/H1/body/FAQ + Article+FAQPage+BreadcrumbList + datePublished/author + JS bundle; human pages render (index cards + post breadcrumb/hero/body/FAQ). Redeployed.

@@ -194,6 +194,85 @@ FAQS = [
 ]
 
 
+# Blog / Journal — mirrored in frontend/src/data/blogPosts.js; keep in sync.
+BLOG = {
+    "what-makes-leggings-squat-proof": {
+        "title_tag": "What Makes Leggings Squat Proof? The Real Answer | Sculptiva",
+        "desc": "What actually makes leggings squat-proof — the fabric, the weave, the test. No marketing fluff, just the real answer from a UK activewear brand that tests to full squat depth.",
+        "h1": "What Makes Leggings Squat Proof? The Real Answer",
+        "date": "2026-06-05",
+        "excerpt": "The real answer — fabric density, weave, and the test that actually matters.",
+        "image": _LEGGINGS_IMG,
+        "body": "\"Squat proof\" gets printed on a lot of leggings that haven't actually been tested for it. Here's what the term should mean, and how to check it yourself before you buy. Opacity under stretch comes down to three things: fabric density (grams per square metre — thin fabric is the single biggest cause of see-through leggings), weave tightness (a dense double-knit holds its structure under load; a loose single-jersey knit doesn't), and compression fit (fabric that's genuinely engineered to stretch four ways without thinning, versus fabric that just happens to be elastic). The test that actually matters isn't a flat lay in a product photo — it's fabric stretched to full squat depth, under bright light, checked from behind. That's the standard every Sculptiva legging is held to before it ships. If you want to check a pair you already own: stretch the fabric tight over your knuckles under a bright light. If you can see your skin tone change through it, it isn't squat-proof, regardless of what the label says.",
+        "faqs": [
+            ("How do you test if leggings are actually squat proof?", "We test the fabric under stretch, at full squat depth, under bright light — the same conditions a mirror or gym camera would catch, not just a flat lay."),
+            ("What fabric makes leggings squat proof?", "A dense double-knit fabric with a tight weave and four-way stretch. Thin, single-layer knits are the ones that go see-through under stretch."),
+            ("Are squat-proof leggings also good for everyday wear?", "Yes — the same opacity and compression that hold up in a squat also mean no visible panty lines or sheerness in daily wear."),
+        ],
+        "primary": ("Shop Squat-Proof Leggings", "/collections/squat-proof-leggings"),
+        "links": [
+            ("Seamless Gym Leggings", "/collections/seamless-gym-leggings"),
+            ("SculptFlex Contour Leggings", "/products/sculptflex-contour-leggings"),
+            ("Glute Sculpt Leggings", "/products/glute-sculpt-leggings"),
+        ],
+    },
+    "what-is-a-scrunch-seam": {
+        "title_tag": "What Is a Scrunch Seam? The Construction Behind Scrunch Bum Leggings | Sculptiva",
+        "desc": "What a scrunch seam actually is, how it lifts and shapes without compromising coverage, and why it's a construction detail — not a push-up trick.",
+        "h1": "What Is a Scrunch Seam?",
+        "date": "2026-06-08",
+        "excerpt": "The construction behind scrunch bum leggings — and why it's not a push-up trick.",
+        "image": _LEGGINGS_IMG,
+        "body": "A scrunch seam is a curved seam and contour panel sewn into the back of a legging that gathers the fabric to lift and shape — similar in principle to ruching on a dress, but structural rather than decorative, and built to hold that shape under movement rather than just standing still. It works because the seam changes how the fabric sits against the body: instead of one flat panel stretching evenly, the gathered seam creates definition along the natural curve. The most common question is whether this comes at the cost of coverage or opacity — it shouldn't. A well-made scrunch seam sits on top of the same dense, squat-proof base fabric as the rest of the legging; the shaping is additive, not a thinner patch of fabric doing double duty. The seam placement matters too — too high and it sits above the natural curve looking unnatural; too low and it doesn't lift at all. Sculptiva's scrunch styles position the seam based on genuine fit testing across body shapes, not just one sample size.",
+        "faqs": [
+            ("What is a scrunch seam?", "A curved seam and contour panel sewn into the back of the legging that gathers the fabric to lift and shape the glutes — similar to ruching, but structural rather than decorative."),
+            ("Do scrunch bum leggings show cellulite or lines?", "No — the dense double-knit fabric used underneath the scrunch seam is opaque and squat-proof tested, so the shaping effect doesn't come with see-through fabric."),
+            ("Are scrunch leggings good for lifting, or just for looks?", "Both — ours are squat-proof tested to full depth, so they're built to perform in a lifting session, not just to photograph well."),
+        ],
+        "primary": ("Shop Scrunch Bum Leggings", "/collections/scrunch-bum-leggings"),
+        "links": [
+            ("Squat-Proof Leggings", "/collections/squat-proof-leggings"),
+            ("Glute Sculpt Leggings", "/products/glute-sculpt-leggings"),
+            ("SculptFlex Contour Leggings", "/products/sculptflex-contour-leggings"),
+        ],
+    },
+    "high-waisted-vs-tummy-control-leggings": {
+        "title_tag": "High-Waisted vs Tummy Control Leggings: What's Actually the Difference? | Sculptiva",
+        "desc": "High-waisted describes where the waistband sits. Tummy control describes the compression. They're not the same thing — here's how to tell what you're actually buying.",
+        "h1": "High-Waisted vs Tummy Control: What's the Difference?",
+        "date": "2026-06-11",
+        "excerpt": "Two terms, two different things. Here's how to tell what you're actually buying.",
+        "image": _DARK_IMG,
+        "body": "These two terms get used interchangeably in product listings, but they describe two separate things, and a legging can have one without the other. High-waisted is about rise — where the waistband sits relative to your natural waistline. A true high-rise sits above the belly button, not just \"higher than low-rise.\" Tummy control is about compression — whether the waistband fabric is engineered to hold and smooth, using a graduated-compression construction (firmer through the core, gentler at the edges) rather than just being elastic. You can have a high-waisted legging with a waistband that's no more supportive than a regular hem — it's just tall. And you can, in theory, have genuine compression starting lower on the body, though in practice most tummy-control leggings are also high-waisted because that's where compression is most useful. The way to tell the difference when shopping: look for the brand explicitly describing graduated compression or a \"sculpting\" panel, not just \"high-waisted\" in the title — that's the signal it's engineered for support, not just cut higher.",
+        "faqs": [
+            ("Do high-waisted leggings actually give tummy control?", "Yes, when the waistband uses real compression fabric rather than just sitting higher — ours use a graduated-compression high-rise band, not just a taller hem."),
+            ("Will the waistband dig in or roll down?", "No — it's built to sit flat through movement; this is one of the most-tested claims across our reviews."),
+            ("What's the difference between high-waisted and tummy control leggings?", "High-waisted describes the rise (where the waistband sits); tummy control describes the compression level. Ours combine both."),
+        ],
+        "primary": ("Shop High-Waisted Leggings", "/collections/high-waisted-gym-leggings"),
+        "links": [
+            ("Black Gym Leggings", "/collections/black-gym-leggings"),
+            ("Glute Sculpt Leggings", "/products/glute-sculpt-leggings"),
+            ("Seamless Sculpt Leggings", "/products/seamless-sculpt-leggings"),
+            ("SculptFlex Contour Leggings", "/products/sculptflex-contour-leggings"),
+        ],
+    },
+}
+
+BLOG_ORDER = [
+    "high-waisted-vs-tummy-control-leggings",
+    "what-is-a-scrunch-seam",
+    "what-makes-leggings-squat-proof",
+]
+
+# Collection handle -> related article (slug, label) for internal linking.
+COLLECTION_ARTICLE = {
+    "squat-proof-leggings": ("what-makes-leggings-squat-proof", "What makes leggings squat proof?"),
+    "scrunch-bum-leggings": ("what-is-a-scrunch-seam", "What is a scrunch seam?"),
+    "high-waisted-gym-leggings": ("high-waisted-vs-tummy-control-leggings", "High-waisted vs tummy control leggings"),
+}
+
+
 def esc(s):
     return html.escape(str(s or ""), quote=True)
 
@@ -247,6 +326,25 @@ def breadcrumb_ld(base, crumbs):
             {"@type": "ListItem", "position": i + 1, "name": name, "item": b + href}
             for i, (name, href) in enumerate(crumbs)
         ],
+    }
+
+
+def article_ld(base, post, url, image):
+    return {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post["h1"],
+        "description": post["desc"],
+        "datePublished": post["date"],
+        "dateModified": post["date"],
+        "image": image,
+        "author": {"@type": "Organization", "name": BRAND},
+        "publisher": {
+            "@type": "Organization",
+            "name": BRAND,
+            "logo": {"@type": "ImageObject", "url": _abs(base, "/logo512.png")},
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": url},
     }
 
 
@@ -310,6 +408,47 @@ def render_page(path, base, products):
         body = f"<main><p>{esc(meta['body'])}</p></main>"
         return _doc(base, path, meta["title"], meta["desc"], meta["h1"], body, ld, None, "website"), 200
 
+    if path == "/blog":
+        title = "The Sculptiva Journal | Activewear Guides & Fit Advice"
+        desc = "Guides on squat-proof fabric, scrunch seams, high-waisted fit and more from Sculptiva — a UK activewear brand that tests to full squat depth."
+        rows = "".join(
+            f'<li><a href="{esc(_abs(base, "/blog/" + s))}">{esc(BLOG[s]["h1"])}</a> — {esc(BLOG[s]["excerpt"])}</li>'
+            for s in BLOG_ORDER
+        )
+        body = (
+            "<main><p>Real, no-fluff guides to fabric, fit and construction from the Sculptiva team.</p>"
+            f"<ul>{rows}</ul></main>"
+        )
+        ld = [org, breadcrumb_ld(base, [("Home", "/"), ("Journal", "/blog")])]
+        return _doc(base, path, title, desc, "The Sculptiva Journal", body, ld, None, "website"), 200
+
+    if path.startswith("/blog/"):
+        slug = path.split("/blog/", 1)[1]
+        post = BLOG.get(slug)
+        if not post:
+            return _not_found(base), 404
+        url = base.rstrip("/") + path
+        image = _abs(base, post["image"])
+        p_label, p_href = post["primary"]
+        link_rows = f'<li><a href="{esc(_abs(base, p_href))}">{esc(p_label)}</a></li>'
+        link_rows += "".join(
+            f'<li><a href="{esc(_abs(base, href))}">{esc(label)}</a></li>'
+            for label, href in post["links"]
+        )
+        faq_html = "".join(f"<h3>{esc(q)}</h3><p>{esc(a)}</p>" for q, a in post["faqs"])
+        body = (
+            f"<main><p>{esc(post['body'])}</p>"
+            f"<h2>Shop this guide</h2><ul>{link_rows}</ul>"
+            f"<h2>Frequently asked questions</h2>{faq_html}</main>"
+        )
+        ld = [
+            org,
+            article_ld(base, post, url, image),
+            _faq_ld(post["faqs"]),
+            breadcrumb_ld(base, [("Home", "/"), ("Journal", "/blog"), (post["h1"], path)]),
+        ]
+        return _doc(base, path, post["title_tag"], post["desc"], post["h1"], body, ld, image, "article"), 200
+
     if path.startswith("/collections/"):
         handle = path.split("/collections/", 1)[1]
 
@@ -333,11 +472,19 @@ def render_page(path, base, products):
                 for h, c in CURATED.items() if h != handle
             )
             related_html += f'<li><a href="{esc(_abs(base, "/collections/leggings"))}">All Leggings</a></li>'
+            article = COLLECTION_ARTICLE.get(handle)
+            article_html = ""
+            if article:
+                a_slug, a_label = article
+                article_html = (
+                    f'<h2>Related reading</h2><ul><li><a href="{esc(_abs(base, "/blog/" + a_slug))}">{esc(a_label)}</a></li></ul>'
+                )
             body = (
                 f"<main><p>{esc(cur['body'])}</p>"
                 f"<h2>Featured styles</h2><ul>{prod_rows}</ul>"
                 f"<h2>Frequently asked questions</h2>{faq_html}"
-                f"<h2>Shop by style</h2><ul>{related_html}</ul></main>"
+                f"<h2>Shop by style</h2><ul>{related_html}</ul>"
+                f"{article_html}</main>"
             )
             collection_ld = {
                 "@context": "https://schema.org",
@@ -459,6 +606,7 @@ def build_sitemap(base, products):
     today = date.today().isoformat()
     b = base.rstrip("/")
     paths = list(STATIC.keys())
+    paths += ["/blog"] + [f"/blog/{s}" for s in BLOG_ORDER]
     paths += [f"/collections/{h}" for h in COLLECTIONS]
     paths += [f"/collections/{h}" for h in CURATED]
     paths += [f"/products/{p['handle']}" for p in products]

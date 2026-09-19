@@ -19,6 +19,8 @@ import FAQ from '@/pages/FAQ';
 import Info from '@/pages/Info';
 import SculptFlex from '@/pages/SculptFlex';
 import TrackOrder from '@/pages/TrackOrder';
+import BlogIndex from '@/pages/BlogIndex';
+import BlogPost from '@/pages/BlogPost';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -61,6 +63,8 @@ const Shell = () => {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/collections/:handle" element={<Collection />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/products/:handle" element={<ProductPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/sculptflex" element={<SculptFlex />} />

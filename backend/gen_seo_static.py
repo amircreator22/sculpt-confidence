@@ -20,12 +20,15 @@ products = resp if isinstance(resp, list) else resp.get("products", resp)
 
 routes = (
     list(seo.STATIC.keys())
+    + ["/blog"]
+    + [f"/blog/{s}" for s in seo.BLOG_ORDER]
     + [f"/collections/{h}" for h in seo.COLLECTIONS]
     + [f"/collections/{h}" for h in seo.CURATED]
     + [f"/products/{p['handle']}" for p in products]
 )
 
 curated_routes = {f"/collections/{h}" for h in seo.CURATED}
+body_routes = curated_routes | {"/blog"} | {f"/blog/{s}" for s in seo.BLOG_ORDER}
 
 data = {}
 for r in routes:
@@ -36,7 +39,7 @@ for r in routes:
         if "charset" not in ln and "viewport" not in ln and ln.strip()
     ]
     entry = {"head": "\n".join(lines).strip()}
-    if r in curated_routes:
+    if r in body_routes:
         body = re.search(r"<body>(.*?)</body>", html, re.S).group(1)
         entry["body"] = body.strip()
     data[r] = entry
