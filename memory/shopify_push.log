@@ -1,0 +1,15 @@
+Existing products: ['aquapure-luxe-elite-7-stage-countertop-mineral-filtration-system', 'glute-sculpt-leggings', 'lumora-face-light-mask', 'lumora-pro-panel', 'lumora-recovery-belt', 'resistance-band-bundle', 'sculpt-shorts', 'sculpt-sports-bra']
+DELETED stale glute-sculpt-leggings: 200
+DELETED stale resistance-band-bundle: 200
+DELETED stale sculpt-shorts: 200
+DELETED stale sculpt-sports-bra: 200
+OK glute-sculpt-leggings id=15733824356692 variants=15 images=12
+OK seamless-sculpt-leggings id=15733825274196 variants=15 images=12
+OK sculpt-shorts id=15733825438036 variants=15 images=12
+OK ribbed-sculpt-shorts id=15733825601876 variants=15 images=12
+OK sculpt-sports-bra id=15733826191700 variants=15 images=12
+OK sculpt-longline-bra id=15733826257236 variants=15 images=12
+OK sculptflex-contour-leggings id=15733826421076 variants=20 images=16
+OK resistance-band-bundle id=15733826584916 variants=3 images=12
+Final catalog: ["aquapure-luxe-elite-7-stage-countertop-mineral-filtration-system", "glute-sculpt-leggings", "lumora-face-light-mask", "lumora-pro-panel", "lumora-recovery-belt", "resistance-band-bundle", "ribbed-sculpt-shorts", "sculpt-longline-bra", "sculpt-shorts", "sculpt-sports-bra", "sculptflex-contour-leggings", "seamless-sculpt-leggings"]
+DONE
