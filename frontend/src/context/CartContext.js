@@ -78,6 +78,8 @@ export const CartProvider = ({ children }) => {
 
   const removeItem = (key) => setItems((prev) => prev.filter((i) => i.key !== key));
 
+  const clearCart = () => setItems([]);
+
   const { count, subtotal } = useMemo(() => {
     return {
       count: items.reduce((s, i) => s + i.qty, 0),
@@ -87,7 +89,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ items, addItem, updateQty, removeItem, count, subtotal, drawerOpen, setDrawerOpen }}
+      value={{ items, addItem, updateQty, removeItem, clearCart, count, subtotal, drawerOpen, setDrawerOpen }}
     >
       {children}
     </CartContext.Provider>

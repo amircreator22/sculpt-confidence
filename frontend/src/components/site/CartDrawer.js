@@ -1,38 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Minus, Plus, Trash, Truck, LockSimple } from '@phosphor-icons/react';
 import { Sheet, SheetContent, SheetTitle } from '../ui/sheet';
-import { toast } from 'sonner';
 import { useCart } from '../../context/CartContext';
-import { createCheckout, formatPrice, cartConverted } from '../../lib/api';
+import { formatPrice, cartConverted } from '../../lib/api';
 import { track } from './Pixels';
 
 const FREE_SHIPPING_THRESHOLD = 50;
 
 export const CartDrawer = () => {
   const { items, drawerOpen, setDrawerOpen, updateQty, removeItem, subtotal, count } = useCart();
-  const [checkingOut, setCheckingOut] = useState(false);
   const navigate = useNavigate();
   const remaining = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
   const progress = Math.min(100, (subtotal / FREE_SHIPPING_THRESHOLD) * 100);
 
-  const checkout = async () => {
-    setCheckingOut(true);
+  const checkout = () => {
     track('InitiateCheckout', { value: subtotal, currency: 'GBP', num_items: count });
     const savedEmail = localStorage.getItem('sculptiva_email');
     if (savedEmail) cartConverted(savedEmail).catch(() => {});
-    try {
-      const res = await createCheckout(items.map((i) => ({ variant_id: i.variant_id, quantity: i.qty })));
-      if (res.url) {
-        window.location.href = res.url;
-      } else {
-        toast.info('Demo checkout — live Shopify checkout activates automatically once your store products are connected.');
-      }
-    } catch {
-      toast.error('Checkout unavailable right now — please try again.');
-    } finally {
-      setCheckingOut(false);
-    }
+    setDrawerOpen(false);
+    navigate('/checkout');
   };
 
   return (
@@ -116,14 +103,13 @@ export const CartDrawer = () => {
             </div>
             <button
               onClick={checkout}
-              disabled={checkingOut}
               data-testid="cart-checkout-button"
               className="w-full rounded-full bg-[#2D2D2D] text-[#F7F3F0] py-4 text-sm font-bold uppercase tracking-[0.15em] hover:bg-[#E8B4B8] hover:text-[#2D2D2D] transition-colors duration-300 disabled:opacity-60 flex items-center justify-center gap-2"
             >
               <LockSimple size={16} weight="bold" />
-              {checkingOut ? 'Preparing checkout…' : 'Secure Checkout'}
+              Secure Checkout
             </button>
-            <p className="mt-3 text-center text-[11px] text-[#2D2D2D]/40">Klarna · Clearpay · PayPal available at checkout</p>
+            <p className="mt-3 text-center text-[11px] text-[#2D2D2D]/40">Payment powered by Stripe</p>
           </div>
         )}
       </SheetContent>

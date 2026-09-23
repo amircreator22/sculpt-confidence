@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowLeft, ArrowRight, ArrowsOutCardinal, CaretLeft, CaretRight, Check, Drop, Eye, Feather, LockSimple,
@@ -7,7 +7,7 @@ import {
 } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 import { useCart } from '@/context/CartContext';
-import { createCheckout, formatPrice, getProducts } from '@/lib/api';
+import { formatPrice, getProducts } from '@/lib/api';
 import { Overline, Reveal, Stars } from '@/components/site/Reveal';
 import { ProductCard } from '@/components/site/ProductCard';
 import { ColourSwatches } from '@/components/site/ProductGallery';
@@ -106,6 +106,7 @@ const ParallaxImage = ({ src, alt, className = '', position = 'center' }) => {
 
 export default function SculptFlex() {
   const { addItem } = useCart();
+  const navigate = useNavigate();
   const [size, setSize] = useState(null);
   const [colour, setColour] = useState('Charcoal Grey');
   const [reviewIdx, setReviewIdx] = useState(0);
@@ -141,15 +142,10 @@ export default function SculptFlex() {
     toast.success(`SculptFlex™ (${colour}, ${size}) added to bag`);
   };
 
-  const buyNow = async () => {
+  const buyNow = () => {
     if (!requireSize()) return;
     addItem({ ...PRODUCT, title: `${PRODUCT.title} — ${colour}` }, size);
-    const res = await createCheckout([{ variant_id: null, quantity: 1 }]).catch(() => null);
-    if (res?.url) {
-      window.location.href = res.url;
-    } else {
-      toast.info('Demo checkout — live Shopify checkout activates once store products are connected.');
-    }
+    navigate('/checkout');
   };
 
   const scrollToShop = () => shopRef.current?.scrollIntoView({ behavior: 'smooth' });

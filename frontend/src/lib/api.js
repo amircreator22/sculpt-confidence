@@ -20,8 +20,44 @@ export const subscribeNewsletter = (email, source = 'website') =>
 export const sendContact = (payload) =>
   axios.post(`${API}/contact`, payload).then((r) => r.data);
 
-export const createCheckout = (items) =>
-  axios.post(`${API}/checkout`, { items }).then((r) => r.data);
+export const createCheckout = (items, email, shippingAddress) =>
+  axios
+    .post(`${API}/checkout`, {
+      items: items.map((i) => ({ handle: i.handle, variant_id: i.variant_id, quantity: i.qty })),
+      email,
+      shipping_address: shippingAddress,
+    })
+    .then((r) => r.data);
+
+export const getOrderStatus = (orderId) =>
+  axios.get(`${API}/orders/${orderId}/status`).then((r) => r.data);
+
+export const adminLogin = (password) =>
+  axios.post(`${API}/admin/login`, { password }).then((r) => r.data);
+
+export const adminGetOrders = (token) =>
+  axios.get(`${API}/admin/orders`, { headers: { Authorization: `Bearer ${token}` } }).then((r) => r.data);
+
+export const adminUpdateFulfillment = (token, orderId, status, trackingNumber) =>
+  axios
+    .patch(
+      `${API}/admin/orders/${orderId}/fulfillment`,
+      { status, tracking_number: trackingNumber || undefined },
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    .then((r) => r.data);
+
+export const adminGetProducts = (token) =>
+  axios.get(`${API}/admin/products`, { headers: { Authorization: `Bearer ${token}` } }).then((r) => r.data);
+
+export const adminSetStock = (token, handle, variantId, quantity) =>
+  axios
+    .patch(
+      `${API}/admin/products/${handle}/variants/${variantId}/stock`,
+      { quantity },
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    .then((r) => r.data);
 
 export const trackOrder = (orderNumber, email) =>
   axios.post(`${API}/orders/track`, { order_number: orderNumber, email }).then((r) => r.data);

@@ -21,6 +21,9 @@ import SculptFlex from '@/pages/SculptFlex';
 import TrackOrder from '@/pages/TrackOrder';
 import BlogIndex from '@/pages/BlogIndex';
 import BlogPost from '@/pages/BlogPost';
+import Checkout from '@/pages/Checkout';
+import OrderConfirmation from '@/pages/OrderConfirmation';
+import Admin from '@/pages/Admin';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -74,6 +77,9 @@ const Shell = () => {
           <Route path="/privacy-policy" element={<Info slug="privacy-policy" />} />
           <Route path="/track-order" element={<TrackOrder />} />
           <Route path="/terms-conditions" element={<Info slug="terms-conditions" />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
