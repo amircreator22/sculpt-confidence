@@ -43,6 +43,9 @@ async def _seed_products_on_startup():
     if seed_path.exists():
         count = await commerce.seed_products_if_empty(db, str(seed_path))
         logger.info(f"Product catalog ready: {count} product(s) in database")
+        fixed = await commerce.sync_image_fixes_from_seed(db, str(seed_path))
+        if fixed:
+            logger.info(f"Repaired images for {fixed} product(s) from seed file")
 
 
 @api_router.get("/")
