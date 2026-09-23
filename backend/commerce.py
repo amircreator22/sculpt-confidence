@@ -100,6 +100,34 @@ async def seed_products_if_empty(db, seed_path: str) -> int:
     return len(products)
 
 
+async def sync_image_fixes_from_seed(db, seed_path: str) -> int:
+    """Repair already-seeded products whose images still point at the wrong
+    external CDN (leftover placeholder photos from initial setup, one of
+    which carried a visible stock-photo watermark). Safe to run on every
+    startup: it only overwrites a product's `images` field, and only when
+    the stored images differ from the seed file's version.
+    """
+    with open(seed_path) as f:
+        seed_products = json.load(f)
+
+    fixed = 0
+    for seed_p in seed_products:
+        handle = seed_p.get("handle")
+        seed_images = seed_p.get("images")
+        if not handle or not seed_images:
+            continue
+        current = await db.products.find_one({"handle": handle}, {"images": 1})
+        if not current:
+            continue
+        if current.get("images") != seed_images:
+            await db.products.update_one(
+                {"handle": handle},
+                {"$set": {"images": seed_images, "updated_at": now_iso()}},
+            )
+            fixed += 1
+    return fixed
+
+
 async def list_products(db, category: Optional[str] = None) -> list:
     query: dict = {"status": "active"}
     if category:
