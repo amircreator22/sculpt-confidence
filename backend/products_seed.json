@@ -1,0 +1,1935 @@
+[
+  {
+    "handle": "glute-sculpt-leggings",
+    "title": "Glute Sculpt High-Rise Leggings",
+    "description": "Sculptiva\u2019s signature glute legging, built around a high-rise compression waistband and a contouring scrunch seam that highlights your natural shape. Contouring scrunch seam High-rise compression waistband Buttery stretch fabric Made for heavy lifts, training days, and slow Sundays Pair them with a Sculptiva sports bra or longline bra for a full set that feels as good off the gym floor as it does on it.",
+    "product_type": "Leggings",
+    "tags": [
+      "bestseller",
+      "featured",
+      "sculptiva"
+    ],
+    "vendor": "Sculptiva",
+    "status": "active",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/3ce1a8d7d495c9382596b1350fa11cf2.jpg?v=1788197613",
+        "alt": "Blush Pink \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/glute-sculpt-leggings-blush-back.jpg?v=1789821260",
+        "alt": "Blush Pink \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/glute-sculpt-leggings-blush-side.jpg?v=1789821281",
+        "alt": "Blush Pink \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/480c0329bb91c3a5555702192be71fc1.jpg?v=1788197613",
+        "alt": "Blush Pink \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/539f8afd17d7822881270188e6fe5abd.jpg?v=1788197613",
+        "alt": "Obsidian Black \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/glute-sculpt-leggings-black-back.jpg?v=1789821271",
+        "alt": "Obsidian Black \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/glute-sculpt-leggings-black-side.jpg?v=1789821276",
+        "alt": "Obsidian Black \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/636a7e7f9ac4d458671f3cc476f4ce7b.jpg?v=1788197613",
+        "alt": "Obsidian Black \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/dce92b0c0ed1c5a8972d9ad7d2760e02.jpg?v=1788197613",
+        "alt": "Charcoal Grey \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/glute-sculpt-leggings-charcoal-back.jpg?v=1789821286",
+        "alt": "Charcoal Grey \u2014 back"
+      }
+    ],
+    "variants": [
+      {
+        "variant_id": "56988354019668",
+        "title": "Blush Pink / XS",
+        "sku": "glute-sculpt-leggings-blush-pink-xs",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354052436",
+        "title": "Blush Pink / S",
+        "sku": "glute-sculpt-leggings-blush-pink-s",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354085204",
+        "title": "Blush Pink / M",
+        "sku": "glute-sculpt-leggings-blush-pink-m",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354117972",
+        "title": "Blush Pink / L",
+        "sku": "glute-sculpt-leggings-blush-pink-l",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354150740",
+        "title": "Blush Pink / XL",
+        "sku": "glute-sculpt-leggings-blush-pink-xl",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354183508",
+        "title": "Obsidian Black / XS",
+        "sku": "glute-sculpt-leggings-obsidian-black-xs",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354216276",
+        "title": "Obsidian Black / S",
+        "sku": "glute-sculpt-leggings-obsidian-black-s",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354249044",
+        "title": "Obsidian Black / M",
+        "sku": "glute-sculpt-leggings-obsidian-black-m",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354281812",
+        "title": "Obsidian Black / L",
+        "sku": "glute-sculpt-leggings-obsidian-black-l",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354314580",
+        "title": "Obsidian Black / XL",
+        "sku": "glute-sculpt-leggings-obsidian-black-xl",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354347348",
+        "title": "Charcoal Grey / XS",
+        "sku": "glute-sculpt-leggings-charcoal-grey-xs",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354380116",
+        "title": "Charcoal Grey / S",
+        "sku": "glute-sculpt-leggings-charcoal-grey-s",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354412884",
+        "title": "Charcoal Grey / M",
+        "sku": "glute-sculpt-leggings-charcoal-grey-m",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354445652",
+        "title": "Charcoal Grey / L",
+        "sku": "glute-sculpt-leggings-charcoal-grey-l",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988354478420",
+        "title": "Charcoal Grey / XL",
+        "sku": "glute-sculpt-leggings-charcoal-grey-xl",
+        "price": 44.0,
+        "compare_at_price": 56.0,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      }
+    ],
+    "created_at": "2026-09-23T09:46:52.504311+00:00",
+    "updated_at": "2026-09-23T09:46:52.504311+00:00"
+  },
+  {
+    "handle": "seamless-sculpt-leggings",
+    "title": "Seamless Sculpt Knit Leggings",
+    "description": "Zero seams, easy styling. These sculpt leggings use a second-skin knit and targeted shading under the glutes for a smooth, lifted look. Seamless knit construction Second-skin feel Targeted shading under the glutes Choose them when you want a clean, minimal base for training sets, studio looks, and everyday movement.",
+    "product_type": "Leggings",
+    "tags": [
+      "sculptiva"
+    ],
+    "vendor": "Sculptiva",
+    "status": "active",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/a30b7c62776640317f5405cde7b5fd8d.jpg?v=1788197653",
+        "alt": "Obsidian Black \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/cad39f185cfedbc98d1fbe50fb3be2f5.jpg?v=1788197653",
+        "alt": "Obsidian Black \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/5d6badf2497d978f7d8f7eddfe4af307.jpg?v=1788197653",
+        "alt": "Obsidian Black \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/9d5d3f773616cf5d599bd0085b7721d9.jpg?v=1788197653",
+        "alt": "Obsidian Black \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/636aec4e66d264d6d6e28d38187f5f7e.jpg?v=1788197653",
+        "alt": "Mocha Brown \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/05aa2200279180797e3634ba4d4a03e5.jpg?v=1788197653",
+        "alt": "Mocha Brown \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/67111909ea0f860ab35d89cd12eb0cfc.jpg?v=1788197653",
+        "alt": "Mocha Brown \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/eceab3c25ac8955d0c0b9bdbf2703b01.jpg?v=1788197653",
+        "alt": "Mocha Brown \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/0dfb6ca47cf6f9ca04976f9fb644e05f.jpg?v=1788197653",
+        "alt": "Blush Pink \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/seamless-sculpt-leggings-blush-back.jpg?v=1789821290",
+        "alt": "Blush Pink \u2014 back"
+      }
+    ],
+    "variants": [
+      {
+        "variant_id": "56988361032020",
+        "title": "Obsidian Black / XS",
+        "sku": "seamless-sculpt-leggings-obsidian-black-xs",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361064788",
+        "title": "Obsidian Black / S",
+        "sku": "seamless-sculpt-leggings-obsidian-black-s",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361097556",
+        "title": "Obsidian Black / M",
+        "sku": "seamless-sculpt-leggings-obsidian-black-m",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361130324",
+        "title": "Obsidian Black / L",
+        "sku": "seamless-sculpt-leggings-obsidian-black-l",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361163092",
+        "title": "Obsidian Black / XL",
+        "sku": "seamless-sculpt-leggings-obsidian-black-xl",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361195860",
+        "title": "Mocha Brown / XS",
+        "sku": "seamless-sculpt-leggings-mocha-brown-xs",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361228628",
+        "title": "Mocha Brown / S",
+        "sku": "seamless-sculpt-leggings-mocha-brown-s",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361261396",
+        "title": "Mocha Brown / M",
+        "sku": "seamless-sculpt-leggings-mocha-brown-m",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361294164",
+        "title": "Mocha Brown / L",
+        "sku": "seamless-sculpt-leggings-mocha-brown-l",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361326932",
+        "title": "Mocha Brown / XL",
+        "sku": "seamless-sculpt-leggings-mocha-brown-xl",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361359700",
+        "title": "Blush Pink / XS",
+        "sku": "seamless-sculpt-leggings-blush-pink-xs",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361392468",
+        "title": "Blush Pink / S",
+        "sku": "seamless-sculpt-leggings-blush-pink-s",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361425236",
+        "title": "Blush Pink / M",
+        "sku": "seamless-sculpt-leggings-blush-pink-m",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361458004",
+        "title": "Blush Pink / L",
+        "sku": "seamless-sculpt-leggings-blush-pink-l",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988361490772",
+        "title": "Blush Pink / XL",
+        "sku": "seamless-sculpt-leggings-blush-pink-xl",
+        "price": 46.0,
+        "compare_at_price": 58.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      }
+    ],
+    "created_at": "2026-09-23T09:46:52.504311+00:00",
+    "updated_at": "2026-09-23T09:46:52.504311+00:00"
+  },
+  {
+    "handle": "sculpt-shorts",
+    "title": "Sculpt 5-Inch Training Shorts",
+    "description": "A focused training short with a 5-inch inseam and the details that make movement feel easier. 5-inch inseam Glute-lifting scrunch detail No front seam Designed to stay put through squats, sprints, and stretches Reach for them on training days when you want a clean, streamlined shape without extra fuss.",
+    "product_type": "Shorts",
+    "tags": [
+      "bestseller",
+      "featured",
+      "sculptiva"
+    ],
+    "vendor": "Sculptiva",
+    "status": "active",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/1487a7e6eb90a84200e23c1147df9e6c.jpg?v=1788197689",
+        "alt": "Obsidian Black \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/e2ca4a201297a786566378bf4139c454.jpg?v=1788197689",
+        "alt": "Obsidian Black \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/sculpt-shorts-black-side.jpg?v=1789821295",
+        "alt": "Obsidian Black \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/b7240970b648b39d6b2c30c00b391840.jpg?v=1788197689",
+        "alt": "Obsidian Black \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/424a3b9212e44e5bc5a246d339318c14.jpg?v=1788197689",
+        "alt": "Blush Pink \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/4614d45a051f132efd20043f11ae9933.jpg?v=1788197689",
+        "alt": "Blush Pink \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/bd53bdeb04f4800b37f6b462d201bb4f.jpg?v=1788197689",
+        "alt": "Blush Pink \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/7e5e2c1498b82ced15de0df0277e075c.jpg?v=1788197689",
+        "alt": "Blush Pink \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/d8049f8cbf408f489e888b2131687c6c.jpg?v=1788197689",
+        "alt": "Deep Navy \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/sculpt-shorts-navy-back.jpg?v=1789821300",
+        "alt": "Deep Navy \u2014 back"
+      }
+    ],
+    "variants": [
+      {
+        "variant_id": "56988363325780",
+        "title": "Obsidian Black / XS",
+        "sku": "sculpt-shorts-obsidian-black-xs",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363358548",
+        "title": "Obsidian Black / S",
+        "sku": "sculpt-shorts-obsidian-black-s",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363391316",
+        "title": "Obsidian Black / M",
+        "sku": "sculpt-shorts-obsidian-black-m",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363424084",
+        "title": "Obsidian Black / L",
+        "sku": "sculpt-shorts-obsidian-black-l",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363456852",
+        "title": "Obsidian Black / XL",
+        "sku": "sculpt-shorts-obsidian-black-xl",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363489620",
+        "title": "Blush Pink / XS",
+        "sku": "sculpt-shorts-blush-pink-xs",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363522388",
+        "title": "Blush Pink / S",
+        "sku": "sculpt-shorts-blush-pink-s",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363555156",
+        "title": "Blush Pink / M",
+        "sku": "sculpt-shorts-blush-pink-m",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363587924",
+        "title": "Blush Pink / L",
+        "sku": "sculpt-shorts-blush-pink-l",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363620692",
+        "title": "Blush Pink / XL",
+        "sku": "sculpt-shorts-blush-pink-xl",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363653460",
+        "title": "Deep Navy / XS",
+        "sku": "sculpt-shorts-deep-navy-xs",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363686228",
+        "title": "Deep Navy / S",
+        "sku": "sculpt-shorts-deep-navy-s",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363718996",
+        "title": "Deep Navy / M",
+        "sku": "sculpt-shorts-deep-navy-m",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363751764",
+        "title": "Deep Navy / L",
+        "sku": "sculpt-shorts-deep-navy-l",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988363784532",
+        "title": "Deep Navy / XL",
+        "sku": "sculpt-shorts-deep-navy-xl",
+        "price": 32.0,
+        "compare_at_price": 40.0,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      }
+    ],
+    "created_at": "2026-09-23T09:46:52.504311+00:00",
+    "updated_at": "2026-09-23T09:46:52.504311+00:00"
+  },
+  {
+    "handle": "ribbed-sculpt-shorts",
+    "title": "Ribbed Sculpt Scrunch Shorts",
+    "description": "Soft ribbed texture meets Sculptiva\u2019s signature contour scrunch in a short made for lounge-to-lift days. Soft ribbed texture Contour scrunch detail Versatile styling for rest days and training Pair them with the Sculpt Longline Crop Bra or your favourite oversized layer for an easy set that feels considered without trying too hard.",
+    "product_type": "Shorts",
+    "tags": [
+      "sculptiva"
+    ],
+    "vendor": "Sculptiva",
+    "status": "active",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/d3221fd62b0604870b5ba169fa5e79a4.jpg?v=1788197721",
+        "alt": "Mocha Brown \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/d0fd6ec8c578494a92acbc53d60761e2.jpg?v=1788197721",
+        "alt": "Mocha Brown \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/ribbed-sculpt-shorts-mocha-side.jpg?v=1789821314",
+        "alt": "Mocha Brown \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/ef789b4eae8b5ddb757b61f593e39efa.jpg?v=1788197721",
+        "alt": "Mocha Brown \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/059581af42bf6f213c89a2bc493c2304.jpg?v=1788197721",
+        "alt": "Charcoal Grey \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/7111d411f86f2a6ec0f938f85000b359.jpg?v=1788197721",
+        "alt": "Charcoal Grey \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/ribbed-sculpt-shorts-charcoal-side.jpg?v=1789821310",
+        "alt": "Charcoal Grey \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/41697f09dd0bc4e90278e42b0c62a02b.jpg?v=1788197721",
+        "alt": "Charcoal Grey \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/761aed37448479bac09a173d28ce2c7f.jpg?v=1788197721",
+        "alt": "Blush Pink \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/ea46854826f1264191aaec118bba7f2e.jpg?v=1788197721",
+        "alt": "Blush Pink \u2014 back"
+      }
+    ],
+    "variants": [
+      {
+        "variant_id": "56988364374356",
+        "title": "Mocha Brown / XS",
+        "sku": "ribbed-sculpt-shorts-mocha-brown-xs",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364407124",
+        "title": "Mocha Brown / S",
+        "sku": "ribbed-sculpt-shorts-mocha-brown-s",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364439892",
+        "title": "Mocha Brown / M",
+        "sku": "ribbed-sculpt-shorts-mocha-brown-m",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364472660",
+        "title": "Mocha Brown / L",
+        "sku": "ribbed-sculpt-shorts-mocha-brown-l",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364505428",
+        "title": "Mocha Brown / XL",
+        "sku": "ribbed-sculpt-shorts-mocha-brown-xl",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364538196",
+        "title": "Charcoal Grey / XS",
+        "sku": "ribbed-sculpt-shorts-charcoal-grey-xs",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364570964",
+        "title": "Charcoal Grey / S",
+        "sku": "ribbed-sculpt-shorts-charcoal-grey-s",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364603732",
+        "title": "Charcoal Grey / M",
+        "sku": "ribbed-sculpt-shorts-charcoal-grey-m",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364636500",
+        "title": "Charcoal Grey / L",
+        "sku": "ribbed-sculpt-shorts-charcoal-grey-l",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364669268",
+        "title": "Charcoal Grey / XL",
+        "sku": "ribbed-sculpt-shorts-charcoal-grey-xl",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364702036",
+        "title": "Blush Pink / XS",
+        "sku": "ribbed-sculpt-shorts-blush-pink-xs",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364734804",
+        "title": "Blush Pink / S",
+        "sku": "ribbed-sculpt-shorts-blush-pink-s",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364767572",
+        "title": "Blush Pink / M",
+        "sku": "ribbed-sculpt-shorts-blush-pink-m",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364800340",
+        "title": "Blush Pink / L",
+        "sku": "ribbed-sculpt-shorts-blush-pink-l",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988364833108",
+        "title": "Blush Pink / XL",
+        "sku": "ribbed-sculpt-shorts-blush-pink-xl",
+        "price": 34.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      }
+    ],
+    "created_at": "2026-09-23T09:46:52.504311+00:00",
+    "updated_at": "2026-09-23T09:46:52.504311+00:00"
+  },
+  {
+    "handle": "sculpt-sports-bra",
+    "title": "Sculpt Medium-Support Sports Bra",
+    "description": "Your everyday training bra, with medium support and a smooth sculpted feel that keeps your kit simple. Medium-support design Removable pads Soft, buttery underband Wear it for workouts, layering, or pairing with your favourite Sculptiva leggings and shorts when you want an easy matching set.",
+    "product_type": "Sports Bras",
+    "tags": [
+      "featured",
+      "sculptiva"
+    ],
+    "vendor": "Sculptiva",
+    "status": "active",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/07e0ab7003f50e99bf2ddefe20303b55.jpg?v=1788197753",
+        "alt": "Blush Pink \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/sculpt-sports-bra-blush-back.jpg?v=1789821319",
+        "alt": "Blush Pink \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/63aca61b358da8b65422992c66683ccc.jpg?v=1788197753",
+        "alt": "Blush Pink \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/90abf3ca40a35718a3c658148fd80681.jpg?v=1788197753",
+        "alt": "Blush Pink \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/sculpt-sports-bra-black-front.jpg?v=1789821265",
+        "alt": "Obsidian Black \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/sculpt-sports-bra-black-back.jpg?v=1789821324",
+        "alt": "Obsidian Black \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/e01f74d6ae276b79be393a0648d57c67.jpg?v=1788197753",
+        "alt": "Obsidian Black \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/cbc671b678607fe03e8ca1ee04bc7661.jpg?v=1788197753",
+        "alt": "Obsidian Black \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/cf8420b5574a81aa931f5c0cc3cd1637.jpg?v=1788197753",
+        "alt": "Mocha Brown \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/2b476b9eba4867209bb6a566b77b827c.jpg?v=1788197753",
+        "alt": "Mocha Brown \u2014 back"
+      }
+    ],
+    "variants": [
+      {
+        "variant_id": "56988386394452",
+        "title": "Blush Pink / XS",
+        "sku": "sculpt-sports-bra-blush-pink-xs",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386427220",
+        "title": "Blush Pink / S",
+        "sku": "sculpt-sports-bra-blush-pink-s",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386459988",
+        "title": "Blush Pink / M",
+        "sku": "sculpt-sports-bra-blush-pink-m",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386492756",
+        "title": "Blush Pink / L",
+        "sku": "sculpt-sports-bra-blush-pink-l",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386525524",
+        "title": "Blush Pink / XL",
+        "sku": "sculpt-sports-bra-blush-pink-xl",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Blush Pink",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386558292",
+        "title": "Obsidian Black / XS",
+        "sku": "sculpt-sports-bra-obsidian-black-xs",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386591060",
+        "title": "Obsidian Black / S",
+        "sku": "sculpt-sports-bra-obsidian-black-s",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386623828",
+        "title": "Obsidian Black / M",
+        "sku": "sculpt-sports-bra-obsidian-black-m",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386656596",
+        "title": "Obsidian Black / L",
+        "sku": "sculpt-sports-bra-obsidian-black-l",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386689364",
+        "title": "Obsidian Black / XL",
+        "sku": "sculpt-sports-bra-obsidian-black-xl",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386722132",
+        "title": "Mocha Brown / XS",
+        "sku": "sculpt-sports-bra-mocha-brown-xs",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386754900",
+        "title": "Mocha Brown / S",
+        "sku": "sculpt-sports-bra-mocha-brown-s",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386787668",
+        "title": "Mocha Brown / M",
+        "sku": "sculpt-sports-bra-mocha-brown-m",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386820436",
+        "title": "Mocha Brown / L",
+        "sku": "sculpt-sports-bra-mocha-brown-l",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988386853204",
+        "title": "Mocha Brown / XL",
+        "sku": "sculpt-sports-bra-mocha-brown-xl",
+        "price": 36.0,
+        "compare_at_price": 44.0,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      }
+    ],
+    "created_at": "2026-09-23T09:46:52.504311+00:00",
+    "updated_at": "2026-09-23T09:46:52.504311+00:00"
+  },
+  {
+    "handle": "sculpt-longline-bra",
+    "title": "Sculpt Longline Crop Bra",
+    "description": "An extended-length bra with a sculpted neckline, designed to work as a standalone crop or as part of your training set. Longline silhouette Sculpted neckline Studio-to-street support Wear it with Sculptiva leggings or shorts for a clean matching look, or let the longer shape stand on its own.",
+    "product_type": "Sports Bras",
+    "tags": [
+      "sculptiva"
+    ],
+    "vendor": "Sculptiva",
+    "status": "active",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/5b801f6a6ceff7593a169c1f965daf80.jpg?v=1788197786",
+        "alt": "Obsidian Black \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/640c43871595da4711441c86b93fb28c.jpg?v=1788197786",
+        "alt": "Obsidian Black \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/29d43f82231720e72a272c8c2d0b849d.jpg?v=1788197786",
+        "alt": "Obsidian Black \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/f72bbb96599cf3bad68cea122b755e6f.jpg?v=1788197786",
+        "alt": "Obsidian Black \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/1aa04798677bc6e10b9b678edc0d0fa0.jpg?v=1788197786",
+        "alt": "Charcoal Grey \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/21183b1bf1119dae221e4ef0d48e6e85.jpg?v=1788197786",
+        "alt": "Charcoal Grey \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/48e080c30f90c1d85ed523891d770a30.jpg?v=1788197786",
+        "alt": "Charcoal Grey \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/ea14909b8d4c9219717987a4582db44c.jpg?v=1788197786",
+        "alt": "Charcoal Grey \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/a692f1125fe5d6cb23cb90f123219f37.jpg?v=1788197786",
+        "alt": "Deep Navy \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/sculpt-longline-bra-navy-back.jpg?v=1789821329",
+        "alt": "Deep Navy \u2014 back"
+      }
+    ],
+    "variants": [
+      {
+        "variant_id": "56988387803476",
+        "title": "Obsidian Black / XS",
+        "sku": "sculpt-longline-bra-obsidian-black-xs",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988387836244",
+        "title": "Obsidian Black / S",
+        "sku": "sculpt-longline-bra-obsidian-black-s",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988387869012",
+        "title": "Obsidian Black / M",
+        "sku": "sculpt-longline-bra-obsidian-black-m",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988387901780",
+        "title": "Obsidian Black / L",
+        "sku": "sculpt-longline-bra-obsidian-black-l",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988387934548",
+        "title": "Obsidian Black / XL",
+        "sku": "sculpt-longline-bra-obsidian-black-xl",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988387967316",
+        "title": "Charcoal Grey / XS",
+        "sku": "sculpt-longline-bra-charcoal-grey-xs",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988388000084",
+        "title": "Charcoal Grey / S",
+        "sku": "sculpt-longline-bra-charcoal-grey-s",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988388032852",
+        "title": "Charcoal Grey / M",
+        "sku": "sculpt-longline-bra-charcoal-grey-m",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988388065620",
+        "title": "Charcoal Grey / L",
+        "sku": "sculpt-longline-bra-charcoal-grey-l",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988388098388",
+        "title": "Charcoal Grey / XL",
+        "sku": "sculpt-longline-bra-charcoal-grey-xl",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988388131156",
+        "title": "Deep Navy / XS",
+        "sku": "sculpt-longline-bra-deep-navy-xs",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988388163924",
+        "title": "Deep Navy / S",
+        "sku": "sculpt-longline-bra-deep-navy-s",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988388196692",
+        "title": "Deep Navy / M",
+        "sku": "sculpt-longline-bra-deep-navy-m",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988388229460",
+        "title": "Deep Navy / L",
+        "sku": "sculpt-longline-bra-deep-navy-l",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988388262228",
+        "title": "Deep Navy / XL",
+        "sku": "sculpt-longline-bra-deep-navy-xl",
+        "price": 38.0,
+        "compare_at_price": null,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      }
+    ],
+    "created_at": "2026-09-23T09:46:52.504311+00:00",
+    "updated_at": "2026-09-23T09:46:52.504311+00:00"
+  },
+  {
+    "handle": "sculptflex-contour-leggings",
+    "title": "SculptFlex\u2122 High-Waisted Contour Leggings",
+    "description": "Contour-led leggings designed for a supported, confident feel through training and everyday movement. Contour-enhancing panels for a sculpted look High-waisted support Ultra-soft stretch fabric Pair them with your favourite Sculptiva bra for a streamlined set that moves from the gym into the rest of your day.",
+    "product_type": "Leggings",
+    "tags": [
+      "bestseller",
+      "featured",
+      "sculptiva"
+    ],
+    "vendor": "Sculptiva",
+    "status": "active",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_shows_a_fitness_model_wearing_high_waisted_leggings_45577556-e1fd-45cf-a78d-ff59814a072d.png?v=1789943547",
+        "alt": "Charcoal Grey SculptFlex\u2122 high-waisted contour leggings \u2014 front view, ribbed scrunch-butt design | Sculptiva"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_shows_a_fitness_model_from_behind_wearing_high_waiste_3e8aba66-fe65-44ed-8eb2-fd289dc9b3fc.png?v=1789943546",
+        "alt": "Charcoal Grey SculptFlex\u2122 high-waisted contour leggings \u2014 back view showing scrunch-butt seam detail | Sculptiva"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_shows_a_fitness_model_from_the_side_wearing_high_wais_033565dc-e9b7-4e9d-945b-940abc26e43b.png?v=1789943546",
+        "alt": "Charcoal Grey SculptFlex\u2122 high-waisted contour leggings \u2014 side profile view | Sculptiva"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_is_a_close_up_detail_shot_of_the_waistband_fabric_of.png?v=1789943546",
+        "alt": "Charcoal Grey SculptFlex\u2122 leggings \u2014 close-up detail of ribbed waistband fabric | Sculptiva"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_shows_a_fitness_model_wearing_high_waisted_leggings.png?v=1789943546",
+        "alt": "Obsidian Black SculptFlex\u2122 high-waisted contour leggings \u2014 front view, ribbed scrunch-butt design | Sculptiva"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_shows_a_fitness_model_from_behind_wearing_high_waiste_8f9fff78-0613-458d-b725-9ea2f2700273.png?v=1789943546",
+        "alt": "Obsidian Black SculptFlex\u2122 high-waisted contour leggings \u2014 back view showing scrunch-butt seam detail | Sculptiva"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_shows_a_fitness_model_from_the_side_wearing_high_wais_cbfc09c3-a0ec-4e16-96c3-5a993e15a610.png?v=1789943546",
+        "alt": "Obsidian Black SculptFlex\u2122 high-waisted contour leggings \u2014 side profile view | Sculptiva"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_is_a_close_up_detail_shot_of_the_waistband_fabric_of_bb427453-7564-4cdd-9c06-13573a6cd86e.png?v=1789943547",
+        "alt": "Obsidian Black SculptFlex\u2122 leggings \u2014 close-up detail of ribbed waistband fabric | Sculptiva"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_shows_a_fitness_model_wearing_high_waisted_leggings_c39aab81-bbba-4cbc-9acf-56094d85adb9.png?v=1789943546",
+        "alt": "Mocha Brown SculptFlex\u2122 high-waisted contour leggings \u2014 front view, ribbed scrunch-butt design | Sculptiva"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/model_shows_a_fitness_model_from_behind_wearing_high_waiste_baaa33e9-755c-4e42-a5b1-a237cc61daba.png?v=1789943546",
+        "alt": "Mocha Brown SculptFlex\u2122 high-waisted contour leggings \u2014 back view showing scrunch-butt seam detail | Sculptiva"
+      }
+    ],
+    "variants": [
+      {
+        "variant_id": "56988389474644",
+        "title": "Charcoal Grey / XS",
+        "sku": "sculptflex-contour-leggings-charcoal-grey-xs",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389507412",
+        "title": "Charcoal Grey / S",
+        "sku": "sculptflex-contour-leggings-charcoal-grey-s",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389540180",
+        "title": "Charcoal Grey / M",
+        "sku": "sculptflex-contour-leggings-charcoal-grey-m",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389572948",
+        "title": "Charcoal Grey / L",
+        "sku": "sculptflex-contour-leggings-charcoal-grey-l",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389605716",
+        "title": "Charcoal Grey / XL",
+        "sku": "sculptflex-contour-leggings-charcoal-grey-xl",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Charcoal Grey",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389638484",
+        "title": "Obsidian Black / XS",
+        "sku": "sculptflex-contour-leggings-obsidian-black-xs",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389671252",
+        "title": "Obsidian Black / S",
+        "sku": "sculptflex-contour-leggings-obsidian-black-s",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389704020",
+        "title": "Obsidian Black / M",
+        "sku": "sculptflex-contour-leggings-obsidian-black-m",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389736788",
+        "title": "Obsidian Black / L",
+        "sku": "sculptflex-contour-leggings-obsidian-black-l",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389769556",
+        "title": "Obsidian Black / XL",
+        "sku": "sculptflex-contour-leggings-obsidian-black-xl",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Obsidian Black",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389802324",
+        "title": "Mocha Brown / XS",
+        "sku": "sculptflex-contour-leggings-mocha-brown-xs",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389835092",
+        "title": "Mocha Brown / S",
+        "sku": "sculptflex-contour-leggings-mocha-brown-s",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389867860",
+        "title": "Mocha Brown / M",
+        "sku": "sculptflex-contour-leggings-mocha-brown-m",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389900628",
+        "title": "Mocha Brown / L",
+        "sku": "sculptflex-contour-leggings-mocha-brown-l",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389933396",
+        "title": "Mocha Brown / XL",
+        "sku": "sculptflex-contour-leggings-mocha-brown-xl",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Mocha Brown",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389966164",
+        "title": "Deep Navy / XS",
+        "sku": "sculptflex-contour-leggings-deep-navy-xs",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "XS"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988389998932",
+        "title": "Deep Navy / S",
+        "sku": "sculptflex-contour-leggings-deep-navy-s",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "S"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988390031700",
+        "title": "Deep Navy / M",
+        "sku": "sculptflex-contour-leggings-deep-navy-m",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "M"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988390064468",
+        "title": "Deep Navy / L",
+        "sku": "sculptflex-contour-leggings-deep-navy-l",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "L"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988390097236",
+        "title": "Deep Navy / XL",
+        "sku": "sculptflex-contour-leggings-deep-navy-xl",
+        "price": 39.99,
+        "compare_at_price": 54.99,
+        "options": {
+          "Colour": "Deep Navy",
+          "Size": "XL"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      }
+    ],
+    "created_at": "2026-09-23T09:46:52.504311+00:00",
+    "updated_at": "2026-09-23T09:46:52.504311+00:00"
+  },
+  {
+    "handle": "resistance-band-bundle",
+    "title": "Fabric Resistance Band Bundle",
+    "description": "A simple way to add resistance to glute sessions, home workouts, and training on the go. Three fabric resistance bands: light, medium, and heavy Carry pouch for easy storage and workouts anywhere Keep the full set in your gym bag and choose the level that suits your session, from lighter activation work to a more challenging burn.",
+    "product_type": "Accessories",
+    "tags": [
+      "featured",
+      "sculptiva"
+    ],
+    "vendor": "Sculptiva",
+    "status": "active",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/9c6e96215d005ed85f5852e0198c0583.jpg?v=1788197862",
+        "alt": "Blush Tones \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/11455410d4c38dc8193550e229b27f60.jpg?v=1788197862",
+        "alt": "Blush Tones \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/7a787613cdbfd4572b484e333fcfefaf.jpg?v=1788197862",
+        "alt": "Blush Tones \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/57fb84929d20935aca932b016a00e330.jpg?v=1788197862",
+        "alt": "Blush Tones \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/c3402bea744b42bf973325eac177335a.jpg?v=1788197862",
+        "alt": "Neutral Tones \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/e160079405763dbbfbe1084569dae476.jpg?v=1788197862",
+        "alt": "Neutral Tones \u2014 back"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/150adf4f4c475cc66e6ccc8ed8fc633d.jpg?v=1788197862",
+        "alt": "Neutral Tones \u2014 side"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/991459cff577210df0cc82ee787ebef8.jpg?v=1788197862",
+        "alt": "Neutral Tones \u2014 detail"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/a482c457046cd1c5413291e7dbf60f7a.jpg?v=1788197862",
+        "alt": "Midnight Tones \u2014 front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1065/0648/6100/files/fd69c44881aa587fb6025ed5aa3db600.jpg?v=1788197862",
+        "alt": "Midnight Tones \u2014 back"
+      }
+    ],
+    "variants": [
+      {
+        "variant_id": "56988390850900",
+        "title": "Blush Tones / One Size",
+        "sku": "resistance-band-bundle-blush-tones-one-size",
+        "price": 24.0,
+        "compare_at_price": 32.0,
+        "options": {
+          "Colour": "Blush Tones",
+          "Size": "One Size"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988390883668",
+        "title": "Neutral Tones / One Size",
+        "sku": "resistance-band-bundle-neutral-tones-one-size",
+        "price": 24.0,
+        "compare_at_price": 32.0,
+        "options": {
+          "Colour": "Neutral Tones",
+          "Size": "One Size"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      },
+      {
+        "variant_id": "56988390916436",
+        "title": "Midnight Tones / One Size",
+        "sku": "resistance-band-bundle-midnight-tones-one-size",
+        "price": 24.0,
+        "compare_at_price": 32.0,
+        "options": {
+          "Colour": "Midnight Tones",
+          "Size": "One Size"
+        },
+        "inventory_quantity": 20,
+        "available": true
+      }
+    ],
+    "created_at": "2026-09-23T09:46:52.504311+00:00",
+    "updated_at": "2026-09-23T09:46:52.504311+00:00"
+  }
+]

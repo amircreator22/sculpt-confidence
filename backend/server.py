@@ -10,14 +10,18 @@ from typing import Optional, List
 
 import httpx
 from dotenv import load_dotenv
-from fastapi import FastAPI, APIRouter, HTTPException, Response
+from fastapi import FastAPI, APIRouter, HTTPException, Response, Request, Depends
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from sample_data import SAMPLE_PRODUCTS, SAMPLE_REVIEWS
+from sample_data import SAMPLE_REVIEWS
 import seo
+import commerce
+import stripe_payments
+import emailer
+import admin_auth
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -26,151 +30,19 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-SHOPIFY_DOMAIN = os.environ.get('SHOPIFY_SHOP_DOMAIN', '').replace('https://', '').replace('http://', '').strip('/')
-SHOPIFY_STOREFRONT_TOKEN = os.environ.get('SHOPIFY_STOREFRONT_TOKEN', '')
-SHOPIFY_CATALOG_MODE = os.environ.get('SHOPIFY_CATALOG_MODE', 'sample')
-SHOPIFY_API_VERSION = '2024-10'
-STOREFRONT_URL = f"https://{SHOPIFY_DOMAIN}/api/{SHOPIFY_API_VERSION}/graphql.json"
-STOREFRONT_HEADERS = {"X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_TOKEN, "Content-Type": "application/json"}
-
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
 logger = logging.getLogger(__name__)
 
-_cache = {"products": None, "ts": 0.0, "mode": "sample", "shop_name": None, "error": None, "live_count": None}
-CACHE_TTL = 120
-
-PRODUCTS_QUERY = """{
-  shop { name }
-  products(first: 100, query: "tag:sculptiva") {
-    edges { node {
-      id handle title description productType tags vendor
-      options { name values }
-      images(first: 50) { edges { node { url altText } } }
-      variants(first: 100) { edges { node {
-        id title availableForSale
-        price { amount currencyCode }
-        compareAtPrice { amount }
-        selectedOptions { name value }
-      } } }
-    } }
-  }
-}"""
-
-PALETTE = {
-    "Blush Pink": "#E8B4B8", "Obsidian Black": "#111111", "Charcoal Grey": "#5A5A5A",
-    "Mocha Brown": "#6F4E37", "Deep Navy": "#1B2951",
-    "Blush Tones": "#E8B4B8", "Neutral Tones": "#C8B8A6", "Midnight Tones": "#3A3A3A",
-}
-_SAMPLE_META = {p['handle']: (p['rating'], p['reviews_count']) for p in SAMPLE_PRODUCTS}
-_SAMPLE_VIDEOS = {p['handle']: p['videos'] for p in SAMPLE_PRODUCTS if p.get('videos')}
 EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 
 
-async def _storefront_query(query: str, variables: dict | None = None):
-    async with httpx.AsyncClient(timeout=15) as c:
-        r = await c.post(STOREFRONT_URL, json={"query": query, "variables": variables or {}}, headers=STOREFRONT_HEADERS)
-    data = r.json()
-    if r.status_code != 200 or 'errors' in data:
-        raise RuntimeError(str(data.get('errors', r.text))[:200])
-    return data['data']
-
-
-def _transform_shopify_product(node: dict) -> dict:
-    variants = [e['node'] for e in node['variants']['edges']]
-    price = float(variants[0]['price']['amount']) if variants else 0.0
-    currency = variants[0]['price']['currencyCode'] if variants else 'GBP'
-    compare_at = None
-    if variants and variants[0].get('compareAtPrice'):
-        compare_at = float(variants[0]['compareAtPrice']['amount'])
-    sizes = []
-    for opt in node.get('options', []):
-        if opt['name'].lower() in ('size', 'sizes'):
-            sizes = opt['values']
-    ptype = (node.get('productType') or '').lower()
-    handle = node['handle']
-    if 'bra' in ptype or 'bra' in handle:
-        category = 'bras'
-    elif 'short' in ptype or 'short' in handle:
-        category = 'shorts'
-    elif 'band' in ptype or 'accessor' in ptype or 'bundle' in handle:
-        category = 'accessories'
-    else:
-        category = 'leggings'
-    tags = [t.lower() for t in (node.get('tags') or [])]
-    images = [(e['node']['url'], e['node'].get('altText') or '') for e in node['images']['edges']]
-    colour_groups = {}
-    for url, alt in images:
-        cname = alt.split(' — ')[0] if ' — ' in alt else None
-        if cname:
-            colour_groups.setdefault(cname, []).append(url)
-    colours = None
-    if len(colour_groups) > 1:
-        order = []
-        for opt in node.get('options', []):
-            if opt['name'].lower() in ('colour', 'color'):
-                order = opt['values']
-        names = [n for n in order if n in colour_groups] or list(colour_groups)
-        colours = [{"name": n, "hex": PALETTE.get(n, "#999999"), "images": colour_groups[n]} for n in names]
-    rating, reviews_count = _SAMPLE_META.get(handle, (4.9, 0))
-    return {
-        "id": node['id'],
-        "handle": handle,
-        "title": node['title'],
-        "videos": _SAMPLE_VIDEOS.get(handle, []),
-        "category": category,
-        "price": price,
-        "compare_at": compare_at,
-        "currency": currency,
-        "description": node.get('description') or '',
-        "images": colours[0]['images'] if colours else [u for u, _ in images],
-        "colours": colours,
-        "sizes": sizes or ["XS", "S", "M", "L", "XL"],
-        "rating": rating,
-        "reviews_count": reviews_count,
-        "featured": 'featured' in tags,
-        "bestseller": 'bestseller' in tags,
-        "variant_id": variants[0]['id'] if variants else None,
-        "variants": [
-            {"id": v['id'], "title": v['title'], "available": v['availableForSale'],
-             "options": {o['name'].lower(): o['value'] for o in v['selectedOptions']}}
-            for v in variants
-        ],
-        "source": "shopify",
-    }
-
-
-async def _check_connection():
-    if not (SHOPIFY_DOMAIN and SHOPIFY_STOREFRONT_TOKEN):
-        _cache.update(shop_name=None, live_count=None, error="Storefront token not configured")
-        return False
-    try:
-        data = await _storefront_query('{ shop { name } products(first: 100, query: "tag:sculptiva") { edges { node { id } } } }')
-        _cache.update(shop_name=data['shop']['name'], live_count=len(data['products']['edges']), error=None)
-        return True
-    except Exception as e:
-        _cache.update(error=str(e)[:200])
-        return False
-
-
-async def _load_products(force: bool = False):
-    now = time.time()
-    if not force and _cache["products"] is not None and now - _cache["ts"] < CACHE_TTL:
-        return _cache["products"]
-    if SHOPIFY_CATALOG_MODE == 'live' and SHOPIFY_DOMAIN and SHOPIFY_STOREFRONT_TOKEN:
-        try:
-            data = await _storefront_query(PRODUCTS_QUERY)
-            nodes = [e['node'] for e in data['products']['edges']]
-            if nodes:
-                products = [_transform_shopify_product(n) for n in nodes]
-                _cache.update(products=products, ts=now, mode="live", shop_name=data['shop']['name'], error=None)
-                return products
-            _cache["error"] = "Shopify store has no products yet"
-        except Exception as e:
-            _cache["error"] = str(e)[:200]
-            logger.warning(f"Shopify fetch failed, serving sample catalog: {e}")
-    _cache.update(products=SAMPLE_PRODUCTS, ts=now, mode="sample")
-    return SAMPLE_PRODUCTS
+@app.on_event("startup")
+async def _seed_products_on_startup():
+    seed_path = ROOT_DIR / "products_seed.json"
+    if seed_path.exists():
+        count = await commerce.seed_products_if_empty(db, str(seed_path))
+        logger.info(f"Product catalog ready: {count} product(s) in database")
 
 
 @api_router.get("/")
@@ -180,68 +52,36 @@ async def root():
 
 @api_router.get("/shop/status")
 async def shop_status():
-    connected = await _check_connection()
-    await _load_products()
+    count = await db.products.count_documents({"status": "active"})
     return {
-        "mode": _cache["mode"],
-        "catalog_mode_setting": SHOPIFY_CATALOG_MODE,
-        "shop_domain": SHOPIFY_DOMAIN or None,
-        "shop_name": _cache["shop_name"],
-        "connected": connected,
-        "live_product_count": _cache["live_count"],
-        "error": _cache["error"],
+        "mode": "custom",
+        "product_count": count,
+        "stripe_configured": stripe_payments.is_configured(),
     }
 
 
 @api_router.get("/products")
 async def list_products(category: Optional[str] = None, featured: Optional[bool] = None):
-    products = await _load_products()
-    out = products
-    if category:
-        out = [p for p in out if p['category'] == category]
+    products = await commerce.list_products(db, category=category)
+    out = [commerce.to_frontend_shape(p) for p in products]
     if featured is not None:
         out = [p for p in out if p['featured'] == featured]
-    return {"products": out, "mode": _cache["mode"]}
+    return {"products": out, "mode": "custom"}
 
 
 @api_router.get("/products/{handle}")
 async def get_product(handle: str):
-    products = await _load_products()
-    for p in products:
-        if p['handle'] == handle:
-            related = [r for r in products if r['handle'] != handle and r['category'] == p['category']][:4]
-            if len(related) < 4:
-                related += [r for r in products if r['handle'] != handle and r not in related][:4 - len(related)]
-            return {"product": p, "related": related, "mode": _cache["mode"]}
-    raise HTTPException(status_code=404, detail="Product not found")
-
-
-SHOPIFY_ADMIN_TOKEN = os.environ.get('SHOPIFY_ACCESS_TOKEN', '')
-SHOPIFY_CLIENT_ID = os.environ.get('SHOPIFY_CLIENT_ID', '')
-SHOPIFY_CLIENT_SECRET = os.environ.get('SHOPIFY_CLIENT_SECRET', '')
-_admin_auth = {"token": None, "exp": 0.0}
-
-
-async def _get_admin_token():
-    if _admin_auth["token"] and time.time() < _admin_auth["exp"] - 120:
-        return _admin_auth["token"]
-    if not (SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET and SHOPIFY_DOMAIN):
-        return None
-    try:
-        async with httpx.AsyncClient(timeout=15) as c:
-            r = await c.post(f"https://{SHOPIFY_DOMAIN}/admin/oauth/access_token", data={
-                'grant_type': 'client_credentials',
-                'client_id': SHOPIFY_CLIENT_ID,
-                'client_secret': SHOPIFY_CLIENT_SECRET,
-            })
-        if r.status_code != 200:
-            return None
-        j = r.json()
-        _admin_auth.update(token=j['access_token'], exp=time.time() + j.get('expires_in', 86400))
-        return _admin_auth["token"]
-    except Exception as e:
-        logger.warning(f"Admin token grant failed: {e}")
-        return None
+    product = await commerce.get_product(db, handle)
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    p = commerce.to_frontend_shape(product)
+    all_products = await commerce.list_products(db)
+    related = [commerce.to_frontend_shape(r) for r in all_products
+               if r['handle'] != handle and commerce._category_for(r.get('product_type', ''), r['handle']) == p['category']][:4]
+    if len(related) < 4:
+        extra = [commerce.to_frontend_shape(r) for r in all_products if r['handle'] != handle][:4 - len(related)]
+        related += [e for e in extra if e['handle'] not in {r['handle'] for r in related}]
+    return {"product": p, "related": related, "mode": "custom"}
 
 
 class TrackOrderRequest(BaseModel):
@@ -252,37 +92,24 @@ class TrackOrderRequest(BaseModel):
 @api_router.post("/orders/track")
 async def track_order(req: TrackOrderRequest):
     email = req.email.strip().lower()
-    number = req.order_number.strip().lstrip('#')
+    number = req.order_number.strip().lstrip('#').upper()
     if not number or not EMAIL_RE.match(email):
         raise HTTPException(status_code=422, detail="Please enter your order number and a valid email")
-    admin_token = await _get_admin_token()
-    if not (SHOPIFY_DOMAIN and admin_token):
-        return {"available": False}
-    url = f"https://{SHOPIFY_DOMAIN}/admin/api/{SHOPIFY_API_VERSION}/orders.json?name=%23{number}&status=any&fields=name,email,created_at,fulfillment_status,financial_status,order_status_url,line_items"
-    try:
-        async with httpx.AsyncClient(timeout=15) as c:
-            r = await c.get(url, headers={"X-Shopify-Access-Token": admin_token})
-        if r.status_code in (401, 403):
-            return {"available": False}
-        orders = r.json().get('orders', [])
-    except Exception as e:
-        logger.warning(f"Order lookup failed: {e}")
-        return {"available": False}
-    for o in orders:
-        if (o.get('email') or '').lower() == email:
-            return {
-                "available": True,
-                "found": True,
-                "order": {
-                    "name": o.get('name'),
-                    "created_at": o.get('created_at'),
-                    "fulfillment_status": o.get('fulfillment_status') or 'processing',
-                    "financial_status": o.get('financial_status'),
-                    "status_url": o.get('order_status_url'),
-                    "items": [{"title": li.get('title'), "quantity": li.get('quantity')} for li in o.get('line_items', [])],
-                },
-            }
-    return {"available": True, "found": False}
+    order = await commerce.find_order_for_tracking(db, number, email)
+    if not order:
+        return {"available": True, "found": False}
+    return {
+        "available": True,
+        "found": True,
+        "order": {
+            "name": order["order_id"],
+            "created_at": order["created_at"],
+            "fulfillment_status": order.get("fulfillment_status", "unfulfilled"),
+            "financial_status": order.get("payment_status", "pending"),
+            "status_url": None,
+            "items": [{"title": i["title"], "quantity": i["quantity"]} for i in order.get("items", [])],
+        },
+    }
 
 
 @api_router.get("/reviews")
@@ -292,38 +119,185 @@ async def list_reviews(product_handle: Optional[str] = None):
     return {"reviews": SAMPLE_REVIEWS}
 
 
+FLAT_SHIPPING_GBP = float(os.environ.get('FLAT_SHIPPING_GBP', '3.99'))
+FREE_SHIPPING_THRESHOLD_GBP = float(os.environ.get('FREE_SHIPPING_THRESHOLD_GBP', '50'))
+
+
 class CheckoutItem(BaseModel):
-    variant_id: Optional[str] = None
+    handle: str
+    variant_id: str
     quantity: int = 1
+
+
+class ShippingAddress(BaseModel):
+    name: str
+    line1: str
+    line2: Optional[str] = None
+    city: str
+    postal_code: str
+    country: str = "GB"
 
 
 class CheckoutRequest(BaseModel):
     items: List[CheckoutItem]
-
-
-CART_CREATE = """mutation cartCreate($lines: [CartLineInput!]!) {
-  cartCreate(input: { lines: $lines }) {
-    cart { checkoutUrl }
-    userErrors { message }
-  }
-}"""
+    email: str
+    shipping_address: ShippingAddress
 
 
 @api_router.post("/checkout")
 async def create_checkout(req: CheckoutRequest):
-    items = [i for i in req.items if i.variant_id and i.quantity > 0]
-    if items and len(items) == len(req.items) and SHOPIFY_DOMAIN and SHOPIFY_STOREFRONT_TOKEN:
-        lines = [{"merchandiseId": str(i.variant_id), "quantity": i.quantity} for i in items]
-        try:
-            data = await _storefront_query(CART_CREATE, {"lines": lines})
-            cart = data['cartCreate'].get('cart')
-            if cart and cart.get('checkoutUrl'):
-                return {"url": cart['checkoutUrl'], "mode": "live"}
-            logger.warning(f"cartCreate errors: {data['cartCreate'].get('userErrors')}")
-        except Exception as e:
-            logger.warning(f"cartCreate failed: {e}")
-        raise HTTPException(status_code=409, detail="Checkout is temporarily unavailable — please try again in a moment")
-    return {"url": None, "mode": "sample"}
+    """Creates a Stripe PaymentIntent for the cart and a pending order
+    record. The frontend confirms payment with Stripe's Payment Element
+    using the returned client_secret; the Stripe webhook then marks the
+    order paid and decrements stock (see /webhooks/stripe below)."""
+    if not stripe_payments.is_configured():
+        raise HTTPException(status_code=503, detail="Payments are not configured yet")
+    if not req.items:
+        raise HTTPException(status_code=422, detail="Your cart is empty")
+    if not EMAIL_RE.match(req.email.strip().lower()):
+        raise HTTPException(status_code=422, detail="Please enter a valid email address")
+
+    line_items = []
+    subtotal = 0.0
+    for item in req.items:
+        if item.quantity < 1:
+            continue
+        product, variant = await commerce.find_variant_anywhere(db, item.variant_id)
+        if not product or not variant:
+            raise HTTPException(status_code=409, detail=f"One item in your cart is no longer available")
+        if variant["inventory_quantity"] < item.quantity:
+            raise HTTPException(status_code=409, detail=f"Only {variant['inventory_quantity']} left of {product['title']} ({variant['title']}) — please adjust your cart")
+        line_total = variant["price"] * item.quantity
+        subtotal += line_total
+        line_items.append({
+            "handle": product["handle"],
+            "variant_id": variant["variant_id"],
+            "title": product["title"],
+            "variant_title": variant["title"],
+            "price": variant["price"],
+            "quantity": item.quantity,
+        })
+
+    if not line_items:
+        raise HTTPException(status_code=422, detail="Your cart is empty")
+
+    shipping = 0.0 if subtotal >= FREE_SHIPPING_THRESHOLD_GBP else FLAT_SHIPPING_GBP
+    total = round(subtotal + shipping, 2)
+    amount_minor = round(total * 100)
+
+    intent = stripe_payments.create_payment_intent(
+        amount_minor=amount_minor,
+        currency="gbp",
+        metadata={"email": req.email.strip().lower()},
+        receipt_email=req.email.strip(),
+    )
+
+    order_id = await commerce.create_pending_order(
+        db,
+        items=line_items,
+        subtotal=round(subtotal, 2),
+        shipping=shipping,
+        total=total,
+        currency="gbp",
+        email=req.email,
+        shipping_address=req.shipping_address.dict(),
+        payment_intent_id=intent.id,
+    )
+
+    return {
+        "client_secret": intent.client_secret,
+        "order_id": order_id,
+        "subtotal": round(subtotal, 2),
+        "shipping": shipping,
+        "total": total,
+    }
+
+
+@api_router.post("/webhooks/stripe")
+async def stripe_webhook(request: Request):
+    payload = await request.body()
+    sig_header = request.headers.get("stripe-signature", "")
+    try:
+        event = stripe_payments.verify_webhook_event(payload, sig_header)
+    except Exception as e:
+        logger.warning(f"Stripe webhook signature verification failed: {e}")
+        raise HTTPException(status_code=400, detail="Invalid webhook signature")
+
+    if event["type"] == "payment_intent.succeeded":
+        intent = event["data"]["object"]
+        order = await commerce.mark_order_paid(db, intent["id"])
+        if order:
+            await emailer.send_order_confirmation(order)
+        else:
+            logger.warning(f"Stripe webhook: no matching order for payment_intent {intent['id']}")
+
+    return {"received": True}
+
+
+@api_router.get("/orders/{order_id}/status")
+async def order_status(order_id: str):
+    """Used by the order-confirmation page to poll payment status after
+    Stripe redirects back (needed for payment methods that redirect,
+    e.g. some bank/wallet methods, rather than confirming instantly)."""
+    order = await commerce.get_order(db, order_id.upper())
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return {
+        "order_id": order["order_id"],
+        "payment_status": order["payment_status"],
+        "total": order["total"],
+        "currency": order["currency"],
+    }
+
+
+# ---------------- Admin ----------------
+
+class AdminLoginRequest(BaseModel):
+    password: str
+
+
+@api_router.post("/admin/login")
+async def admin_login(req: AdminLoginRequest):
+    if not admin_auth.verify_password(req.password):
+        raise HTTPException(status_code=401, detail="Incorrect password")
+    return {"token": admin_auth.issue_token()}
+
+
+@api_router.get("/admin/orders")
+async def admin_list_orders(_: None = Depends(admin_auth.require_admin)):
+    orders = await commerce.list_orders(db)
+    return {"orders": orders}
+
+
+class FulfillmentUpdate(BaseModel):
+    status: str
+    tracking_number: Optional[str] = None
+
+
+@api_router.patch("/admin/orders/{order_id}/fulfillment")
+async def admin_update_fulfillment(order_id: str, req: FulfillmentUpdate, _: None = Depends(admin_auth.require_admin)):
+    ok = await commerce.update_fulfillment(db, order_id.upper(), req.status, req.tracking_number)
+    if not ok:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return {"ok": True}
+
+
+@api_router.get("/admin/products")
+async def admin_list_products(_: None = Depends(admin_auth.require_admin)):
+    products = await commerce.list_products(db)
+    return {"products": products}
+
+
+class StockUpdate(BaseModel):
+    quantity: int
+
+
+@api_router.patch("/admin/products/{handle}/variants/{variant_id}/stock")
+async def admin_set_stock(handle: str, variant_id: str, req: StockUpdate, _: None = Depends(admin_auth.require_admin)):
+    ok = await commerce.set_stock(db, handle, variant_id, req.quantity)
+    if not ok:
+        raise HTTPException(status_code=404, detail="Product/variant not found")
+    return {"ok": True}
 
 
 class NewsletterRequest(BaseModel):
@@ -518,9 +492,14 @@ def _seo_base(proto: str, host: str) -> str:
     return (SITE_URL or "").rstrip("/")
 
 
+async def _load_products_for_seo():
+    products = await commerce.list_products(db)
+    return [commerce.to_frontend_shape(p) for p in products]
+
+
 @api_router.get("/_seo/render")
 async def seo_render(path: str = "/", proto: str = "https", host: str = ""):
-    products = await _load_products()
+    products = await _load_products_for_seo()
     body, status = seo.render_page(path, _seo_base(proto, host), products)
     return HTMLResponse(content=body, status_code=status)
 
@@ -532,7 +511,7 @@ async def seo_robots(proto: str = "https", host: str = ""):
 
 @api_router.get("/_seo/sitemap.xml")
 async def seo_sitemap(proto: str = "https", host: str = ""):
-    products = await _load_products()
+    products = await _load_products_for_seo()
     return Response(content=seo.build_sitemap(_seo_base(proto, host), products), media_type="application/xml")
 
 
