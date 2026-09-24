@@ -1529,47 +1529,71 @@
     "vendor": "Sculptiva",
     "status": "active",
     "images": [
-      {
-        "url": "/sculptflex/studio/front.jpg",
-        "alt": "Charcoal Grey SculptFlex™ high-waisted contour leggings — front view, ribbed scrunch-butt design | Sculptiva"
-      },
-      {
-        "url": "/sculptflex/studio/back.jpg",
-        "alt": "Charcoal Grey SculptFlex™ high-waisted contour leggings — back view showing scrunch-butt seam detail | Sculptiva"
-      },
-      {
-        "url": "/sculptflex/studio/side.jpg",
-        "alt": "Charcoal Grey SculptFlex™ high-waisted contour leggings — side profile view | Sculptiva"
-      },
-      {
-        "url": "/sculptflex/studio/detail.jpg",
-        "alt": "Charcoal Grey SculptFlex™ leggings — close-up detail of ribbed waistband fabric | Sculptiva"
-      },
-      {
-        "url": "/sculptflex/studio/black-front.jpg",
-        "alt": "Obsidian Black SculptFlex™ high-waisted contour leggings — front view, ribbed scrunch-butt design | Sculptiva"
-      },
-      {
-        "url": "/sculptflex/studio/black-back.jpg",
-        "alt": "Obsidian Black SculptFlex™ high-waisted contour leggings — back view showing scrunch-butt seam detail | Sculptiva"
-      },
-      {
-        "url": "/sculptflex/studio/black-side.jpg",
-        "alt": "Obsidian Black SculptFlex™ high-waisted contour leggings — side profile view | Sculptiva"
-      },
-      {
-        "url": "/sculptflex/studio/black-detail.jpg",
-        "alt": "Obsidian Black SculptFlex™ leggings — close-up detail of ribbed waistband fabric | Sculptiva"
-      },
-      {
-        "url": "/sculptflex/studio/mocha-front.jpg",
-        "alt": "Mocha Brown SculptFlex™ high-waisted contour leggings — front view, ribbed scrunch-butt design | Sculptiva"
-      },
-      {
-        "url": "/sculptflex/studio/mocha-back.jpg",
-        "alt": "Mocha Brown SculptFlex™ high-waisted contour leggings — back view showing scrunch-butt seam detail | Sculptiva"
-      }
-    ],
+{
+          "url": "/sculptflex/studio/front.png",
+          "alt": "Charcoal Grey SculptFlex™ high-waisted contour leggings — front view, ribbed scrunch-butt design | Sculptiva"
+},
+            {
+                      "url": "/sculptflex/studio/back.png",
+                      "alt": "Charcoal Grey SculptFlex™ high-waisted contour leggings — back view showing scrunch-butt seam detail | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/side.png",
+                      "alt": "Charcoal Grey SculptFlex™ high-waisted contour leggings — side profile view | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/detail.png",
+                      "alt": "Charcoal Grey SculptFlex™ leggings — close-up detail of ribbed waistband fabric | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/black-front.jpg",
+                      "alt": "Obsidian Black SculptFlex™ high-waisted contour leggings — front view, ribbed scrunch-butt design | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/black-back.jpg",
+                      "alt": "Obsidian Black SculptFlex™ high-waisted contour leggings — back view showing scrunch-butt seam detail | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/black-side.png",
+                      "alt": "Obsidian Black SculptFlex™ high-waisted contour leggings — side profile view | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/black-detail.jpg",
+                      "alt": "Obsidian Black SculptFlex™ leggings — close-up detail of ribbed waistband fabric | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/mocha-front.jpg",
+                      "alt": "Mocha Brown SculptFlex™ high-waisted contour leggings — front view, ribbed scrunch-butt design | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/mocha-back.jpg",
+                      "alt": "Mocha Brown SculptFlex™ high-waisted contour leggings — back view showing scrunch-butt seam detail | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/mocha-side.png",
+                      "alt": "Mocha Brown SculptFlex™ high-waisted contour leggings — side profile view | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/mocha-detail.jpg",
+                      "alt": "Mocha Brown SculptFlex™ leggings — close-up detail of ribbed waistband fabric | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/navy-front.jpg",
+                      "alt": "Deep Navy SculptFlex™ high-waisted contour leggings — front view, ribbed scrunch-butt design | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/navy-back.jpg",
+                      "alt": "Deep Navy SculptFlex™ high-waisted contour leggings — back view showing scrunch-butt seam detail | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/navy-side.png",
+                      "alt": "Deep Navy SculptFlex™ high-waisted contour leggings — side profile view | Sculptiva"
+            },
+            {
+                      "url": "/sculptflex/studio/navy-detail.jpg",
+                      "alt": "Deep Navy SculptFlex™ leggings — close-up detail of ribbed waistband fabric | Sculptiva"
+            }
+      ],
     "variants": [
       {
         "variant_id": "56988389474644",
