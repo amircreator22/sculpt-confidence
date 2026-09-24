@@ -518,6 +518,33 @@ async def seo_sitemap(proto: str = "https", host: str = ""):
     return Response(content=seo.build_sitemap(_seo_base(proto, host), products), media_type="application/xml")
 
 
+@api_router.get("/_seo/static-bundle")
+async def seo_static_bundle(proto: str = "https", host: str = ""):
+    products = await _load_products_for_seo()
+    base = _seo_base(proto, host)
+    routes = (
+        list(seo.STATIC.keys())
+        + ["/blog"]
+        + [f"/blog/{s}" for s in seo.BLOG_ORDER]
+        + [f"/collections/{h}" for h in seo.COLLECTIONS]
+        + [f"/collections/{h}" for h in seo.CURATED]
+        + [f"/products/{p['handle']}" for p in products]
+    )
+    curated_routes = {f"/collections/{h}" for h in seo.CURATED}
+    body_routes = curated_routes | {"/blog"} | {f"/blog/{s}" for s in seo.BLOG_ORDER}
+    data = {}
+    for r in routes:
+        html_out, status = seo.render_page(r, base, products)
+        head = re.search(r"<head>(.*?)</head>", html_out, re.S).group(1)
+        lines = [ln for ln in head.strip().splitlines() if "charset" not in ln and "viewport" not in ln and ln.strip()]
+        entry = {"head": "\n".join(lines).strip()}
+        if r in body_routes:
+            body = re.search(r"<body>(.*?)</body>", html_out, re.S).group(1)
+            entry["body"] = body.strip()
+        data[r] = entry
+    return data
+
+
 app.include_router(api_router)
 
 app.add_middleware(
