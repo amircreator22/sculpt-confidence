@@ -52,8 +52,11 @@ def to_frontend_shape(p: dict) -> dict:
     first = variants[0] if variants else {}
     images = [(img["url"], img.get("alt", "")) for img in p.get("images", [])]
     colour_groups: dict = {}
+    colour_names = sorted(PALETTE.keys(), key=len, reverse=True)
     for url, alt in images:
-        cname = alt.split(" — ")[0] if " — " in alt else None
+        cname = next((c for c in colour_names if alt.startswith(c)), None)
+        if cname is None and " — " in alt:
+            cname = alt.split(" — ")[0]
         if cname:
             colour_groups.setdefault(cname, []).append(url)
     colours = None
