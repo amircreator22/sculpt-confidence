@@ -826,22 +826,41 @@ def build_robots(base):
 def build_sitemap(base, products):
     today = date.today().isoformat()
     b = base.rstrip("/")
-    paths = list(STATIC.keys())
-    paths += ["/blog"] + [f"/blog/{s}" for s in BLOG_ORDER]
-    paths += [f"/collections/{h}" for h in COLLECTIONS]
-    paths += [f"/collections/{h}" for h in CURATED]
-    paths += [f"/products/{p['handle']}" for p in products]
+    image_ns = "http://www.google.com/schemas/sitemap-image/1.1"
+
+    def image_tags(urls):
+        return "".join(
+            f"<image:image><image:loc>{esc(u)}</image:loc></image:image>"
+            for u in urls if u
+        )
+
+    entries = []
+    for p in STATIC.keys():
+        entries.append((p, "1.0" if p == "/" else "0.6", []))
+    entries.append(("/blog", "0.6", []))
+    for s in BLOG_ORDER:
+        entries.append((f"/blog/{s}", "0.6", [_abs(base, BLOG[s]["image"])]))
+    for h, c in COLLECTIONS.items():
+        img = c.get("image")
+        entries.append((f"/collections/{h}", "0.8", [_abs(base, img)] if img else []))
+    for h, c in CURATED.items():
+        img = c.get("image")
+        entries.append((f"/collections/{h}", "0.8", [_abs(base, img)] if img else []))
+    for p in products:
+        imgs = [_abs(base, u) for u in (p.get("images") or [])[:5]]
+        entries.append((f"/products/{p['handle']}", "0.8", imgs))
+
     urls = []
-    for p in paths:
-        loc = b + ("/" if p == "/" else p)
-        priority = "1.0" if p == "/" else ("0.8" if p.startswith("/products/") or p.startswith("/collections/") else "0.6")
+    for path, priority, imgs in entries:
+        loc = b + ("/" if path == "/" else path)
         urls.append(
             f"  <url><loc>{esc(loc)}</loc><lastmod>{today}</lastmod>"
-            f"<changefreq>weekly</changefreq><priority>{priority}</priority></url>"
+            f"<changefreq>weekly</changefreq><priority>{priority}</priority>"
+            f"{image_tags(imgs)}</url>"
         )
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="{image_ns}">\n'
         + "\n".join(urls)
         + "\n</urlset>\n"
     )
