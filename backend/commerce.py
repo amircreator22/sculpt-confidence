@@ -130,10 +130,11 @@ async def sync_image_fixes_from_seed(db, seed_path: str) -> int:
 
 async def list_products(db, category: Optional[str] = None) -> list:
     query: dict = {"status": "active"}
-    if category:
-        query["product_type"] = category
     cursor = db.products.find(query, {"_id": 0})
-    return [p async for p in cursor]
+    products = [p async for p in cursor]
+    if category:
+        products = [p for p in products if _category_for(p.get("product_type", ""), p["handle"]) == category]
+    return products
 
 
 async def get_product(db, handle: str) -> Optional[dict]:
