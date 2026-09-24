@@ -7,8 +7,20 @@ AsyncIOMotorDatabase instance server.py already creates.
 import json
 import uuid
 from datetime import datetime, timezone
-from typing import Optional
+from typing import Optional 
+from sample_data import SAMPLE_REVIEWS
 
+
+def _build_review_stats() -> dict:
+    stats: dict = {}
+    for r in SAMPLE_REVIEWS:
+        handle = r.get("product_handle")
+        if handle:
+            stats.setdefault(handle, []).append(r.get("rating", 5))
+    return {h: (len(v), round(sum(v) / len(v), 1)) for h, v in stats.items()}
+
+
+REVIEW_STATS = _build_review_stats()
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -68,8 +80,8 @@ def to_frontend_shape(p: dict) -> dict:
         "images": colours[0]["images"] if colours else [u for u, _ in images],
         "colours": colours,
         "sizes": sizes or ["XS", "S", "M", "L", "XL"],
-        "rating": p.get("rating", 4.9),
-        "reviews_count": p.get("reviews_count", 0),
+        "rating": REVIEW_STATS[p["handle"]][1] if p["handle"] in REVIEW_STATS else p.get("rating", 4.9),
+        "reviews_count": REVIEW_STATS[p["handle"]][0] if p["handle"] in REVIEW_STATS else p.get("reviews_count", 0),
         "featured": "featured" in tags,
         "bestseller": "bestseller" in tags,
         "variant_id": first.get("variant_id"),
@@ -158,7 +170,7 @@ async def find_variant_anywhere(db, variant_id: str):
         return None, None
     for v in product["variants"]:
         if v["variant_id"] == variant_id:
-            return product, v
+            return product, vi
     return None, None
 
 
