@@ -596,7 +596,7 @@ def _doc(base, path, title, desc, h1, body_html, ld_list, image, og_type):
 <meta name="twitter:description" content="{esc(desc)}"/>
 {ld}
 </head>
-{_footer_html(base)}</body>{_nav_html(base)}
+<body>{_nav_html(base)}
 <h1>{esc(h1)}</h1>
 {body_html}
 </body>
