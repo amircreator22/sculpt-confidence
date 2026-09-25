@@ -599,7 +599,7 @@ def _doc(base, path, title, desc, h1, body_html, ld_list, image, og_type):
 <body>{_nav_html(base)}
 <h1>{esc(h1)}</h1>
 {body_html}
-</body>
+{_footer_html(base)}</body>
 </html>"""
 
 
