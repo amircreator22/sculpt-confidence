@@ -328,3 +328,30 @@ export const COLLECTION_ARTICLE = {
     { slug: 'do-tummy-control-leggings-really-work', label: 'Do tummy control leggings really work?' },
   ],
 };
+// --- Seamless Sculpt Knit Leggings launch article (added 2026-09-25) ---
+BLOG_POSTS['what-are-seamless-leggings'] = {
+  titleTag: 'What Are Seamless Leggings? Why They Feel Different | Sculptiva',
+  metaDesc:
+    "What makes seamless leggings different from a stitched pair — the knit construction, the fit, and why they feel smoother against the skin. No marketing fluff.",
+  h1: 'What Are Seamless Leggings? Why They Feel Different',
+  datePublished: '2026-09-29',
+  excerpt: 'The knit construction behind seamless leggings — and why they feel different against the skin.',
+  image: LEGGINGS_IMG,
+  body:
+    "Seamless leggings are knitted as one continuous piece on a circular knitting machine, rather than cut from flat fabric panels and stitched together. That's the whole distinction — no side seams, no inner-leg seam, no stitched waistband join. The practical effect shows up in three places: nothing to chafe against on longer sessions, no seam lines printing through leggings under tight clothing, and a "second-skin" fit that moves with the body instead of against a seam. Seamless knitting also lets targeted shading and compression be built into the fabric itself during production — denser zones under the glutes or through the waistband — rather than added afterwards as a separate panel, which is why a well-made seamless legging can still shape without needing extra construction. The trade-off is that seamless knits generally sit a touch closer to the body than a panelled legging, so sizing up half a size is common if you prefer more room through the thigh. They're not automatically more compressive or more supportive than a stitched pair — that still comes down to the density of the knit itself, not the absence of seams.",
+  faqs: [
+    { q: "Are seamless leggings the same as compression leggings?", a: "Not necessarily — seamless describes how the fabric is knitted (as one piece, with no stitched panels), while compression describes how tightly it holds. A seamless legging can be compressive or relaxed depending on the knit density used." },
+    { q: "Do seamless leggings show fewer panty lines?", a: "Yes — without stitched seams or a separate waistband join, there's less structure to print through fabric, which is the main reason people choose seamless for tighter outfits." },
+    { q: "Should I size up for seamless leggings?", a: "Often, yes. Seamless knits tend to sit closer to the body than panelled styles, so if you prefer more room through the thigh, going up half a size is common." },
+  ],
+  primary: { label: "Shop Seamless Leggings", href: "/collections/seamless-gym-leggings" },
+  links: [
+    { label: "Seamless Sculpt Knit Leggings", href: "/products/seamless-sculpt-leggings" },
+    { label: "How to Measure Yourself for Leggings at Home", href: "/blog/how-to-measure-yourself-for-leggings-at-home" },
+    { label: "Squat-Proof Leggings", href: "/collections/squat-proof-leggings" },
+  ],
+};
+BLOG_ORDER.push('what-are-seamless-leggings');
+COLLECTION_ARTICLE['seamless-gym-leggings'] = [
+  { slug: 'what-are-seamless-leggings', label: 'What are seamless leggings? Why they feel different' },
+];
