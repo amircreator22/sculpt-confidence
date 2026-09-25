@@ -25,6 +25,7 @@ export default function OrderConfirmation() {
           if (!trackedRef.current) {
             trackedRef.current = true;
             track('Purchase', { value: data.total, currency: data.currency?.toUpperCase() || 'GBP' });
+            if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'conversion', { send_to: 'AW-18217038802/HpEPCPeirIUdENLnx-5D', value: data.total, currency: data.currency?.toUpperCase() || 'GBP', transaction_id: orderId }); }
           }
           return;
         }
