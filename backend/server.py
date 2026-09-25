@@ -531,7 +531,7 @@ async def seo_static_bundle(proto: str = "https", host: str = ""):
         + [f"/products/{p['handle']}" for p in products]
     )
     curated_routes = {f"/collections/{h}" for h in seo.CURATED}
-    body_routes = curated_routes | {"/blog"} | {f"/blog/{s}" for s in seo.BLOG_ORDER}
+    body_routes = set(routes)
     data = {}
     for r in routes:
         html_out, status = seo.render_page(r, base, products)
