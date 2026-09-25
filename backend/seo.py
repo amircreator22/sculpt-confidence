@@ -625,7 +625,7 @@ def render_page(path, base, products):
         ld = [org]
         if path == "/faq":
             ld.append(faq_ld())
-        body = f"<main><p>{esc(meta['body'])}</p></main>"
+        body = ("<main><p>" + esc(meta['body']) + "</p><ul>" + "".join('<li><a href="' + esc(_abs(base, "/products/" + p["handle"])) + '">' + esc(p["title"]) + '</a> — ' + esc(_money(p["price"], p.get("currency", "GBP"))) + '</li>' for p in products) + "</ul></main>") if path == "/shop" else (("<main><p>" + esc(meta['body']) + "</p>" + ("<h2>New arrivals</h2><ul>" + "".join('<li><a href="' + esc(_abs(base, "/products/" + p["handle"])) + '">' + esc(p["title"]) + '</a></li>' for p in products if p.get("category") not in {c["category"] for c in COLLECTIONS.values()}) + "</ul>" if any(p.get("category") not in {c["category"] for c in COLLECTIONS.values()} for p in products) else "") + "</main>")) if path == "/" else ("<main><p>" + esc(meta['body']) + "</p></main>")
         return _doc(base, path, meta["title"], meta["desc"], meta["h1"], body, ld, None, "website"), 200
 
     if path == "/blog":
@@ -894,7 +894,7 @@ _NAV_LINKS = [
     ("Shop All", "/shop"),
     ("Leggings", "/collections/leggings"),
     ("Sports Bras", "/collections/sports-bras"),
-    ("Sculpt Shorts", "/collections/sculpt-shorts"),
+    ("Sculpt Shorts", "/collections/sculpt-shorts"), ("SculptFlex", "/sculptflex"),
     ("Journal", "/blog"),
     ("About", "/about"),
     ("Contact", "/contact"),
