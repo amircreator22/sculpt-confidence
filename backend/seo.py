@@ -596,7 +596,7 @@ def _doc(base, path, title, desc, h1, body_html, ld_list, image, og_type):
 <meta name="twitter:description" content="{esc(desc)}"/>
 {ld}
 </head>
-<body>
+{_footer_html(base)}</body>{_nav_html(base)}
 <h1>{esc(h1)}</h1>
 {body_html}
 </body>
@@ -890,3 +890,38 @@ BLOG_ORDER.append("what-are-seamless-leggings")
 COLLECTION_ARTICLE["seamless-gym-leggings"] = [
     ("what-are-seamless-leggings", "What are seamless leggings? Why they feel different"),
 ]
+_NAV_LINKS = [
+    ("Shop All", "/shop"),
+    ("Leggings", "/collections/leggings"),
+    ("Sports Bras", "/collections/sports-bras"),
+    ("Sculpt Shorts", "/collections/sculpt-shorts"),
+    ("Journal", "/blog"),
+    ("About", "/about"),
+    ("Contact", "/contact"),
+    ("FAQ", "/faq"),
+]
+
+_FOOTER_LINKS = [
+    ("Shipping & Returns", "/shipping-returns"),
+    ("Track My Order", "/track-order"),
+    ("Privacy Policy", "/privacy-policy"),
+    ("Terms & Conditions", "/terms-conditions"),
+]
+
+
+def _link_list(base, links):
+    return "".join(
+        f'<li><a href="{_abs(base, href)}">{esc(label)}</a></li>'
+        for label, href in links
+    )
+
+
+def _nav_html(base):
+    return (
+        f'<nav><a href="{_abs(base, "/")}">{BRAND}</a>'
+        f'<ul>{_link_list(base, _NAV_LINKS)}</ul></nav>'
+    )
+
+
+def _footer_html(base):
+    return f'<footer><ul>{_link_list(base, _FOOTER_LINKS)}</ul></footer>'
