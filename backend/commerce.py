@@ -173,7 +173,7 @@ async def find_variant_anywhere(db, variant_id: str):
         return None, None
     for v in product["variants"]:
         if v["variant_id"] == variant_id:
-            return product, vi
+            return product, v
     return None, None
 
 
