@@ -21,6 +21,7 @@ import seo
 import commerce
 import stripe_payments
 import emailer
+import shopify_orders
 import admin_auth
 
 ROOT_DIR = Path(__file__).parent
@@ -231,6 +232,7 @@ async def stripe_webhook(request: Request):
         order = await commerce.mark_order_paid(db, intent["id"])
         if order:
             await emailer.send_order_confirmation(order)
+            await shopify_orders.push_order_to_shopify(order)
         else:
             logger.warning(f"Stripe webhook: no matching order for payment_intent {intent['id']}")
 
