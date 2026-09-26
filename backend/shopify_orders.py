@@ -7,15 +7,17 @@ configured, we log and move on rather than failing the webhook, since the
 order is already safely recorded in our own database either way.
 
 Configuration (Railway service variables):
-  SHOPIFY_SHOP_DOMAIN         e.g. "your-store.myshopify.com"
-  SHOPIFY_ADMIN_ACCESS_TOKEN  Admin API access token from a custom app
-                              (Shopify admin -> Settings -> Apps and sales
-                              channels -> Develop apps -> create an app with
-                              the write_orders scope -> Install -> reveal
-                              the Admin API access token, starts "shpat_").
+  SHOPIFY_SHOP_DOMAIN    e.g. "your-store.myshopify.com"
+  SHOPIFY_CLIENT_ID      custom app client ID (same pattern as
+  SHOPIFY_CLIENT_SECRET  push_to_shopify.py) with the write_orders scope.
+
+We exchange the client id/secret for a short-lived Admin API access token
+via Shopify's OAuth client-credentials grant, and cache it in memory until
+shortly before it expires (tokens from this grant last ~24h).
 """
 import logging
 import os
+import time
 
 import httpx
 
@@ -23,16 +25,41 @@ logger = logging.getLogger(__name__)
 
 API_VERSION = "2024-10"
 
+_token_cache = {"token": None, "expires_at": 0}
+
 
 def _config():
     domain = os.environ.get("SHOPIFY_SHOP_DOMAIN", "").replace("https://", "").strip("/")
-    token = os.environ.get("SHOPIFY_ADMIN_ACCESS_TOKEN", "").strip()
-    return domain, token
+    client_id = os.environ.get("SHOPIFY_CLIENT_ID", "").strip()
+    client_secret = os.environ.get("SHOPIFY_CLIENT_SECRET", "").strip()
+    return domain, client_id, client_secret
 
 
 def is_configured() -> bool:
-    domain, token = _config()
-    return bool(domain and token)
+    domain, client_id, client_secret = _config()
+    return bool(domain and client_id and client_secret)
+
+
+async def _get_access_token(domain: str, client_id: str, client_secret: str):
+    now = time.time()
+    if _token_cache["token"] and now < _token_cache["expires_at"]:
+        return _token_cache["token"]
+
+    async with httpx.AsyncClient(timeout=20) as client:
+        resp = await client.post(
+            f"https://{domain}/admin/oauth/access_token",
+            data={
+                "grant_type": "client_credentials",
+                "client_id": client_id,
+                "client_secret": client_secret,
+            },
+        )
+    resp.raise_for_status()
+    data = resp.json()
+    _token_cache["token"] = data["access_token"]
+    # Refresh 5 minutes early to avoid racing against expiry.
+    _token_cache["expires_at"] = now + data.get("expires_in", 3600) - 300
+    return _token_cache["token"]
 
 
 def _split_name(full_name: str):
@@ -50,12 +77,19 @@ async def push_order_to_shopify(order: dict):
     if not is_configured():
         logger.info(
             "Shopify order sync skipped for %s: SHOPIFY_SHOP_DOMAIN / "
-            "SHOPIFY_ADMIN_ACCESS_TOKEN not set",
+            "SHOPIFY_CLIENT_ID / SHOPIFY_CLIENT_SECRET not set",
             order.get("order_id"),
         )
         return None
 
-    domain, token = _config()
+    domain, client_id, client_secret = _config()
+
+    try:
+        token = await _get_access_token(domain, client_id, client_secret)
+    except Exception as e:
+        logger.error("Shopify order sync: failed to get access token for %s: %s", order.get("order_id"), e)
+        return None
+
     api = f"https://{domain}/admin/api/{API_VERSION}"
     headers = {"X-Shopify-Access-Token": token, "Content-Type": "application/json"}
 
