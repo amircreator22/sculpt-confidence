@@ -70,7 +70,6 @@ def _split_name(full_name: str):
         return parts[0], ""
     return parts[0], parts[1]
 
-
 async def push_order_to_shopify(order: dict):
     """Creates a paid order in Shopify mirroring a completed custom-checkout
     sale. Safe to call fire-and-forget: never raises."""
@@ -120,6 +119,8 @@ async def push_order_to_shopify(order: dict):
     }
 
     shipping_cost = order.get("shipping", 0) or 0
+    total = order.get("total", 0) or 0
+    currency_upper = (order.get("currency") or "gbp").upper()
     payload = {
         "order": {
             "line_items": line_items,
@@ -129,7 +130,7 @@ async def push_order_to_shopify(order: dict):
             }],
             "email": order.get("email"),
             "financial_status": "paid",
-            "currency": (order.get("currency") or "gbp").upper(),
+            "currency": currency_upper,
             "shipping_address": shipping_address,
             "billing_address": shipping_address,
             "tags": "custom-checkout, sculptivauk.com",
@@ -137,6 +138,12 @@ async def push_order_to_shopify(order: dict):
             "send_receipt": False,
             "send_fulfillment_receipt": False,
             "inventory_behaviour": "bypass",
+            "transactions": [{
+                "kind": "sale",
+                "status": "success",
+                "amount": f"{total:.2f}",
+                "gateway": "Stripe",
+            }],
         }
     }
 
