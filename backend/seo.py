@@ -137,10 +137,10 @@ STATIC = {
         "body": "Sculptiva was founded on one belief: confidence isn't a size or a trend — it starts with how you feel. We design flattering, comfortable, squat-proof activewear that supports that feeling every single day, for every body, every level and every journey.",
     },
     "/sculptflex": {
-        "title": f"SculptFlex™ Contour Leggings | {BRAND}",
-        "desc": "Meet SculptFlex™ — Sculptiva's signature contour leggings with a buttery sculpt knit, high-waisted support and a squat-proof finish. Available in four colours.",
-        "h1": "SculptFlex™ Contour Leggings",
-        "body": "SculptFlex™ is our signature contour legging: a seamless, high-waisted sculpt knit engineered to lift, smooth and support through every rep. Squat-proof, four-way stretch, and available in Charcoal Grey, Obsidian Black, Mocha Brown and Deep Navy.",
+        "title": "SCULPTIVA™ Contour Leggings | Free Resistance Band Bundle",
+        "desc": "Premium contour leggings designed to sculpt, support and flatter your shape. Includes a FREE Sculptiva Resistance Band Bundle for a limited time.",
+        "h1": "SCULPTIVA™ Contour Leggings",
+        "body": "SCULPTIVA™ Contour Leggings are our signature contour legging: a seamless, high-waisted sculpt knit engineered to lift, smooth and support through every rep. For a limited time every order includes a FREE Sculptiva Glute Sculpt Bundle — a premium resistance band, carry bag and two digital training guides. Squat-proof, four-way stretch, and available in Charcoal Grey, Obsidian Black, Mocha Brown and Deep Navy.",
     },
     "/contact": {
         "title": f"Contact {BRAND}",
