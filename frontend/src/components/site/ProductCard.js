@@ -6,8 +6,11 @@ import { useCart } from '../../context/CartContext';
 import { formatPrice } from '../../lib/api';
 import { Stars } from './Reveal';
 
+const BUNDLE_HANDLE = 'sculptflex-contour-leggings';
+
 export const ProductCard = ({ product, className = '' }) => {
   const { addItem } = useCart();
+  const isBundleProduct = product.handle === BUNDLE_HANDLE;
   const discount = product.compare_at
     ? Math.round((1 - product.price / product.compare_at) * 100)
     : 0;
@@ -15,7 +18,11 @@ export const ProductCard = ({ product, className = '' }) => {
   const quickAdd = (e) => {
     e.preventDefault();
     addItem(product, product.sizes?.includes('M') ? 'M' : product.sizes?.[0] || 'One Size');
-    toast.success(`${product.title} added to bag`);
+    toast.success(
+      isBundleProduct
+        ? '🎁 Your FREE Sculptiva Glute Sculpt Bundle has been added to this order.'
+        : `${product.title} added to bag`
+    );
   };
 
   return (
@@ -32,15 +39,28 @@ export const ProductCard = ({ product, className = '' }) => {
           className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
         />
         <div className="absolute left-4 top-4 flex flex-col gap-2">
-          {product.bestseller && (
-            <span className="bg-[#2D2D2D] text-[#F7F3F0] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5">
-              Bestseller
-            </span>
-          )}
-          {discount > 0 && (
-            <span className="bg-[#E8B4B8] text-[#2D2D2D] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5">
-              Save {discount}%
-            </span>
+          {isBundleProduct ? (
+            <>
+              <span className="bg-[#2D2D2D] text-[#F7F3F0] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5">
+                🔥 Best Seller
+              </span>
+              <span className="bg-[#E8B4B8] text-[#2D2D2D] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5">
+                🎁 Free Resistance Band Bundle
+              </span>
+            </>
+          ) : (
+            <>
+              {product.bestseller && (
+                <span className="bg-[#2D2D2D] text-[#F7F3F0] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5">
+                  Bestseller
+                </span>
+              )}
+              {discount > 0 && (
+                <span className="bg-[#E8B4B8] text-[#2D2D2D] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5">
+                  Save {discount}%
+                </span>
+              )}
+            </>
           )}
         </div>
         <button
