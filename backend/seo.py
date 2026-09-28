@@ -890,6 +890,33 @@ BLOG_ORDER.append("what-are-seamless-leggings")
 COLLECTION_ARTICLE["seamless-gym-leggings"] = [
     ("what-are-seamless-leggings", "What are seamless leggings? Why they feel different"),
 ]
+
+# --- Phase 5b article 2: Seamless vs Seamed Leggings (added 2026-09-28) ---
+BLOG["seamless-vs-seamed-leggings"] = {
+    "title_tag": "Seamless vs Seamed Leggings: Does It Actually Matter? | Sculptiva",
+    "desc": "Seamless vs seamed leggings compared on fit, compression and comfort — what the construction actually changes, and when each one makes sense.",
+    "h1": "Seamless vs Seamed Leggings: Does It Actually Matter?",
+    "date": "2026-09-28",
+    "excerpt": "What seamless vs seamed construction actually changes in fit, compression and comfort.",
+    "image": _LEGGINGS_IMG,
+    "body": "Seamed leggings are cut from flat fabric panels and joined with stitched seams, usually a flatlock seam down the side or inner leg for durability. Seamless leggings are knitted as one continuous piece on a circular knitting machine, so there is no panel to stitch together in the first place. The practical difference shows up in three places. Fit: a seamed pair can be engineered with different panel shapes for extra room through the hip or a tighter calf, while a seamless piece fits closer and more uniformly across the whole leg. Compression: a seam lets a brand build in a dedicated compression panel exactly where it is needed, such as the contouring scrunch seam on our Glute Sculpt style, while a seamless knit varies compression by adjusting knit density during production rather than adding a panel afterwards. Comfort: with no stitched seam to catch or chafe, seamless tends to win on long sessions and under tight outer layers, though a well-finished flatlock seam causes little irritation for most people. Neither construction is automatically better — it comes down to whether you want targeted shaping built around a seam, or a smoother, second-skin fit with none.",
+    "faqs": [
+        ("Are seamed leggings less comfortable than seamless leggings?", "Not necessarily — a well-finished flatlock seam causes minimal irritation for most people. Seamless has the edge mainly on very long sessions or under tight outer layers, where any seam can start to rub."),
+        ("Do seamed leggings offer better compression than seamless?", "They can, since a seam lets a brand add a dedicated compression panel exactly where it is needed, like the scrunch seam on our Glute Sculpt style. Seamless leggings vary compression through knit density instead, which is just as effective but distributed more evenly."),
+        ("Which should I choose for high-intensity training?", "Either works for squat-proof coverage, but if you are prone to chafing on long or sweaty sessions, seamless is the safer pick. If you want a seam-engineered shaping effect, a seamed style like Glute Sculpt is built for that."),
+    ],
+    "primary": ("Shop Seamless Leggings", "/collections/seamless-gym-leggings"),
+    "links": [
+        ("Seamless Sculpt Knit Leggings", "/products/seamless-sculpt-leggings"),
+        ("Glute Sculpt High-Rise Leggings", "/products/glute-sculpt-leggings"),
+        ("What Are Seamless Leggings? Why They Feel Different", "/blog/what-are-seamless-leggings"),
+    ],
+}
+BLOG_ORDER.append("seamless-vs-seamed-leggings")
+COLLECTION_ARTICLE["seamless-gym-leggings"] = [
+    ("what-are-seamless-leggings", "What are seamless leggings? Why they feel different"),
+    ("seamless-vs-seamed-leggings", "Seamless vs seamed leggings: does it actually matter?"),
+]
 _NAV_LINKS = [
     ("Shop All", "/shop"),
     ("Leggings", "/collections/leggings"),
