@@ -73,12 +73,6 @@ const REVIEWS = [
   { name: 'Chloe T.', location: 'Bristol', rating: 5, title: 'From gym to errands', text: 'Wore them for a morning lift, then brunch, then a long walk. Zero adjusting, zero rolling down. All-day comfort is not a myth.', img: IMG.lunge },
 ];
 
-const UGC = [
-  { before: IMG.back, after: IMG.lunge, name: '@jade.glutes', caption: '8 weeks of glute days with Sculptiva' },
-  { before: IMG.portrait, after: IMG.front, name: '@megan.moves', caption: 'Everyday confidence, zero see-through' },
-  { before: IMG.lunge, after: IMG.back, name: '@chloe.strong', caption: '12-week strength journey' },
-];
-
 const FAQS = [
   { q: 'Are Sculptiva Contour Leggings really squat proof?', a: 'Yes. The dense double-knit seamless fabric is tested to full squat depth under bright studio lighting. 100% confidence in every move.' },
   { q: 'How does the sizing run?', a: 'True to size with four-way stretch. Between sizes, size down for a more sculpting compression fit or up for relaxed everyday comfort.' },
@@ -358,25 +352,6 @@ export default function SculptFlex() {
         </div>
       </section>
 
-      {/* BUNDLE PROMO GALLERY */}
-      <section className="relative overflow-hidden bg-[#2D2D2D]" data-testid="sf-bundle-gallery">
-        <ParallaxImage src={IMG.infographic} alt="Sculptiva Contour Leggings with the FREE Resistance Band Bundle and carry bag" className="h-[70svh] min-h-[420px]" position="center 30%" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/85 via-[#2D2D2D]/20 to-transparent" />
-        <div className="absolute bottom-0 inset-x-0 px-6 md:px-10 pb-10 md:pb-14">
-          <div className="mx-auto max-w-[1300px]">
-            <Reveal><Overline light>Included with every order</Overline></Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="mt-3 font-display font-medium uppercase tracking-tighter text-[#F7F3F0] text-3xl md:text-6xl" data-testid="sf-bundle-gallery-title">
-                FREE Resistance Band Bundle Included
-              </h2>
-              <p className="mt-3 max-w-lg text-[#F7F3F0]/80 text-sm md:text-base leading-relaxed">
-                Your Contour Leggings arrive with a premium fabric resistance band and a Sculptiva carry bag — everything you need to start sculpting, the moment your order lands.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* WHY CUSTOMERS LOVE THIS BUNDLE */}
       <section className="py-20 md:py-28 bg-white" data-testid="sf-why-bundle">
         <div className="mx-auto max-w-[1300px] px-6 md:px-10">
@@ -445,22 +420,6 @@ export default function SculptFlex() {
         <ParallaxImage src={IMG.back} alt="Back view of Sculptiva Contour Leggings" className="aspect-[4/5] md:aspect-auto md:min-h-[90vh] order-1 md:order-2" />
       </section>
 
-      {/* 5 — FULL WIDTH: BUILT FOR EVERY WORKOUT */}
-      <section className="relative overflow-hidden" data-testid="sf-built">
-        <ParallaxImage src={IMG.infographic} alt="Built to Sculpt — feature infographic" className="h-[80svh] min-h-[520px]" position="center 25%" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/70 via-transparent to-transparent" />
-        <div className="absolute bottom-0 inset-x-0 px-6 md:px-10 pb-10 md:pb-14">
-          <div className="mx-auto max-w-[1300px]">
-            <Reveal>
-              <h2 className="font-display font-medium uppercase tracking-tighter text-[#F7F3F0] text-4xl md:text-6xl" data-testid="sf-built-title">Built For Every Workout</h2>
-              <p className="mt-3 max-w-md text-[#F7F3F0]/80 text-sm md:text-base leading-relaxed">
-                From gym sessions to everyday wear, Sculptiva keeps you supported and comfortable.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* 6 — FLOATING FEATURE CARDS */}
       <section className="relative overflow-hidden bg-[#2D2D2D]" data-testid="sf-features">
         <ParallaxImage src={IMG.lunge} alt="Sculptiva Contour Leggings in training" className="h-[85svh] min-h-[560px]" position="center 20%" />
@@ -487,36 +446,6 @@ export default function SculptFlex() {
                 </Reveal>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* BEFORE / AFTER UGC */}
-      <section className="py-20 md:py-28 bg-[#F7F3F0]" data-testid="sf-ugc">
-        <div className="mx-auto max-w-[1300px] px-6 md:px-10">
-          <Reveal><Overline>Real women, real progress</Overline></Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="mt-4 font-display uppercase tracking-tight text-4xl md:text-6xl">The Sculptiva Effect</h2>
-          </Reveal>
-          <div className="mt-12 grid md:grid-cols-3 gap-4 md:gap-6">
-            {UGC.map((u, i) => (
-              <Reveal key={u.name} delay={0.1 * i}>
-                <div className="group" data-testid={`sf-ugc-${i}`}>
-                  <div className="relative grid grid-cols-2 overflow-hidden aspect-[4/3]">
-                    <div className="relative overflow-hidden">
-                      <img src={u.before} alt={`${u.name} before`} loading="lazy" className="absolute inset-0 h-full w-full object-cover grayscale-[35%] transition-transform duration-[1200ms] group-hover:scale-105" />
-                      <span className="absolute left-3 top-3 bg-[#2D2D2D]/70 backdrop-blur text-[#F7F3F0] text-[10px] font-bold uppercase tracking-[0.2em] px-2.5 py-1">Before</span>
-                    </div>
-                    <div className="relative overflow-hidden border-l-2 border-[#E8B4B8]">
-                      <img src={u.after} alt={`${u.name} after`} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
-                      <span className="absolute right-3 top-3 bg-[#E8B4B8] text-[#2D2D2D] text-[10px] font-bold uppercase tracking-[0.2em] px-2.5 py-1">After</span>
-                    </div>
-                  </div>
-                  <p className="mt-3 text-sm font-bold">{u.name}</p>
-                  <p className="text-xs text-[#2D2D2D]/50">{u.caption}</p>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>
