@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowCounterClockwise, Barbell, Check, Drop, Feather, LockSimple, Package,
@@ -100,6 +100,10 @@ const PRODUCT_FAQS = [
 const RATING_BARS = [
   { stars: 5, pct: 86 }, { stars: 4, pct: 10 }, { stars: 3, pct: 3 }, { stars: 2, pct: 1 }, { stars: 1, pct: 0 },
 ];
+// The Sculptiva Contour Leggings CRO landing page lives at /sculptflex (with the
+// flagship free-bundle offer, urgency banner, etc.). Anyone who reaches this
+// generic product page via a collection/shop link is redirected there instead.
+const BUNDLE_HANDLE = 'sculptflex-contour-leggings';
 
 export default function ProductPage() {
   const { handle } = useParams();
@@ -112,6 +116,7 @@ export default function ProductPage() {
   const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
+    if (handle === BUNDLE_HANDLE) return;
     setData(null);
     setSize(null);
     setColour(null);
@@ -140,6 +145,10 @@ export default function ProductPage() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+    if (handle === BUNDLE_HANDLE) {
+          return <Navigate to="/sculptflex" replace />;
+    }
+  
   if (!data) {
     return <div className="py-40 text-center text-sm uppercase tracking-[0.2em] text-[#2D2D2D]/40 bg-white" data-testid="product-loading">Loading…</div>;
   }
